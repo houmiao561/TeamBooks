@@ -15,7 +15,7 @@ class FirstViewController: UIViewController {
     }
 
     @IBAction func LetsGoButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "FirstToTabBar", sender: sender)
+        performSegue(withIdentifier: "FirstToMyTeam", sender: sender)
     }
     @IBAction func AccountSetting(_ sender: UIButton) {
         performSegue(withIdentifier: "FirstToAccount", sender: sender)

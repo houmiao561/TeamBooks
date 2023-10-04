@@ -23,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0D-ie-UDn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1902" y="84"/>
+            <point key="canvasLocation" x="2273" y="84"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="9wQ-hw-Sdg">
@@ -33,13 +33,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TeamBooks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTZ-9b-Ufk">
-                                <rect key="frame" x="124" y="124" width="145" height="117"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VgS-Fc-7Hs">
+                                <rect key="frame" x="30" y="153" width="333" height="33.666666666666657"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TeamBooks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTZ-9b-Ufk">
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="33.666666666666664"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="bTZ-9b-Ufk" secondAttribute="bottom" id="6se-O8-ZH9"/>
+                                    <constraint firstItem="bTZ-9b-Ufk" firstAttribute="leading" secondItem="VgS-Fc-7Hs" secondAttribute="leading" id="aDX-Mb-w49"/>
+                                    <constraint firstItem="bTZ-9b-Ufk" firstAttribute="top" secondItem="VgS-Fc-7Hs" secondAttribute="top" id="hXZ-qg-oGo"/>
+                                    <constraint firstAttribute="trailing" secondItem="bTZ-9b-Ufk" secondAttribute="trailing" id="kU7-K1-7oZ"/>
+                                </constraints>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-rJ-fDY">
                                 <rect key="frame" x="159" y="653" width="75" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -52,10 +62,15 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GeD-GI-q1U"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GeD-GI-q1U" firstAttribute="trailing" secondItem="VgS-Fc-7Hs" secondAttribute="trailing" constant="30" id="Cve-p1-NZL"/>
+                            <constraint firstItem="VgS-Fc-7Hs" firstAttribute="leading" secondItem="GeD-GI-q1U" secondAttribute="leading" constant="30" id="LcA-ic-2Tu"/>
+                            <constraint firstItem="VgS-Fc-7Hs" firstAttribute="top" secondItem="GeD-GI-q1U" secondAttribute="top" constant="50" id="pTp-eM-a2c"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="99T-wg-dd0">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="LRi-JD-Aev">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Ydr-RB-7me">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Ydr-RB-7me">
                                 <rect key="frame" x="231" y="5" width="146" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -68,17 +83,17 @@
                     </navigationItem>
                     <connections>
                         <segue destination="Ucc-SP-ZRT" kind="show" identifier="FirstToAccount" id="ywX-EO-TDB"/>
-                        <segue destination="mHq-GT-SED" kind="show" identifier="FirstToTabBar" id="SJv-NN-5P6"/>
+                        <segue destination="hDc-6i-2KH" kind="show" identifier="FirstToMyTeam" id="q7h-RT-IfY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v0P-JP-Xnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2846.5648854961833" y="83.802816901408448"/>
+            <point key="canvasLocation" x="3048" y="84"/>
         </scene>
-        <!--Account Setting View Controller-->
+        <!--Account Setting-->
         <scene sceneID="fSw-mM-ZNm">
             <objects>
-                <viewController id="Ucc-SP-ZRT" customClass="AccountSettingViewController" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Ucc-SP-ZRT" customClass="AccountSetting" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Znp-e3-ZQE">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,6 +116,10 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Button"/>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ka0-VW-2ZH">
+                                <rect key="frame" x="76" y="385" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="82J-MC-SY4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -111,202 +130,200 @@
             </objects>
             <point key="canvasLocation" x="3868" y="-603"/>
         </scene>
-        <!--Tab Bar View Controller-->
-        <scene sceneID="h3W-bB-p1k">
+        <!--MyTeam-->
+        <scene sceneID="aty-qf-Xc9">
             <objects>
-                <tabBarController id="mHq-GT-SED" customClass="TabBarViewController" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="rXQ-rK-P40"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3c3-U6-Hhc">
+                <viewController id="hDc-6i-2KH" customClass="MyTeams" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DSm-EU-b0e">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ypF-jS-1Pq">
+                                <rect key="frame" x="177" y="496" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="b:" destination="hDc-6i-2KH" eventType="touchUpInside" id="ovj-3K-cNu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KLG-Mg-G6I"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="MyTeam" id="E9d-7p-P5V">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="cPv-yS-oRL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="U6w-9F-dfA">
+                                <rect key="frame" x="322.66666666666669" y="5" width="54.333333333333314" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system" title=" "/>
+                                <connections>
+                                    <action selector="CreatTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="8Re-yy-QX0"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="g1t-lJ-f76" kind="show" identifier="MyTeamToTabBar" id="O4h-Ph-HCj"/>
+                        <segue destination="XT2-sA-dRk" kind="show" identifier="MyTeamToCreatTeam" id="4IO-1Y-zou"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wwe-NT-5R2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3867.9389312977096" y="83.802816901408448"/>
+        </scene>
+        <!--CreatTeam-->
+        <scene sceneID="bKN-W6-GvC">
+            <objects>
+                <viewController id="XT2-sA-dRk" customClass="CreatTeam" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Il5-ug-W8y">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CreatTeam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5h-y7-2YA">
+                                <rect key="frame" x="175" y="416" width="83" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DxU-sg-fAe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="CreatTeam" id="H94-cz-PuD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sFJ-y4-qkd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3867.9389312977096" y="793.66197183098598"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="I5y-wd-Kq7">
+            <objects>
+                <viewController id="llC-i7-1hm" customClass="AllMembers" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qWP-B4-Xy3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A01-Bm-Anh">
+                                <rect key="frame" x="175" y="416" width="72" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rSO-Ly-5F6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="zzS-k5-tX0"/>
+                    <connections>
+                        <segue destination="cQw-MH-1rq" kind="show" identifier="MembersToMenberDetail" id="I8L-zH-zhu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LvR-hW-sCc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5189" y="794"/>
+        </scene>
+        <!--Member Detail-->
+        <scene sceneID="lNu-Lx-fOh">
+            <objects>
+                <viewController id="cQw-MH-1rq" customClass="MemberDetail" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iHg-xX-lEP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MemberDetail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXb-ff-B2d">
+                                <rect key="frame" x="162" y="416" width="107" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="XhN-jD-apQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hjZ-Lr-GIZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G7a-Kd-klf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6288" y="794"/>
+        </scene>
+        <!--123-->
+        <scene sceneID="lDR-vj-c5q">
+            <objects>
+                <viewController id="3nB-U8-1Sg" customClass="AddMember" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zg0-Xy-wTT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AddMembers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upc-ZA-oHs">
+                                <rect key="frame" x="168" y="416" width="103" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SYp-bp-Bgm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="123" id="OG9-iD-J3r"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rIm-O4-YRk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5630" y="84"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="5b2-rq-8Km">
+            <objects>
+                <viewController id="Zm2-rC-vug" customClass="TeamDetail" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pUy-tx-83a">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TeamDetails" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEn-El-6db">
+                                <rect key="frame" x="175" y="416" width="94" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Xi9-zh-lSL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="2dR-P7-jja"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CHA-Mr-ekK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5189" y="-604"/>
+        </scene>
+        <!--Tab Bar-->
+        <scene sceneID="BZT-kL-Sw7">
+            <objects>
+                <tabBarController id="g1t-lJ-f76" customClass="TabBar" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="icK-Ma-540"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4UL-MG-4u3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <tabBarAppearance key="scrollEdgeAppearance"/>
                     </tabBar>
                     <connections>
-                        <segue destination="GjM-Ha-wEb" kind="relationship" relationship="viewControllers" id="jI4-bx-7eB"/>
-                        <segue destination="rCb-31-iQ6" kind="relationship" relationship="viewControllers" id="mwh-Bt-dW0"/>
-                        <segue destination="yS5-8b-tap" kind="relationship" relationship="viewControllers" id="9rJ-u0-P2u"/>
+                        <segue destination="Zm2-rC-vug" kind="relationship" relationship="viewControllers" id="UaK-ng-hKJ"/>
+                        <segue destination="3nB-U8-1Sg" kind="relationship" relationship="viewControllers" id="mDI-mh-5Yo"/>
+                        <segue destination="llC-i7-1hm" kind="relationship" relationship="viewControllers" id="OuW-GL-4Yh"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vm9-h7-kRB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="59P-EP-fhM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3868" y="84"/>
-        </scene>
-        <!--Item 1-->
-        <scene sceneID="2Ik-6V-cc1">
-            <objects>
-                <viewController id="GjM-Ha-wEb" customClass="ItemAllTeam" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mSR-0D-oL0">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AllTeam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oUv-dX-7ZW">
-                                <rect key="frame" x="175" y="416" width="61" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="m3d-Jx-fk2"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="xII-hr-tiw"/>
-                    <connections>
-                        <segue destination="j7W-xx-0Q5" kind="show" id="eCi-4H-Uhh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1aK-i0-jzW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4949" y="-248"/>
-        </scene>
-        <!--Members-->
-        <scene sceneID="drR-vE-Pwz">
-            <objects>
-                <viewController id="j7W-xx-0Q5" customClass="Members" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cyX-ra-lQi">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AllMenberTableView" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMk-qg-0Zf">
-                                <rect key="frame" x="119" y="416" width="154" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="nLc-lE-PUL"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Idm-gE-E84"/>
-                    <connections>
-                        <segue destination="eOm-aj-RMX" kind="show" id="3zN-AY-SA0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vq4-SR-6nQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6033" y="84"/>
-        </scene>
-        <!--Detail Page-->
-        <scene sceneID="D94-N1-tID">
-            <objects>
-                <viewController id="eOm-aj-RMX" customClass="DetailPage" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="R4w-WN-nzY">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DetailPage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipv-sI-x9W">
-                                <rect key="frame" x="175" y="416" width="82" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Npl-I4-XWQ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="see-FK-wI8"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nB6-82-Fze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="7196" y="415"/>
-        </scene>
-        <!--Item 2-->
-        <scene sceneID="w2f-vF-AEI">
-            <objects>
-                <viewController id="rCb-31-iQ6" customClass="ItemCreatTeam" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ak3-kM-JTN">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CreatTeam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFh-hg-5he">
-                                <rect key="frame" x="175" y="350" width="83" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="ida-Pn-Bdi"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Bqj-fF-lt6"/>
-                    <connections>
-                        <segue destination="yS5-8b-tap" kind="show" id="xod-PR-vkx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Sb-98-KYB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3868" y="785"/>
-        </scene>
-        <!--Item3-->
-        <scene sceneID="4B9-8U-Ei2">
-            <objects>
-                <viewController id="yS5-8b-tap" userLabel="Item3" customClass="ItemMyTeam" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yOc-Lt-NiX">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MyTeam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ay4-Bd-APa">
-                                <rect key="frame" x="175" y="416" width="64" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6hv-QJ-Dmp"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item3" id="dh8-Po-qsS" userLabel="Item3"/>
-                    <navigationItem key="navigationItem" id="4ll-We-9By"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="j7W-xx-0Q5" kind="show" id="A4I-Oe-nLX"/>
-                        <segue destination="73H-Pb-iER" kind="show" id="Jpi-jH-dSx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7yl-3C-Ud9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4949" y="416"/>
-        </scene>
-        <!--Creat Self Page-->
-        <scene sceneID="ZRg-8x-51l">
-            <objects>
-                <viewController id="73H-Pb-iER" customClass="CreatSelfPage" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bGf-Ua-3cp">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CreateSelfPage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vU-dP-xu9">
-                                <rect key="frame" x="147" y="416" width="119" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="jII-ba-Szf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="OpE-RB-8Z2"/>
-                    <connections>
-                        <segue destination="eOm-aj-RMX" kind="show" id="Kdy-Lc-JmF"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CEf-qn-WnR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6033" y="785"/>
+            <point key="canvasLocation" x="4729" y="85"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="xod-PR-vkx"/>
-        <segue reference="Kdy-Lc-JmF"/>
-        <segue reference="A4I-Oe-nLX"/>
-    </inferredMetricsTieBreakers>
     <resources>
+        <image name="plus.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

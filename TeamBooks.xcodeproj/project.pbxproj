@@ -7,23 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93311C7E2ACDBEE900CB2845 /* credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93311C7D2ACDBEE900CB2845 /* credentials.plist */; };
+		93410C5B2ACD945100FA020A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93410C5A2ACD945100FA020A /* GoogleService-Info.plist */; };
 		93D1A9A22ACD353800762EAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9A12ACD353800762EAA /* AppDelegate.swift */; };
 		93D1A9A42ACD353800762EAA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9A32ACD353800762EAA /* SceneDelegate.swift */; };
 		93D1A9A92ACD353800762EAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D1A9A72ACD353800762EAA /* Main.storyboard */; };
 		93D1A9AB2ACD353900762EAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93D1A9AA2ACD353900762EAA /* Assets.xcassets */; };
 		93D1A9AE2ACD353900762EAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93D1A9AC2ACD353900762EAA /* LaunchScreen.storyboard */; };
 		93D1A9B62ACD45F900762EAA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9B52ACD45F900762EAA /* FirstViewController.swift */; };
-		93D1A9B82ACD490200762EAA /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9B72ACD490200762EAA /* TabBarViewController.swift */; };
-		93D1A9BA2ACD493600762EAA /* AccountSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9B92ACD493600762EAA /* AccountSettingViewController.swift */; };
-		93D1A9BD2ACD4DAA00762EAA /* ItemAllTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9BC2ACD4DAA00762EAA /* ItemAllTeam.swift */; };
-		93D1A9BF2ACD4DC900762EAA /* ItemCreatTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9BE2ACD4DC900762EAA /* ItemCreatTeam.swift */; };
-		93D1A9C12ACD4DE300762EAA /* ItemMyTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9C02ACD4DE300762EAA /* ItemMyTeam.swift */; };
-		93D1A9C32ACD4E9400762EAA /* Members.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9C22ACD4E9400762EAA /* Members.swift */; };
-		93D1A9C52ACD4EC400762EAA /* CreatSelfPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9C42ACD4EC400762EAA /* CreatSelfPage.swift */; };
-		93D1A9C72ACD4EF200762EAA /* DetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9C62ACD4EF200762EAA /* DetailPage.swift */; };
+		93D1A9BA2ACD493600762EAA /* AccountSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9B92ACD493600762EAA /* AccountSetting.swift */; };
+		93F424A62ACD8A9500FC9700 /* MyTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424A52ACD8A9500FC9700 /* MyTeams.swift */; };
+		93F424A82ACD8AC000FC9700 /* CreatTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424A72ACD8AC000FC9700 /* CreatTeam.swift */; };
+		93F424AA2ACD8B1800FC9700 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424A92ACD8B1800FC9700 /* TabBar.swift */; };
+		93F424AC2ACD8B9100FC9700 /* TeamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424AB2ACD8B9100FC9700 /* TeamDetail.swift */; };
+		93F424AE2ACD8BC900FC9700 /* AddMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424AD2ACD8BC900FC9700 /* AddMember.swift */; };
+		93F424B02ACD8BEE00FC9700 /* AllMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424AF2ACD8BEE00FC9700 /* AllMembers.swift */; };
+		93F424B22ACD8C1000FC9700 /* MemberDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424B12ACD8C1000FC9700 /* MemberDetail.swift */; };
+		B2B4933DB5F0EF576B613712 /* Pods_TeamBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93311C7D2ACDBEE900CB2845 /* credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = credentials.plist; sourceTree = "<group>"; };
+		93410C5A2ACD945100FA020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93D1A99E2ACD353800762EAA /* TeamBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D1A9A12ACD353800762EAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93D1A9A32ACD353800762EAA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,14 +38,16 @@
 		93D1A9AD2ACD353900762EAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93D1A9AF2ACD353900762EAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93D1A9B52ACD45F900762EAA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		93D1A9B72ACD490200762EAA /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		93D1A9B92ACD493600762EAA /* AccountSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingViewController.swift; sourceTree = "<group>"; };
-		93D1A9BC2ACD4DAA00762EAA /* ItemAllTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ItemAllTeam.swift; path = TeamBooks/ItemAllTeam.swift; sourceTree = SOURCE_ROOT; };
-		93D1A9BE2ACD4DC900762EAA /* ItemCreatTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCreatTeam.swift; sourceTree = "<group>"; };
-		93D1A9C02ACD4DE300762EAA /* ItemMyTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemMyTeam.swift; sourceTree = "<group>"; };
-		93D1A9C22ACD4E9400762EAA /* Members.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Members.swift; path = TeamBooks/Members.swift; sourceTree = SOURCE_ROOT; };
-		93D1A9C42ACD4EC400762EAA /* CreatSelfPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreatSelfPage.swift; path = TeamBooks/CreatSelfPage.swift; sourceTree = SOURCE_ROOT; };
-		93D1A9C62ACD4EF200762EAA /* DetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailPage.swift; path = TeamBooks/DetailPage.swift; sourceTree = SOURCE_ROOT; };
+		93D1A9B92ACD493600762EAA /* AccountSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetting.swift; sourceTree = "<group>"; };
+		93F424A52ACD8A9500FC9700 /* MyTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTeams.swift; path = TeamBooks/MyTeams.swift; sourceTree = SOURCE_ROOT; };
+		93F424A72ACD8AC000FC9700 /* CreatTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreatTeam.swift; path = TeamBooks/CreatTeam.swift; sourceTree = SOURCE_ROOT; };
+		93F424A92ACD8B1800FC9700 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBar.swift; path = TeamBooks/TabBar.swift; sourceTree = SOURCE_ROOT; };
+		93F424AB2ACD8B9100FC9700 /* TeamDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeamDetail.swift; path = TeamBooks/TeamDetail.swift; sourceTree = SOURCE_ROOT; };
+		93F424AD2ACD8BC900FC9700 /* AddMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddMember.swift; path = TeamBooks/AddMember.swift; sourceTree = SOURCE_ROOT; };
+		93F424AF2ACD8BEE00FC9700 /* AllMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllMembers.swift; path = TeamBooks/AllMembers.swift; sourceTree = SOURCE_ROOT; };
+		93F424B12ACD8C1000FC9700 /* MemberDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemberDetail.swift; path = TeamBooks/MemberDetail.swift; sourceTree = SOURCE_ROOT; };
+		A20A5FAA4A9EF55963CC10A1 /* Pods-TeamBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBooks.debug.xcconfig"; path = "Target Support Files/Pods-TeamBooks/Pods-TeamBooks.debug.xcconfig"; sourceTree = "<group>"; };
+		FB16D442661D6B3F793CD700 /* Pods-TeamBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBooks.release.xcconfig"; path = "Target Support Files/Pods-TeamBooks/Pods-TeamBooks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,17 +55,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B4933DB5F0EF576B613712 /* Pods_TeamBooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B5FB85E30FA9960DA4FF88D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		93D1A9952ACD353800762EAA = {
 			isa = PBXGroup;
 			children = (
 				93D1A9A02ACD353800762EAA /* TeamBooks */,
 				93D1A99F2ACD353800762EAA /* Products */,
+				BE475E50075B7AB06E010662 /* Pods */,
+				0B5FB85E30FA9960DA4FF88D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +98,8 @@
 				93D1A9AA2ACD353900762EAA /* Assets.xcassets */,
 				93D1A9AC2ACD353900762EAA /* LaunchScreen.storyboard */,
 				93D1A9AF2ACD353900762EAA /* Info.plist */,
+				93410C5A2ACD945100FA020A /* GoogleService-Info.plist */,
+				93311C7D2ACDBEE900CB2845 /* credentials.plist */,
 			);
 			path = TeamBooks;
 			sourceTree = "<group>";
@@ -86,17 +107,26 @@
 		93D1A9BB2ACD4CDF00762EAA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				93D1A9B92ACD493600762EAA /* AccountSetting.swift */,
 				93D1A9B52ACD45F900762EAA /* FirstViewController.swift */,
-				93D1A9B92ACD493600762EAA /* AccountSettingViewController.swift */,
-				93D1A9B72ACD490200762EAA /* TabBarViewController.swift */,
-				93D1A9BC2ACD4DAA00762EAA /* ItemAllTeam.swift */,
-				93D1A9BE2ACD4DC900762EAA /* ItemCreatTeam.swift */,
-				93D1A9C02ACD4DE300762EAA /* ItemMyTeam.swift */,
-				93D1A9C22ACD4E9400762EAA /* Members.swift */,
-				93D1A9C42ACD4EC400762EAA /* CreatSelfPage.swift */,
-				93D1A9C62ACD4EF200762EAA /* DetailPage.swift */,
+				93F424A52ACD8A9500FC9700 /* MyTeams.swift */,
+				93F424A72ACD8AC000FC9700 /* CreatTeam.swift */,
+				93F424A92ACD8B1800FC9700 /* TabBar.swift */,
+				93F424AB2ACD8B9100FC9700 /* TeamDetail.swift */,
+				93F424AD2ACD8BC900FC9700 /* AddMember.swift */,
+				93F424B12ACD8C1000FC9700 /* MemberDetail.swift */,
+				93F424AF2ACD8BEE00FC9700 /* AllMembers.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		BE475E50075B7AB06E010662 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A20A5FAA4A9EF55963CC10A1 /* Pods-TeamBooks.debug.xcconfig */,
+				FB16D442661D6B3F793CD700 /* Pods-TeamBooks.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,9 +136,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93D1A9B22ACD353900762EAA /* Build configuration list for PBXNativeTarget "TeamBooks" */;
 			buildPhases = (
+				4B8FC2E2F349CCC668FA1E9F /* [CP] Check Pods Manifest.lock */,
 				93D1A99A2ACD353800762EAA /* Sources */,
 				93D1A99B2ACD353800762EAA /* Frameworks */,
 				93D1A99C2ACD353800762EAA /* Resources */,
+				C2A5D58BA2BFA2D87D79C92F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,28 +191,72 @@
 			files = (
 				93D1A9AE2ACD353900762EAA /* LaunchScreen.storyboard in Resources */,
 				93D1A9AB2ACD353900762EAA /* Assets.xcassets in Resources */,
+				93311C7E2ACDBEE900CB2845 /* credentials.plist in Resources */,
 				93D1A9A92ACD353800762EAA /* Main.storyboard in Resources */,
+				93410C5B2ACD945100FA020A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B8FC2E2F349CCC668FA1E9F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TeamBooks-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2A5D58BA2BFA2D87D79C92F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeamBooks/Pods-TeamBooks-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TeamBooks/Pods-TeamBooks-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TeamBooks/Pods-TeamBooks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		93D1A99A2ACD353800762EAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93D1A9C52ACD4EC400762EAA /* CreatSelfPage.swift in Sources */,
-				93D1A9C72ACD4EF200762EAA /* DetailPage.swift in Sources */,
-				93D1A9C32ACD4E9400762EAA /* Members.swift in Sources */,
-				93D1A9B82ACD490200762EAA /* TabBarViewController.swift in Sources */,
+				93F424AE2ACD8BC900FC9700 /* AddMember.swift in Sources */,
+				93F424B22ACD8C1000FC9700 /* MemberDetail.swift in Sources */,
+				93F424A62ACD8A9500FC9700 /* MyTeams.swift in Sources */,
 				93D1A9B62ACD45F900762EAA /* FirstViewController.swift in Sources */,
 				93D1A9A22ACD353800762EAA /* AppDelegate.swift in Sources */,
 				93D1A9A42ACD353800762EAA /* SceneDelegate.swift in Sources */,
-				93D1A9BA2ACD493600762EAA /* AccountSettingViewController.swift in Sources */,
-				93D1A9BF2ACD4DC900762EAA /* ItemCreatTeam.swift in Sources */,
-				93D1A9BD2ACD4DAA00762EAA /* ItemAllTeam.swift in Sources */,
-				93D1A9C12ACD4DE300762EAA /* ItemMyTeam.swift in Sources */,
+				93F424B02ACD8BEE00FC9700 /* AllMembers.swift in Sources */,
+				93F424A82ACD8AC000FC9700 /* CreatTeam.swift in Sources */,
+				93F424AC2ACD8B9100FC9700 /* TeamDetail.swift in Sources */,
+				93D1A9BA2ACD493600762EAA /* AccountSetting.swift in Sources */,
+				93F424AA2ACD8B1800FC9700 /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +319,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -306,7 +382,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -327,6 +403,7 @@
 		};
 		93D1A9B32ACD353900762EAA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A20A5FAA4A9EF55963CC10A1 /* Pods-TeamBooks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -357,6 +434,7 @@
 		};
 		93D1A9B42ACD353900762EAA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB16D442661D6B3F793CD700 /* Pods-TeamBooks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
