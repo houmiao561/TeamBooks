@@ -16,18 +16,19 @@ class LogIn: UIViewController{
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var profilePhoto: UILabel!
     
-    let imagePicker = UIImagePickerController()
+    private let imagePicker = UIImagePickerController()
     private let user = Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        downloadImageFromFirebaseStorage()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         photo.addGestureRecognizer(tapGestureRecognizer)
         photo.isUserInteractionEnabled = true
-        downloadImageFromFirebaseStorage()
-        
+        photo.layer.cornerRadius = photo.frame.size.width / 2.0
+        photo.layer.masksToBounds = true // 剪切超出圆角范围的内容
+        photo.contentMode = .scaleAspectFill
     }
     
     @IBAction func SignUp(_ sender: UIButton) {
@@ -80,62 +81,41 @@ extension LogIn{
     func uploadImageToFirebaseStorage(image: UIImage) {
         // 获取 Firebase 存储的引用
         let storageRef = Storage.storage().reference()
-        
-        // 创建一个唯一的文件名，以避免文件名冲突
-        let uniqueImageName = "ProfilePhoto/image_\(user!.email!).jpg"
-        
         // 获取对应的存储位置的引用
-        let imageRef = storageRef.child(uniqueImageName)
+        let imageRef = storageRef.child("ProfilePhoto/\(user!.email!)")
         
         if let imageData = image.jpegData(compressionQuality: 1.0) {
             // 开始上传图片
             let uploadTask = imageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 if let error = error {
-                    // 处理上传错误
                     print("Error uploading image: \(error.localizedDescription)")
                 } else {
-                    // 上传成功，可以从 metadata 中获取文件的下载 URL
-                    imageRef.downloadURL { (url, error) in
-                        if let downloadURL = url {
-                            // 在这里，您可以使用 downloadURL，例如将其保存到数据库中或显示在应用程序中
-                            print("Image download URL: \(downloadURL)")
-
-                        } else if let error = error {
-                            // 处理获取下载 URL 的错误
-                            print("Error getting download URL: \(error.localizedDescription)")
-                        }
-                    }
+                    print("SucceedLoadUpPhoto!!!!")
                 }
-            }
-            
-            // 监听上传进度
-            uploadTask.observe(.progress) { snapshot in
-                let percentComplete = Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)
-                print("Upload progress: \(percentComplete * 100)%")
             }
         }
     }
     
+    
     func downloadImageFromFirebaseStorage(){
         let storageRef = Storage.storage().reference()
-        let imageRef = storageRef.child("ProfilePhoto/image_\(user!.email!).jpg")
+        let imageRef = storageRef.child("ProfilePhoto/\(user!.email!)")
         
-        imageRef.downloadURL { (url, error) in
-            if let downloadURL = url {
-                DispatchQueue.global().async {
-                    if let imageData = try? Data(contentsOf: downloadURL) {
-                        let image = UIImage(data: imageData)
-                        DispatchQueue.main.async {
-                            self.photo.image = image
+            imageRef.downloadURL { (url, error) in
+                if let downloadURL = url {
+                    DispatchQueue.global().async {
+                        if let imageData = try? Data(contentsOf: downloadURL) {
+                            let image = UIImage(data: imageData)
+                            DispatchQueue.main.async {
+                                self.photo.image = image
+                            }
                         }
                     }
+                } else if let error = error {
+                    // 处理获取下载 URL 的错误
+                    print("Error getting download URL: \(error.localizedDescription)")
                 }
-            } else if let error = error {
-                // 处理获取下载 URL 的错误
-                print("Error getting download URL: \(error.localizedDescription)")
             }
-        }
-
+        
     }
-
 }

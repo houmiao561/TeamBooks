@@ -6,24 +6,22 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseDatabase
+import FirebaseAuth
 
 class CreatTeam: UIViewController {
-
+    @IBOutlet weak var teamName: UITextField!
+    @IBOutlet weak var teamDate: UITextField!
+    @IBOutlet weak var teamPassword: UITextField!
+    @IBOutlet weak var teamLogo: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func addTeamButton(_ sender: UIButton) {
+        
     }
-    */
-
 }
