@@ -26,6 +26,7 @@ class LogIn: UIViewController{
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         photo.addGestureRecognizer(tapGestureRecognizer)
         photo.isUserInteractionEnabled = true
+        
         photo.layer.cornerRadius = photo.frame.size.width / 2.0
         photo.layer.masksToBounds = true // 剪切超出圆角范围的内容
         photo.contentMode = .scaleAspectFill
@@ -99,7 +100,7 @@ extension LogIn{
     
     func downloadImageFromFirebaseStorage(){
         let storageRef = Storage.storage().reference()
-        let imageRef = storageRef.child("ProfilePhoto/\(user!.email!)")
+        let imageRef = storageRef.child("ProfilePhoto/\(user?.email)")
         
             imageRef.downloadURL { (url, error) in
                 if let downloadURL = url {
