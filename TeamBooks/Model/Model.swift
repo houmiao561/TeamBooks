@@ -16,6 +16,7 @@ struct TeamDetailText{
     var introduce: String
     
     var members: [String]
+    var comments: [String]
     
     var logo: UIImage
 }

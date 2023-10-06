@@ -18,26 +18,33 @@ class CreatTeam: UIViewController {
     
     private let imagePicker = UIImagePickerController()
     private let user = Auth.auth().currentUser
-    private var teamDetailText = TeamDetailText(
-        name: "Team Name",
-        date: "2023-10-06",
-        password: "secure_password",
-        introduce: "This is our team.",
-        members: ["Member 1", "Member 2"],
-        logo: UIImage(named: "team_logo") ?? UIImage()
-    )
+    private var teamDetailText = TeamDetailText(name: "",date: "",password: "",introduce: "",members: [],comments:[],logo: UIImage(named: "team_logo") ?? UIImage())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //点击手势
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         teamLogo.addGestureRecognizer(tapGestureRecognizer)
         teamLogo.isUserInteractionEnabled = true
+        
+        //下滑手势
+        let swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        swipeDownGestureRecognizer.direction = .down
+        view.addGestureRecognizer(swipeDownGestureRecognizer)
+        swipeDownGestureRecognizer.delegate = self
+        
+        //上划手势
+        let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
+        swipeUpGestureRecognizer.direction = .up
+        view.addGestureRecognizer(swipeUpGestureRecognizer)
+        swipeUpGestureRecognizer.delegate = self
         
     }
 
     @IBAction func addTeamButton(_ sender: UIButton) {
         uploadTextToFirebase()
+        uploadImageToFirebase(image: teamLogo.image!)
         dismiss(animated: true)
     }
 }
@@ -60,8 +67,7 @@ extension CreatTeam:UIImagePickerControllerDelegate, UINavigationControllerDeleg
         if let selectedImage = info[.originalImage] as? UIImage {
             teamLogo.image = selectedImage
         }
-        picker.dismiss(animated: true, completion: nil)
-        uploadImageToFirebase(image: teamLogo.image!)
+        picker.dismiss(animated: true)
     }
 
 }
@@ -79,7 +85,7 @@ extension CreatTeam{
         // 获取 Firebase 存储的引用
         let storageRef = Storage.storage().reference()
         // 获取对应的存储位置的引用
-        let imageRef = storageRef.child("ProfilePhoto/\(user!.email!)")
+        let imageRef = storageRef.child("TeamLogo/\(teamName.text!)")
         
         if let imageData = image.jpegData(compressionQuality: 1.0) {
         // 开始上传图片
@@ -97,17 +103,42 @@ extension CreatTeam{
         teamDetailText.name = teamName.text!
         teamDetailText.date = teamDate.text!
         teamDetailText.password = teamPassword.text!
-        teamDetailText.members = [String((user!.email)!)]
+        teamDetailText.members = []
+        teamDetailText.comments = []
         teamDetailText.introduce = teamIntroduce.text!
         let collectionRef = db.collection("TeamDetail") // 替换为您的集合名称
         collectionRef.addDocument(data:["name":teamDetailText.name,
                                         "date": teamDetailText.date,
                                         "password": teamDetailText.password,
                                         "members":teamDetailText.members,
-                                        "introduce":teamDetailText.introduce])
+                                        "introduce":teamDetailText.introduce,
+                                        "comments":teamDetailText.comments])
     }
 }
 
+
+
+
+
+
+
+
+//MARK: -Gesture
+extension CreatTeam: UIGestureRecognizerDelegate{
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }//与其他手势协同工作
+    
+    @objc func handleSwipeGesture(_ gestureRecognizer: UISwipeGestureRecognizer) {
+        if gestureRecognizer.direction == .down{
+            view.resignFirstResponder()
+        }
+        if gestureRecognizer.direction == .up{
+            view.resignFirstResponder()
+        }
+    }
+    
+}
 
 
 
