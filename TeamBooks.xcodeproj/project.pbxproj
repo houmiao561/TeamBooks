@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		933494B62ACFF9E900C17105 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933494B52ACFF9E900C17105 /* AccountDetail.swift */; };
 		93410C5B2ACD945100FA020A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93410C5A2ACD945100FA020A /* GoogleService-Info.plist */; };
 		93BACE132ACFB68A008FEED1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BACE122ACFB68A008FEED1 /* Model.swift */; };
 		93D1A9A22ACD353800762EAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9A12ACD353800762EAA /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		933494B52ACFF9E900C17105 /* AccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDetail.swift; path = TeamBooks/View/AccountDetail.swift; sourceTree = SOURCE_ROOT; };
 		93410C5A2ACD945100FA020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93BACE122ACFB68A008FEED1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		93D1A99E2ACD353800762EAA /* TeamBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +121,7 @@
 			children = (
 				93D1A9B92ACD493600762EAA /* LogIn.swift */,
 				93D9BAB52ACE90D60089AA75 /* SignUp.swift */,
+				933494B52ACFF9E900C17105 /* AccountDetail.swift */,
 				93D1A9B52ACD45F900762EAA /* FirstViewController.swift */,
 				93F424A52ACD8A9500FC9700 /* MyTeams.swift */,
 				93F424A72ACD8AC000FC9700 /* CreatTeam.swift */,
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93D9BAB32ACE7B210089AA75 /* CollectionViewCell.swift in Sources */,
+				933494B62ACFF9E900C17105 /* AccountDetail.swift in Sources */,
 				93F424AE2ACD8BC900FC9700 /* AddMember.swift in Sources */,
 				93F424A62ACD8A9500FC9700 /* MyTeams.swift in Sources */,
 				93BACE132ACFB68A008FEED1 /* Model.swift in Sources */,

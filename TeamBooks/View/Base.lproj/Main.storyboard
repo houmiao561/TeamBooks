@@ -24,7 +24,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0D-ie-UDn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2273" y="84"/>
+            <point key="canvasLocation" x="1781" y="-250"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="9wQ-hw-Sdg">
@@ -83,13 +83,55 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="Ucc-SP-ZRT" kind="show" identifier="FirstToAccount" id="ywX-EO-TDB"/>
                         <segue destination="hDc-6i-2KH" kind="show" identifier="FirstToMyTeam" id="q7h-RT-IfY"/>
+                        <segue destination="3iz-I7-qpl" kind="show" identifier="FirstToAccountDetail" id="5PT-ry-Q1O"/>
+                        <segue destination="Ucc-SP-ZRT" kind="show" identifier="FirstToLogIn" id="QqB-sn-DBm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v0P-JP-Xnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3048" y="84"/>
+            <point key="canvasLocation" x="2590" y="-250"/>
+        </scene>
+        <!--Account Set-->
+        <scene sceneID="Hjv-pg-QMg">
+            <objects>
+                <viewController id="3iz-I7-qpl" customClass="AccountDetail" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ICE-rZ-DWP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Yummy" translatesAutoresizingMaskIntoConstraints="NO" id="qSf-4r-ana">
+                                <rect key="frame" x="76" y="134" width="127" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iIV-uw-Zry">
+                                <rect key="frame" x="148" y="360" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGa-cQ-Nue">
+                                <rect key="frame" x="159" y="409" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="LogOut:" destination="3iz-I7-qpl" eventType="touchUpInside" id="FBS-L3-Ddq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AAP-9l-fRr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Account Set" id="QMp-tc-CWo"/>
+                    <connections>
+                        <outlet property="currentUID" destination="iIV-uw-Zry" id="Cwt-88-T1p"/>
+                        <outlet property="photo" destination="qSf-4r-ana" id="Hze-SQ-roR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EUI-uw-gM9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3867.9389312977096" y="-1389.4366197183099"/>
         </scene>
         <!--Log In-->
         <scene sceneID="fSw-mM-ZNm">
@@ -114,37 +156,6 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fpl-Un-GHZ">
-                                <rect key="frame" x="146.66666666666666" y="271" width="100" height="100"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yummy" translatesAutoresizingMaskIntoConstraints="NO" id="g8e-7E-1bW">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="bmP-Ob-gJ5"/>
-                                            <constraint firstAttribute="height" constant="100" id="nMB-fk-KGu"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="2TZ-kM-ixo"/>
-                                    <constraint firstItem="g8e-7E-1bW" firstAttribute="bottom" secondItem="fpl-Un-GHZ" secondAttribute="bottomMargin" id="7sC-T8-kM5"/>
-                                    <constraint firstItem="g8e-7E-1bW" firstAttribute="top" secondItem="fpl-Un-GHZ" secondAttribute="topMargin" id="9cG-8A-mez"/>
-                                    <constraint firstAttribute="height" constant="100" id="EQ7-me-n0m"/>
-                                    <constraint firstItem="g8e-7E-1bW" firstAttribute="trailing" secondItem="fpl-Un-GHZ" secondAttribute="trailingMargin" id="FcZ-Mu-Z7w"/>
-                                    <constraint firstItem="g8e-7E-1bW" firstAttribute="leading" secondItem="fpl-Un-GHZ" secondAttribute="leadingMargin" id="lrN-XY-mYc"/>
-                                </constraints>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k9L-s0-M4C">
-                                <rect key="frame" x="148" y="604" width="96" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sign Up">
-                                    <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="SignUp:" destination="Ucc-SP-ZRT" eventType="touchUpInside" id="hsu-hb-cTq"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWh-uD-KJo">
                                 <rect key="frame" x="287" y="271" width="71" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -154,14 +165,21 @@
                                     <action selector="LogIn:" destination="Ucc-SP-ZRT" eventType="touchUpInside" id="yeg-kb-zic"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqe-Lu-U0L">
+                                <rect key="frame" x="282" y="337" width="80" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="SignUp"/>
+                                <connections>
+                                    <action selector="SignUp:" destination="Ucc-SP-ZRT" eventType="touchUpInside" id="pD4-7R-65K"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="82J-MC-SY4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="fpl-Un-GHZ" firstAttribute="centerX" secondItem="Znp-e3-ZQE" secondAttribute="centerX" id="0C9-n3-c6s"/>
                             <constraint firstItem="S9v-MU-Ijq" firstAttribute="top" secondItem="82J-MC-SY4" secondAttribute="top" constant="60" id="5kk-v3-qOd"/>
                             <constraint firstItem="S9v-MU-Ijq" firstAttribute="leading" secondItem="82J-MC-SY4" secondAttribute="leading" constant="20" id="AXV-HX-N6L"/>
-                            <constraint firstItem="fpl-Un-GHZ" firstAttribute="top" secondItem="S9v-MU-Ijq" secondAttribute="bottom" constant="20" id="PsV-DP-aPu"/>
                             <constraint firstItem="82J-MC-SY4" firstAttribute="trailing" secondItem="S9v-MU-Ijq" secondAttribute="trailing" constant="20" id="gcj-bR-osg"/>
                         </constraints>
                     </view>
@@ -169,15 +187,14 @@
                     <connections>
                         <outlet property="email" destination="NEM-pG-yCW" id="1Wx-NS-M7N"/>
                         <outlet property="password" destination="R7s-Z5-B5J" id="Rlm-NG-mAR"/>
-                        <outlet property="photo" destination="g8e-7E-1bW" id="Cn5-b7-LPd"/>
-                        <segue destination="gGC-fn-eRN" kind="show" identifier="LogInToSignUp" id="VeF-iD-jml"/>
+                        <segue destination="gGC-fn-eRN" kind="show" identifier="LogInToSignUp" id="4L8-HZ-iMT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVh-M2-tDS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3867.9389312977096" y="-603.52112676056345"/>
+            <point key="canvasLocation" x="3868" y="-697"/>
         </scene>
-        <!--Sign In-->
+        <!--Sign Up-->
         <scene sceneID="QQq-Di-MvM">
             <objects>
                 <viewController id="gGC-fn-eRN" customClass="SignUp" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
@@ -201,7 +218,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSZ-Wr-Ei6">
-                                <rect key="frame" x="159" y="665" width="75" height="35"/>
+                                <rect key="frame" x="298" y="268" width="75" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Button"/>
@@ -218,7 +235,7 @@
                             <constraint firstItem="YAn-Me-CzB" firstAttribute="leading" secondItem="46a-6N-8zZ" secondAttribute="leading" constant="20" id="iEe-tq-1gk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Sign In" id="hqK-Ii-OLF"/>
+                    <navigationItem key="navigationItem" title="Sign Up" id="hqK-Ii-OLF"/>
                     <connections>
                         <outlet property="email" destination="rH4-NO-Hgg" id="Afx-wS-huT"/>
                         <outlet property="password" destination="dIz-tu-plF" id="yat-6P-8lI"/>
@@ -226,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04f-7r-N4H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4725.9541984732823" y="-604.22535211267609"/>
+            <point key="canvasLocation" x="4727" y="-697"/>
         </scene>
         <!--My Teams-->
         <scene sceneID="aty-qf-Xc9">

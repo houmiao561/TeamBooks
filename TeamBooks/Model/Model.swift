@@ -21,4 +21,10 @@ struct TeamDetailText{
     var logo: UIImage
 }
 
+struct UserAccountText{
+    var email: String
+    var password: String
+    var Uid: String
+}
+
 let db = Firestore.firestore()
