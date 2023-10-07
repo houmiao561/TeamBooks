@@ -18,7 +18,6 @@ class CreatTeam: UIViewController {
     
     private let imagePicker = UIImagePickerController()
     private let user = Auth.auth().currentUser
-    private var teamDetailText = TeamDetailText(name: "",date: "",password: "",introduce: "",members: [],comments:[],logo: UIImage(named: "team_logo") ?? UIImage())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,19 +99,13 @@ extension CreatTeam{
     }
     
     func uploadTextToFirebase(){
-        teamDetailText.name = teamName.text!
-        teamDetailText.date = teamDate.text!
-        teamDetailText.password = teamPassword.text!
-        teamDetailText.members = []
-        teamDetailText.comments = []
-        teamDetailText.introduce = teamIntroduce.text!
-        let collectionRef = db.collection("TeamDetail") // 替换为您的集合名称
-        collectionRef.addDocument(data:["name":teamDetailText.name,
-                                        "date": teamDetailText.date,
-                                        "password": teamDetailText.password,
-                                        "members":teamDetailText.members,
-                                        "introduce":teamDetailText.introduce,
-                                        "comments":teamDetailText.comments])
+        if let teamNameText = self.teamName.text as? NSString,
+           let teamIntroduceText = self.teamIntroduce.text as? NSString{
+            var ref: DatabaseReference!
+            ref = Database.database().reference()
+            ref.child("Teams").child("\(teamNameText)").setValue(["TeamName":teamNameText,
+                 "TeamIntroduce":teamIntroduceText])
+        }
     }
 }
 

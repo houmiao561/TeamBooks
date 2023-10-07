@@ -27,7 +27,18 @@ class SignUp: UIViewController {
                 alertController.addAction(cancelAction)
                 self.present(alertController,animated: true,completion: nil)
             } else {//登录成功保存到firebase
+                
                 if let user = authResult?.user {
+                    //保存到realtime，但是(child:) Must be a non-empty string and not contain '.' '#' '$' '[' or ']'，
+//                    if let UserEmail = self.email.text as? NSString,
+//                       let UserPassword = self.password.text as? NSString{
+                        
+                        var ref: DatabaseReference!
+                        ref = Database.database().reference()
+                        ref.child("Users").child("\(user.uid)").setValue(["UserUID":user.uid])
+//                    }
+                    
+                    //保存到firestore
                     let collectionRef = db.collection("UserAccont")
                     collectionRef.addDocument(data: ["emali":self.email.text!,"password":self.password.text!,"Uid":user.uid])
                 }
