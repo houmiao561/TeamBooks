@@ -26,5 +26,3 @@ struct UserAccountText{
     var password: String
     var Uid: String
 }
-
-let db = Firestore.firestore()

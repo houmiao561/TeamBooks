@@ -14,7 +14,9 @@ class AccountDetail: UIViewController {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var currentUID: UITextField!
     
-    private let user = Auth.auth().currentUser!
+    
+    let storageRef = Storage.storage().reference()
+    let user = Auth.auth().currentUser!
     private let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -30,7 +32,7 @@ class AccountDetail: UIViewController {
         photo.layer.masksToBounds = true // 剪切超出圆角范围的内容
         photo.contentMode = .scaleAspectFill
         
-        currentUID.text = String(user.uid)
+        currentUID.text = user.uid
     }
     
     @IBAction func LogOut(_ sender: UIButton) {
@@ -71,11 +73,7 @@ extension AccountDetail:UIImagePickerControllerDelegate, UINavigationControllerD
 extension AccountDetail{
     
     func uploadImageToFirebaseStorage(image: UIImage) {
-        // 获取 Firebase 存储的引用
-        let storageRef = Storage.storage().reference()
-        // 获取对应的存储位置的引用
-        let imageRef = storageRef.child("ProfilePhoto/\(user.email!)")
-        
+        let imageRef = storageRef.child("ProfilePhoto/").child("\(user.email!)")
         if let imageData = image.jpegData(compressionQuality: 1.0) {
             // 开始上传图片
             imageRef.putData(imageData, metadata: nil) { (metadata, error) in
@@ -91,7 +89,7 @@ extension AccountDetail{
     
     func downloadImageFromFirebaseStorage(){
         let storageRef = Storage.storage().reference()
-        let imageRef = storageRef.child("ProfilePhoto/\(user.email!)")
+        let imageRef = storageRef.child("ProfilePhoto/").child("\(user.email!)")
         
         imageRef.downloadURL { (url, error) in
             if let downloadURL = url {

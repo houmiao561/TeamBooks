@@ -16,6 +16,8 @@ class CreatTeam: UIViewController {
     @IBOutlet weak var teamLogo: UIImageView!
     @IBOutlet weak var teamIntroduce: UITextField!
     
+    private let ref = Database.database().reference()
+    private let storageRef = Storage.storage().reference()
     private let imagePicker = UIImagePickerController()
     private let user = Auth.auth().currentUser
     
@@ -81,14 +83,9 @@ extension CreatTeam:UIImagePickerControllerDelegate, UINavigationControllerDeleg
 extension CreatTeam{
     
     func uploadImageToFirebase(image: UIImage) {
-        // 获取 Firebase 存储的引用
-        let storageRef = Storage.storage().reference()
-        // 获取对应的存储位置的引用
-        let imageRef = storageRef.child("TeamLogo/\(teamName.text!)")
-        
+        let imageRef = storageRef.child("TeamLogo").child("\(teamName.text!)")
         if let imageData = image.jpegData(compressionQuality: 1.0) {
-        // 开始上传图片
-        imageRef.putData(imageData, metadata: nil) { (metadata, error) in
+            imageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 if let error = error {
                     print("Error uploading image: \(error.localizedDescription)")
                 } else {
@@ -101,10 +98,8 @@ extension CreatTeam{
     func uploadTextToFirebase(){
         if let teamNameText = self.teamName.text as? NSString,
            let teamIntroduceText = self.teamIntroduce.text as? NSString{
-            var ref: DatabaseReference!
-            ref = Database.database().reference()
             ref.child("Teams").child("\(teamNameText)").setValue(["TeamName":teamNameText,
-                 "TeamIntroduce":teamIntroduceText])
+                                                                  "TeamIntroduce":teamIntroduceText])
         }
     }
 }
