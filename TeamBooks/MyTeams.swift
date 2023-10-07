@@ -10,16 +10,20 @@ import Firebase
 class MyTeams: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var ref: DatabaseReference!
+    var num: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
         collectionView.dataSource = self
         collectionView.delegate = self
-        
+        fetchNumOfCollection()//解决异步问题
     }
    
     @IBAction func CreatTeam(_ sender: UIButton) {
-        var ref: DatabaseReference!
+        
         ref = Database.database().reference().child("Teams").child("hello")
         ref.observe(.value, with: { (snapshot) in
             if let teamDict = snapshot.value as? [String: Any]{
@@ -54,8 +58,20 @@ class MyTeams: UIViewController {
 
 
 extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
+    func fetchNumOfCollection(){
+        self.ref = Database.database().reference().child("Teams")
+        ref.observe(.value, with: { (snapshot) in
+            if let teamsSnapshot = snapshot.children.allObjects as? [DataSnapshot]{
+                print(teamsSnapshot.count)
+                self.num = teamsSnapshot.count
+                self.collectionView.reloadData()
+            }
+        })
+    }//解决异步进行的问题
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return num
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
