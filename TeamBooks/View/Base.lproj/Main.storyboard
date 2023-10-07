@@ -111,12 +111,21 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FGa-cQ-Nue">
-                                <rect key="frame" x="159" y="409" width="75" height="35"/>
+                                <rect key="frame" x="156" y="409" width="81" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="LogOut"/>
                                 <connections>
                                     <action selector="LogOut:" destination="3iz-I7-qpl" eventType="touchUpInside" id="FBS-L3-Ddq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaM-Op-8Xe">
+                                <rect key="frame" x="163" y="486" width="61" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                <connections>
+                                    <action selector="saveAll:" destination="3iz-I7-qpl" eventType="touchUpInside" id="5hm-yV-CmI"/>
                                 </connections>
                             </button>
                         </subviews>

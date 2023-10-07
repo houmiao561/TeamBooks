@@ -119,10 +119,10 @@
 		93D1A9BB2ACD4CDF00762EAA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				93D1A9B92ACD493600762EAA /* LogIn.swift */,
 				93D9BAB52ACE90D60089AA75 /* SignUp.swift */,
-				933494B52ACFF9E900C17105 /* AccountDetail.swift */,
+				93D1A9B92ACD493600762EAA /* LogIn.swift */,
 				93D1A9B52ACD45F900762EAA /* FirstViewController.swift */,
+				933494B52ACFF9E900C17105 /* AccountDetail.swift */,
 				93F424A52ACD8A9500FC9700 /* MyTeams.swift */,
 				93F424A72ACD8AC000FC9700 /* CreatTeam.swift */,
 				93F424A92ACD8B1800FC9700 /* TabBar.swift */,

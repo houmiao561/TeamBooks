@@ -20,7 +20,7 @@ class AccountDetail: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadImageFromFirebaseStorage()
+        //downloadImageFromFirebaseStorage()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         
         photo.addGestureRecognizer(tapGestureRecognizer)
@@ -34,14 +34,14 @@ class AccountDetail: UIViewController {
     }
     
     @IBAction func LogOut(_ sender: UIButton) {
-        do {
+        do{
             try Auth.auth().signOut()
-            print("用户已注销")
-        } catch let signOutError as NSError {
-            print("注销出错：\(signOutError.localizedDescription)")
-        }
+        }catch{}
     }
     
+    @IBAction func saveAll(_ sender: UIButton) {
+        uploadImageToFirebaseStorage(image: photo.image!)
+    }
 }
 
 
@@ -58,7 +58,6 @@ extension AccountDetail:UIImagePickerControllerDelegate, UINavigationControllerD
             photo.image = selectedImage
         }
         picker.dismiss(animated: true, completion: nil)
-//        uploadImageToFirebaseStorage(image: photo.image!)
     }
     
 }
@@ -100,7 +99,7 @@ extension AccountDetail{
                     if let imageData = try? Data(contentsOf: downloadURL) {
                         let image = UIImage(data: imageData)
                         DispatchQueue.main.async {
-                            self.photo.image = image
+                            self.photo.image =  image
                         }
                     }
                 }
