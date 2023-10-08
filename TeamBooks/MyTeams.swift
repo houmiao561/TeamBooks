@@ -83,21 +83,3 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
     
     
 }
-
-
-
-
-
-
-
-
-extension MyTeams{
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MyTeamToTabBar" {
-            if let destinationVC = segue.destination as? TabBar {
-                destinationVC.teamName = teamNumberArray[selectNum]
-            }
-        }
-        
-    }
-}
