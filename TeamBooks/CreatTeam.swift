@@ -97,9 +97,14 @@ extension CreatTeam{
     
     func uploadTextToFirebase(){
         if let teamNameText = self.teamName.text as? NSString,
-           let teamIntroduceText = self.teamIntroduce.text as? NSString{
+           let teamIntroduceText = self.teamIntroduce.text as? NSString,
+           let teamPassword = self.teamPassword.text as? NSString,
+           let teamDate = self.teamDate.text as? NSString{
             ref.child("Teams").child("\(teamNameText)").setValue(["TeamName":teamNameText,
-                                                                  "TeamIntroduce":teamIntroduceText])
+                                                                  "TeamIntroduce":teamIntroduceText,
+                                                                  "TeamPassword": teamPassword,
+                                                                  "TeamDate": teamDate
+                                                                 ])
         }
     }
 }

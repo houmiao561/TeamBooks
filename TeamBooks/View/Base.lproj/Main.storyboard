@@ -140,7 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUI-uw-gM9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3867.9389312977096" y="-1389.4366197183099"/>
+            <point key="canvasLocation" x="3869" y="-2287"/>
         </scene>
         <!--Log In-->
         <scene sceneID="fSw-mM-ZNm">
@@ -201,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVh-M2-tDS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3868" y="-697"/>
+            <point key="canvasLocation" x="3869" y="-1595"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="QQq-Di-MvM">
@@ -252,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="04f-7r-N4H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4727" y="-697"/>
+            <point key="canvasLocation" x="4727" y="-1595"/>
         </scene>
         <!--My Teams-->
         <scene sceneID="aty-qf-Xc9">
@@ -317,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wwe-NT-5R2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3867.9389312977096" y="83.802816901408448"/>
+            <point key="canvasLocation" x="3868" y="-250"/>
         </scene>
         <!--Creat Team-->
         <scene sceneID="bKN-W6-GvC">
@@ -414,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFJ-y4-qkd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3867.9389312977096" y="793.66197183098598"/>
+            <point key="canvasLocation" x="3868" y="460"/>
         </scene>
         <!--123-->
         <scene sceneID="lDR-vj-c5q">
@@ -445,7 +445,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rIm-O4-YRk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5715" y="429"/>
+            <point key="canvasLocation" x="5663" y="-249"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="5b2-rq-8Km">
@@ -454,15 +454,6 @@
                     <view key="view" contentMode="scaleToFill" id="pUy-tx-83a">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TeamDetails" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEn-El-6db">
-                                <rect key="frame" x="175" y="416" width="94" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Xi9-zh-lSL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -470,7 +461,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CHA-Mr-ekK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5714" y="-211"/>
+            <point key="canvasLocation" x="4725.9541984732823" y="459.85915492957747"/>
         </scene>
         <!--Tab Bar-->
         <scene sceneID="BZT-kL-Sw7">
@@ -489,7 +480,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="59P-EP-fhM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4729" y="85"/>
+            <point key="canvasLocation" x="4727" y="-249"/>
         </scene>
     </scenes>
     <resources>

@@ -6,24 +6,25 @@
 //
 
 import UIKit
+import Firebase
 
 class TeamDetail: UIViewController {
-
+    @IBOutlet weak var teamName: UILabel!
+//    @IBOutlet weak var teamDate: UILabel!
+//    @IBOutlet weak var teamIntro: UILabel!
+    @IBOutlet weak var teamPassword: UILabel!
+    @IBOutlet weak var scrollview: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if let tabBarController = self.tabBarController as? TabBar {
+//            teamName.text = tabBarController.teamName
+//            teamDate.text = tabBarController.teamDate
+//            teamIntro.text = tabBarController.teamIntroduce
+            teamPassword.text = tabBarController.teamPassword
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
 }

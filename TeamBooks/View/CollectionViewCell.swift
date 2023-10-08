@@ -8,6 +8,7 @@
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet weak var TeamLogo: UIImageView!
     
     override func awakeFromNib() {
