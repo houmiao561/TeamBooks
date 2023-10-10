@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		933494B62ACFF9E900C17105 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933494B52ACFF9E900C17105 /* AccountDetail.swift */; };
 		93410C5B2ACD945100FA020A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93410C5A2ACD945100FA020A /* GoogleService-Info.plist */; };
+		938E279D2AD5242B00A56A21 /* TeamDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938E279C2AD5242B00A56A21 /* TeamDetailCell.xib */; };
+		938E279F2AD5245900A56A21 /* TeamDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938E279E2AD5245900A56A21 /* TeamDetailCell.swift */; };
 		93BACE132ACFB68A008FEED1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BACE122ACFB68A008FEED1 /* Model.swift */; };
 		93D1A9A22ACD353800762EAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9A12ACD353800762EAA /* AppDelegate.swift */; };
 		93D1A9A42ACD353800762EAA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9A32ACD353800762EAA /* SceneDelegate.swift */; };
@@ -32,6 +34,8 @@
 		8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		933494B52ACFF9E900C17105 /* AccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDetail.swift; path = TeamBooks/View/AccountDetail.swift; sourceTree = SOURCE_ROOT; };
 		93410C5A2ACD945100FA020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		938E279C2AD5242B00A56A21 /* TeamDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamDetailCell.xib; sourceTree = "<group>"; };
+		938E279E2AD5245900A56A21 /* TeamDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailCell.swift; sourceTree = "<group>"; };
 		93BACE122ACFB68A008FEED1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		93D1A99E2ACD353800762EAA /* TeamBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D1A9A12ACD353800762EAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 				93D1A9A72ACD353800762EAA /* Main.storyboard */,
 				93D9BAB02ACE7ABA0089AA75 /* CollectionCell.xib */,
 				93D9BAB22ACE7B210089AA75 /* CollectionViewCell.swift */,
+				938E279C2AD5242B00A56A21 /* TeamDetailCell.xib */,
+				938E279E2AD5245900A56A21 /* TeamDetailCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93D9BAB12ACE7ABA0089AA75 /* CollectionCell.xib in Resources */,
+				938E279D2AD5242B00A56A21 /* TeamDetailCell.xib in Resources */,
 				93D1A9AE2ACD353900762EAA /* LaunchScreen.storyboard in Resources */,
 				93D1A9AB2ACD353900762EAA /* Assets.xcassets in Resources */,
 				93D1A9A92ACD353800762EAA /* Main.storyboard in Resources */,
@@ -281,6 +288,7 @@
 				93F424AC2ACD8B9100FC9700 /* TeamDetail.swift in Sources */,
 				93D1A9BA2ACD493600762EAA /* LogIn.swift in Sources */,
 				93F424AA2ACD8B1800FC9700 /* TabBar.swift in Sources */,
+				938E279F2AD5245900A56A21 /* TeamDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,10 +33,8 @@ class SignUp: UIViewController {
             } else {//登录成功保存到firebase
                 if let user = authResult?.user {
                     self.realtimeRef.child("Users").child("\(user.uid)").setValue(
-                        ["UserUID":user.uid])//保存到realtime,但是无法保存特殊字符
-                    self.firestoreRef.addDocument(data: ["emali":self.email.text!,
-                                                         "password":self.password.text!,
-                                                         "Uid":user.uid])//保存到firestore
+                        ["UserUID":user.uid,
+                         "UserEmail":user.email])//保存到realtime,但是无法保存特殊字符
                 }
             }
         }

@@ -80,6 +80,12 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
         selectNum = indexPath.item
         performSegue(withIdentifier: "MyTeamToTabBar", sender: self)
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MyTeamToTabBar" {
+            if let destinationVC = segue.destination as? TabBar, let item1VC = destinationVC.viewControllers?.first as? TeamDetail {
+                item1VC.nameFormMYTEAMS = teamNumberArray[selectNum]
+            }
+        }
+    }
     
 }

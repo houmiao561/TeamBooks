@@ -88,7 +88,6 @@ extension AccountDetail{
     
     
     func downloadImageFromFirebaseStorage(){
-        let storageRef = Storage.storage().reference()
         let imageRef = storageRef.child("ProfilePhoto/").child("\(user.email!)")
         
         imageRef.downloadURL { (url, error) in
