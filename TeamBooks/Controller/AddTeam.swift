@@ -27,6 +27,14 @@ class AddTeam: UIViewController {
                     let teamKey = teamDataSnapshot.key
                     if self.teamName.text == teamKey{
                         print("Team Key: \(teamKey)")
+                        for teamChildSnapshot in teamDataSnapshot.children {
+                                if let teamChildDataSnapshot = teamChildSnapshot as? DataSnapshot {
+                                    // 获取子项的键和值
+                                    let teamChildKey = teamChildDataSnapshot.key
+                                    let teamChildValue = teamChildDataSnapshot.value
+                                    print("Key: \(teamChildKey), Value: \(teamChildValue!)")
+                                }
+                            }
                     }else{
                         print("Team Key WRONG")
                     }
