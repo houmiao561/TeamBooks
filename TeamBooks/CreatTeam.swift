@@ -44,9 +44,20 @@ class CreatTeam: UIViewController {
     }
 
     @IBAction func addTeamButton(_ sender: UIButton) {
-        uploadTextToFirebase()
         uploadImageToFirebase(image: teamLogo.image!)
-        dismiss(animated: true)
+        uploadTextToFirebase { (isOccupied) in
+            print(isOccupied)
+            if isOccupied == true{
+                self.dismiss(animated: true)
+            }else{
+                let alertController = UIAlertController(title: "Something Wrong !", message: "1.Team Name has been occupied", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(cancelAction)
+                self.present(alertController,animated: true,completion: nil)
+            }
+        }
+        
+        
     }
 }
 
@@ -95,16 +106,34 @@ extension CreatTeam{
         }
     }
     
-    func uploadTextToFirebase(){
+    
+    func uploadTextToFirebase(completion: @escaping (Bool) -> Void) {
         if let teamNameText = self.teamName.text as? NSString,
            let teamIntroduceText = self.teamIntroduce.text as? NSString,
            let teamPassword = self.teamPassword.text as? NSString,
-           let teamDate = self.teamDate.text as? NSString{
-            ref.child("Teams").child("\(teamNameText)").setValue(["TeamName":teamNameText,
-                                                                  "TeamIntroduce":teamIntroduceText,
-                                                                  "TeamPassword": teamPassword,
-                                                                  "TeamDate": teamDate
-                                                                 ])
+           let teamDate = self.teamDate.text as? NSString {
+            let sendTeamMessage = ["TeamName": teamNameText,
+                                   "TeamIntroduce": teamIntroduceText,
+                                   "TeamPassword": teamPassword,
+                                   "TeamDate": teamDate]
+            ref.child("Teams").child("\(teamNameText)").observeSingleEvent(of: .value) { (snapshot) in
+                if snapshot.exists() {
+                    print("DATA EXISTS")
+                    completion(false)
+                } else {
+                    self.ref.child("Teams").child("\(teamNameText)").setValue(sendTeamMessage) { (error, _) in
+                        if let error = error {
+                            print("Error saving data: \(error.localizedDescription)")
+                            completion(false)
+                        } else {
+                            print("Data successfully saved")
+                            completion(true)
+                        }
+                    }
+                }
+            }
+        } else {
+            completion(false)
         }
     }
 }

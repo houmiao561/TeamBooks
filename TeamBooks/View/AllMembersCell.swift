@@ -1,5 +1,5 @@
 //
-//  TeamDetailCell.swift
+//  AllMembersCell.swift
 //  TeamBooks
 //
 //  Created by 侯淼 on 2023/10/10.
@@ -7,19 +7,19 @@
 
 import UIKit
 
-class TeamDetailCell: UITableViewCell {
+class AllMembersCell: UITableViewCell {
 
-    @IBOutlet weak var comments: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var memberName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        accessoryType = .disclosureIndicator
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
     }
 
 }
