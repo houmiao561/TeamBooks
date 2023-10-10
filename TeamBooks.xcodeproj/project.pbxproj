@@ -11,6 +11,7 @@
 		93410C5B2ACD945100FA020A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93410C5A2ACD945100FA020A /* GoogleService-Info.plist */; };
 		938E27A22AD56DF500A56A21 /* AllMembersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938E27A12AD56DF500A56A21 /* AllMembersCell.xib */; };
 		938E27A42AD56E3D00A56A21 /* AllMembersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938E27A32AD56E3D00A56A21 /* AllMembersCell.swift */; };
+		939301CA2AD585E50057A224 /* AddTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939301C92AD585E50057A224 /* AddTeam.swift */; };
 		93BACE132ACFB68A008FEED1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BACE122ACFB68A008FEED1 /* Model.swift */; };
 		93D1A9A22ACD353800762EAA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9A12ACD353800762EAA /* AppDelegate.swift */; };
 		93D1A9A42ACD353800762EAA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D1A9A32ACD353800762EAA /* SceneDelegate.swift */; };
@@ -36,6 +37,7 @@
 		93410C5A2ACD945100FA020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		938E27A12AD56DF500A56A21 /* AllMembersCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllMembersCell.xib; sourceTree = "<group>"; };
 		938E27A32AD56E3D00A56A21 /* AllMembersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMembersCell.swift; sourceTree = "<group>"; };
+		939301C92AD585E50057A224 /* AddTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeam.swift; sourceTree = "<group>"; };
 		93BACE122ACFB68A008FEED1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		93D1A99E2ACD353800762EAA /* TeamBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93D1A9A12ACD353800762EAA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				93F424A92ACD8B1800FC9700 /* TabBar.swift */,
 				93F424AB2ACD8B9100FC9700 /* TeamDetail.swift */,
 				93F424AD2ACD8BC900FC9700 /* AllMember.swift */,
+				939301C92AD585E50057A224 /* AddTeam.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				93BACE132ACFB68A008FEED1 /* Model.swift in Sources */,
 				938E27A42AD56E3D00A56A21 /* AllMembersCell.swift in Sources */,
 				93D9BAB62ACE90D70089AA75 /* SignUp.swift in Sources */,
+				939301CA2AD585E50057A224 /* AddTeam.swift in Sources */,
 				93D1A9B62ACD45F900762EAA /* FirstViewController.swift in Sources */,
 				93D1A9A22ACD353800762EAA /* AppDelegate.swift in Sources */,
 				93D1A9A42ACD353800762EAA /* SceneDelegate.swift in Sources */,

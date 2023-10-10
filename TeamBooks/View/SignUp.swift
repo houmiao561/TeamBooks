@@ -32,7 +32,7 @@ class SignUp: UIViewController {
                 self.present(alertController,animated: true,completion: nil)
             } else {//登录成功保存到firebase
                 if let user = authResult?.user {
-                    self.realtimeRef.child("Users").child("\(self.email.text!)").setValue(
+                    self.realtimeRef.child("Users").child("\(user.uid)").setValue(
                         ["UserUID":user.uid,
                          "UserEmail":user.email])//保存到realtime,但是无法保存特殊字符
                 }

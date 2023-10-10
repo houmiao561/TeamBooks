@@ -43,6 +43,11 @@ class MyTeams: UIViewController {
         performSegue(withIdentifier: "MyTeamToCreatTeam", sender: sender)
     }
     
+    @IBAction func AddTeam(_ sender: UIButton) {
+        performSegue(withIdentifier: "MyTeamToAddTeam", sender: sender)
+    }
+    
+    
 }
 
 

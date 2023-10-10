@@ -263,7 +263,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZnV-fY-yJN">
-                                <rect key="frame" x="20" y="123" width="353" height="675"/>
+                                <rect key="frame" x="20" y="123" width="353" height="635"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8bb-ZF-XFB">
                                     <size key="itemSize" width="128" height="128"/>
@@ -286,13 +286,22 @@
                                     <outlet property="delegate" destination="hDc-6i-2KH" id="cnV-y0-DxZ"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZ8-qN-G8f">
+                                <rect key="frame" x="159" y="766" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="AddTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="v0K-VC-CWD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KLG-Mg-G6I"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZnV-fY-yJN" firstAttribute="top" secondItem="KLG-Mg-G6I" secondAttribute="top" constant="20" id="JCj-3F-1tg"/>
+                            <constraint firstItem="KLG-Mg-G6I" firstAttribute="bottom" secondItem="ZnV-fY-yJN" secondAttribute="bottom" constant="60" id="Xuv-n2-23c"/>
                             <constraint firstItem="ZnV-fY-yJN" firstAttribute="leading" secondItem="KLG-Mg-G6I" secondAttribute="leading" constant="20" id="cVn-yb-aHT"/>
-                            <constraint firstItem="KLG-Mg-G6I" firstAttribute="bottom" secondItem="ZnV-fY-yJN" secondAttribute="bottom" constant="20" id="dNN-cV-msr"/>
                             <constraint firstItem="KLG-Mg-G6I" firstAttribute="trailing" secondItem="ZnV-fY-yJN" secondAttribute="trailing" constant="20" id="gqF-Eh-oD4"/>
                         </constraints>
                     </view>
@@ -313,11 +322,55 @@
                         <outlet property="collectionView" destination="ZnV-fY-yJN" id="9cH-5M-i5Q"/>
                         <segue destination="g1t-lJ-f76" kind="show" identifier="MyTeamToTabBar" id="O4h-Ph-HCj"/>
                         <segue destination="XT2-sA-dRk" kind="showDetail" identifier="MyTeamToCreatTeam" id="4IO-1Y-zou"/>
+                        <segue destination="6l7-zc-0zx" kind="showDetail" identifier="MyTeamToAddTeam" id="apj-7J-6Ea"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wwe-NT-5R2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3868" y="-250"/>
+        </scene>
+        <!--Add Team-->
+        <scene sceneID="Kj1-Pi-WTo">
+            <objects>
+                <viewController id="6l7-zc-0zx" customClass="AddTeam" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LLs-RV-xqw">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NJG-gU-uTL">
+                                <rect key="frame" x="101" y="152" width="191" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NnV-wm-GcY">
+                                <rect key="frame" x="124" y="228" width="144" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jN-IG-GoL">
+                                <rect key="frame" x="159" y="590" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="addTeam:" destination="6l7-zc-0zx" eventType="touchUpInside" id="eAq-Pp-KJG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fTv-3G-Fcl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EUp-aG-2TS"/>
+                    <connections>
+                        <outlet property="teamName" destination="NJG-gU-uTL" id="ec0-fR-GfT"/>
+                        <outlet property="teamPassword" destination="NnV-wm-GcY" id="8aG-tf-XDR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H8j-bJ-ZFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3565.6488549618321" y="573.94366197183103"/>
         </scene>
         <!--Creat Team-->
         <scene sceneID="bKN-W6-GvC">
@@ -414,7 +467,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFJ-y4-qkd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3868" y="460"/>
+            <point key="canvasLocation" x="4204" y="574"/>
         </scene>
         <!--Item-->
         <scene sceneID="1qW-L5-DdI">
@@ -443,7 +496,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MV4-PC-NrF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5544" y="-250"/>
+            <point key="canvasLocation" x="5784" y="-582"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="5b2-rq-8Km">
@@ -505,7 +558,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CHA-Mr-ekK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4725.9541984732823" y="459.85915492957747"/>
+            <point key="canvasLocation" x="5784" y="49"/>
         </scene>
         <!--Tab Bar-->
         <scene sceneID="BZT-kL-Sw7">
