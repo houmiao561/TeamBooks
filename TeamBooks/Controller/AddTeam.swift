@@ -7,13 +7,15 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class AddTeam: UIViewController {
 
     @IBOutlet weak var teamName: UITextField!
     @IBOutlet weak var teamPassword: UITextField!
     
-    let ref = Database.database().reference().child("Teams")
+    let ref = Database.database().reference()
+    let user = Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,35 +23,43 @@ class AddTeam: UIViewController {
     }
 
     @IBAction func addTeam(_ sender: UIButton) {
-        ref.observe(.value, with: { (snapshot) in
+        
+        let newMember = self.ref.child("Teams").child(self.teamName.text!).child("TeamMembers")
+        let newTeam = self.ref.child("Users").child(self.user!.uid).child("Teams")
+        
+        ref.child("Teams").observe(.value, with: { (snapshot) in
             for teamSnapshot in snapshot.children {
                 if let teamDataSnapshot = teamSnapshot as? DataSnapshot {
                     if self.teamName.text == teamDataSnapshot.key{
                         if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot{
                             if let desiredChildSnapshot = teamDataSnapshot.childSnapshot(forPath:"TeamPassword") as? DataSnapshot {
                                 
-                                /* TEST !!
-                                print("desiredChildSnapshot: \(desiredChildSnapshot)")
-                                print("desiredChildSnapshot.key: \(qwe)")
-                                print("desiredChildSnapshot.value: \(asd)")
-                                 */
-                                
-                                let qwe = desiredChildSnapshot.key
-                                let asd = desiredChildSnapshot.value as! String
-                                if self.teamPassword.text == asd{
+                                if self.teamPassword.text == desiredChildSnapshot.value as? String{
                                     print("!!!!!!!!!!!!!")
                                     
+                                    newMember.updateChildValues(["Members \(self.user!.uid)":self.user!.email!]) { (error, _) in
+                                        if let error = error {
+                                            print("Error saving data: \(error.localizedDescription)")
+                                        } else {
+                                            print("Data successfully saved")
+                                        }
+                                    }
                                     
+                                    
+                                    newTeam.updateChildValues(["Team \(self.teamName.text!)":self.teamName.text!]) { (error, _) in
+                                        if let error = error {
+                                            print("Error saving data: \(error.localizedDescription)")
+                                        } else {
+                                            print("Data successfully saved")
+                                        }
+                                    }
+                                        
                                 }else{
                                     print("?????????????")
                                 }
-                                
-                                
-                                
-                                
                             }
-                        }//else{print("if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot")}
-                    }//else{print("if self.teamName.text == teamDataSnapshot.key WRONG")}
+                        }else{print("if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot")}
+                    }else{print("if self.teamName.text == teamDataSnapshot.key WRONG")}
                 }
             }
         })
