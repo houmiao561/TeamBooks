@@ -24,20 +24,32 @@ class AddTeam: UIViewController {
         ref.observe(.value, with: { (snapshot) in
             for teamSnapshot in snapshot.children {
                 if let teamDataSnapshot = teamSnapshot as? DataSnapshot {
-                    let teamKey = teamDataSnapshot.key
-                    if self.teamName.text == teamKey{
-                        print("Team Key: \(teamKey)")
-                        for teamChildSnapshot in teamDataSnapshot.children {
-                                if let teamChildDataSnapshot = teamChildSnapshot as? DataSnapshot {
-                                    // 获取子项的键和值
-                                    let teamChildKey = teamChildDataSnapshot.key
-                                    let teamChildValue = teamChildDataSnapshot.value
-                                    print("Key: \(teamChildKey), Value: \(teamChildValue!)")
+                    if self.teamName.text == teamDataSnapshot.key{
+                        if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot{
+                            if let desiredChildSnapshot = teamDataSnapshot.childSnapshot(forPath:"TeamPassword") as? DataSnapshot {
+                                
+                                /* TEST !!
+                                print("desiredChildSnapshot: \(desiredChildSnapshot)")
+                                print("desiredChildSnapshot.key: \(qwe)")
+                                print("desiredChildSnapshot.value: \(asd)")
+                                 */
+                                
+                                let qwe = desiredChildSnapshot.key
+                                let asd = desiredChildSnapshot.value as! String
+                                if self.teamPassword.text == asd{
+                                    print("!!!!!!!!!!!!!")
+                                    
+                                    
+                                }else{
+                                    print("?????????????")
                                 }
+                                
+                                
+                                
+                                
                             }
-                    }else{
-                        print("Team Key WRONG")
-                    }
+                        }//else{print("if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot")}
+                    }//else{print("if self.teamName.text == teamDataSnapshot.key WRONG")}
                 }
             }
         })
