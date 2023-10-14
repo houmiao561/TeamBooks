@@ -37,6 +37,8 @@ class AddTeam: UIViewController {
                                 if self.teamPassword.text == desiredChildSnapshot.value as? String{
                                     print("!!!!!!!!!!!!!")
                                     
+                                    //！！！进来了！！
+                                    
                                     newMember.updateChildValues(["Members \(self.user!.uid)":self.user!.email!]) { (error, _) in
                                         if let error = error {
                                             print("Error saving data: \(error.localizedDescription)")
@@ -44,8 +46,6 @@ class AddTeam: UIViewController {
                                             print("Data successfully saved")
                                         }
                                     }
-                                    
-                                    
                                     newTeam.updateChildValues(["Team \(self.teamName.text!)":self.teamName.text!]) { (error, _) in
                                         if let error = error {
                                             print("Error saving data: \(error.localizedDescription)")
@@ -53,15 +53,32 @@ class AddTeam: UIViewController {
                                             print("Data successfully saved")
                                         }
                                     }
-                                        
+                                      
+                                    self.performSegue(withIdentifier: "AddTeamToSelfIntroduce", sender: sender)
+                                    
+                                    
+                                    
                                 }else{
                                     print("?????????????")
                                 }
                             }
                         }else{print("if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot")}
-                    }else{print("if self.teamName.text == teamDataSnapshot.key WRONG")}
+                    }else{
+                        print("if self.teamName.text == teamDataSnapshot.key WRONG")
+                        
+                    }
                 }
             }
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddTeamToSelfIntroduce" {
+            if let destinationVC = segue.destination as? SelfIntroduce {
+                //print("teamName.text\(teamName.text)")
+                destinationVC.teamName123 = teamName.text!
+                destinationVC.oneselfUID123 = user!.uid
+            }
+        }
     }
 }

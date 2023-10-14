@@ -22,6 +22,24 @@ class MyTeams: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 创建一个 UICollectionViewFlowLayout 对象
+        let layout = UICollectionViewFlowLayout()
+        // 设置每行的 cell 个数，例如每行显示3个 cell
+        let numberOfItemsPerRow: CGFloat = 2
+        // 设置 cell 之间的间距
+        let spacing: CGFloat = 20
+        // 计算 cell 的宽度
+        let totalSpacing = (numberOfItemsPerRow - 1) * spacing
+        let itemWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
+        // 设置每个 cell 的大小
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+        // 设置 cell 之间的水平和垂直间距
+        layout.minimumLineSpacing = spacing
+        layout.minimumInteritemSpacing = spacing
+        // 将 layout 应用到 collectionView
+        collectionView.setCollectionViewLayout(layout, animated: false)
+        
         collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -89,5 +107,14 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
             }
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            // 计算每行的cell个数，例如每行显示3个cell
+            let numberOfItemsPerRow: CGFloat = 2
+            let spacing: CGFloat = 10 // cell之间的间距
+            let totalSpacing = (numberOfItemsPerRow - 1) * spacing
+            let itemWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
+            return CGSize(width: itemWidth, height: itemWidth)
+        }
     
 }
