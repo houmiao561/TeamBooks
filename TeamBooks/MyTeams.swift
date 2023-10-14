@@ -7,6 +7,9 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import FirebaseDatabase
+
 class MyTeams: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -15,6 +18,7 @@ class MyTeams: UIViewController {
     var allNum = 0
     var teamNumberArray = [String]()
     var selectNum = 0
+    let user = Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,20 +26,6 @@ class MyTeams: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         fetchNumOfCollection()//解决异步问题
-        
-        
-        ref = Database.database().reference().child("Teams")
-        ref.observe(.value, with: { (snapshot) in
-            if let teamsSnapshot = snapshot.children.allObjects as? [DataSnapshot] {
-//                print(teamsSnapshot)
-                for teamSnapshot in teamsSnapshot {
-                    //print(teamSnapshot.key)
-                    self.teamNumberArray.append(teamSnapshot.key)
-                }
-            } else {print("123.")}
-        })
-        
-        
         
     }
    
@@ -60,16 +50,21 @@ class MyTeams: UIViewController {
 
 
 extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
-    func fetchNumOfCollection(){
-        self.ref = Database.database().reference().child("Teams")
-        ref.observe(.value, with: { (snapshot) in
-            if let teamsSnapshot = snapshot.children.allObjects as? [DataSnapshot]{
-                self.allNum = teamsSnapshot.count
-                self.collectionView.reloadData()
-            }
-        })
-    }//解决异步进行的问题
     
+    func fetchNumOfCollection() {
+        self.ref = Database.database().reference().child("Users").child(user!.uid).child("Teams")
+        ref.observe(.value, with: { (snapshot) in
+            if let teamData = snapshot.value as? [String: Any] {
+                self.allNum = teamData.count
+                self.collectionView.reloadData()
+                
+                print(teamData)
+                for teamDatas in teamData{
+                    self.teamNumberArray.append(teamDatas.value as! String)
+                }
+            }else{print("!!!!!!??????\(snapshot)")}
+        })
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allNum
@@ -89,6 +84,8 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
         if segue.identifier == "MyTeamToTabBar" {
             if let destinationVC = segue.destination as? TabBar, let item1VC = destinationVC.viewControllers?.first as? TeamDetail {
                 item1VC.nameFormMYTEAMS = teamNumberArray[selectNum]
+                print(self.teamNumberArray)
+                print(teamNumberArray[selectNum])
             }
         }
     }

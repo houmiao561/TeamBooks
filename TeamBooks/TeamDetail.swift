@@ -22,11 +22,12 @@ class TeamDetail: UIViewController {
     let storageRef = Storage.storage().reference()
     
     override func viewWillAppear(_ animated: Bool) {
-        downlodarTextFromFirebase()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        downlodarTextFromFirebase()
         downloadImageFromFirebaseStorage()
     }
  
@@ -53,18 +54,22 @@ class TeamDetail: UIViewController {
     }
     
     func downlodarTextFromFirebase(){
-        ref = Database.database().reference().child("Teams")
+        ref = Database.database().reference().child("Teams").child("\(nameFormMYTEAMS)")
         ref.observe(.value, with: { (snapshot) in
-            if let teamsSnapshot = snapshot.children.allObjects as? [DataSnapshot] {
-                for teamSnapshot in teamsSnapshot {
-                    if let teamName = teamSnapshot.childSnapshot(forPath: "TeamName").value as? String,
-                       let teamIntroduce = teamSnapshot.childSnapshot(forPath: "TeamIntroduce").value as? String,
-                       let teamPassword = teamSnapshot.childSnapshot(forPath: "TeamPassword").value as? String,
-                       let teamDate = teamSnapshot.childSnapshot(forPath: "TeamDate").value as? String{
-                        self.teamDate.text = teamDate; self.teamName.text = teamName; self.teamPassword.text = teamPassword; self.teamIntroduce.text = teamIntroduce
-                    }else{print("INTER for teamSnapshot in teamsSnapshot ERROR!!")}
+            
+            if let teamDetailData = snapshot.value as? [String: Any] {
+                for (key, value) in teamDetailData{
+                    
+                    switch key{
+                    case "TeamName": self.teamName.text = value as? String
+                    case "TeamDate": self.teamDate.text = value as? String
+                    case "TeamIntroduce":self.teamIntroduce.text = value as? String
+                    case "TeamPassword":self.teamPassword.text = value as? String
+                    default:print("switch WRONG")
+                    }
+                    
                 }
-            } else {print("ENTER if let teamsSnapshot = snapshot.children.allObjects as? [DataSnapshot] ERROR")}
+            }
         })
     }
 
