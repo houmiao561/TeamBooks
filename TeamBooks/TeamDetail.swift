@@ -21,10 +21,6 @@ class TeamDetail: UIViewController {
     var nameFormMYTEAMS = ""
     let storageRef = Storage.storage().reference()
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         downlodarTextFromFirebase()
@@ -61,10 +57,10 @@ class TeamDetail: UIViewController {
                 for (key, value) in teamDetailData{
                     
                     switch key{
-                    case "TeamName": self.teamName.text = value as? String
-                    case "TeamDate": self.teamDate.text = value as? String
-                    case "TeamIntroduce":self.teamIntroduce.text = value as? String
-                    case "TeamPassword":self.teamPassword.text = value as? String
+                    case "TeamName": self.teamName.text = "Team Name: " + (value as? String)!
+                    case "TeamDate": self.teamDate.text = "Team Birthday: " + (value as? String)!
+                    case "TeamIntroduce":self.teamIntroduce.text = "Team Introduce: " + (value as? String)!
+                    case "TeamPassword":self.teamPassword.text = "Team Enter Password: " + (value as? String)!
                     default: break
                     }
                     

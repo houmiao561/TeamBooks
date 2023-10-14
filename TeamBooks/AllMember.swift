@@ -50,6 +50,11 @@ class AllMember: UITableViewController {
         return allMembers
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "AllMembersToOneMember", sender: indexPath.row)
+    }
+    
     func fetchNumber() {
         self.ref = Database.database().reference().child("Teams").child(nameFormMYTEAMS).child("TeamMembers")
         ref.observe(.value, with: { (snapshot) in

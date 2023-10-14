@@ -28,6 +28,7 @@
 		93F424AA2ACD8B1800FC9700 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424A92ACD8B1800FC9700 /* TabBar.swift */; };
 		93F424AC2ACD8B9100FC9700 /* TeamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424AB2ACD8B9100FC9700 /* TeamDetail.swift */; };
 		93F424AE2ACD8BC900FC9700 /* AllMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424AD2ACD8BC900FC9700 /* AllMember.swift */; };
+		93FE84FD2ADA817B001F2050 /* OneMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FE84FC2ADA817B001F2050 /* OneMember.swift */; };
 		B2B4933DB5F0EF576B613712 /* Pods_TeamBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		93F424A92ACD8B1800FC9700 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBar.swift; path = TeamBooks/TabBar.swift; sourceTree = SOURCE_ROOT; };
 		93F424AB2ACD8B9100FC9700 /* TeamDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeamDetail.swift; path = TeamBooks/TeamDetail.swift; sourceTree = SOURCE_ROOT; };
 		93F424AD2ACD8BC900FC9700 /* AllMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllMember.swift; path = TeamBooks/AllMember.swift; sourceTree = SOURCE_ROOT; };
+		93FE84FC2ADA817B001F2050 /* OneMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneMember.swift; sourceTree = "<group>"; };
 		A20A5FAA4A9EF55963CC10A1 /* Pods-TeamBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBooks.debug.xcconfig"; path = "Target Support Files/Pods-TeamBooks/Pods-TeamBooks.debug.xcconfig"; sourceTree = "<group>"; };
 		FB16D442661D6B3F793CD700 /* Pods-TeamBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBooks.release.xcconfig"; path = "Target Support Files/Pods-TeamBooks/Pods-TeamBooks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 				93F424AB2ACD8B9100FC9700 /* TeamDetail.swift */,
 				93F424AD2ACD8BC900FC9700 /* AllMember.swift */,
 				939301C92AD585E50057A224 /* AddTeam.swift */,
+				93FE84FC2ADA817B001F2050 /* OneMember.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -143,12 +146,28 @@
 			isa = PBXGroup;
 			children = (
 				93D1A9A72ACD353800762EAA /* Main.storyboard */,
+				93FE84F82ADA7FC3001F2050 /* CollectionIcon */,
+				93FE84F92ADA7FD9001F2050 /* AllMember */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		93FE84F82ADA7FC3001F2050 /* CollectionIcon */ = {
+			isa = PBXGroup;
+			children = (
 				93D9BAB02ACE7ABA0089AA75 /* CollectionCell.xib */,
 				93D9BAB22ACE7B210089AA75 /* CollectionViewCell.swift */,
+			);
+			path = CollectionIcon;
+			sourceTree = "<group>";
+		};
+		93FE84F92ADA7FD9001F2050 /* AllMember */ = {
+			isa = PBXGroup;
+			children = (
 				938E27A12AD56DF500A56A21 /* AllMembersCell.xib */,
 				938E27A32AD56E3D00A56A21 /* AllMembersCell.swift */,
 			);
-			path = View;
+			path = AllMember;
 			sourceTree = "<group>";
 		};
 		BE475E50075B7AB06E010662 /* Pods */ = {
@@ -282,6 +301,7 @@
 				933494B62ACFF9E900C17105 /* AccountDetail.swift in Sources */,
 				93F424AE2ACD8BC900FC9700 /* AllMember.swift in Sources */,
 				93F424A62ACD8A9500FC9700 /* MyTeams.swift in Sources */,
+				93FE84FD2ADA817B001F2050 /* OneMember.swift in Sources */,
 				93BACE132ACFB68A008FEED1 /* Model.swift in Sources */,
 				938E27A42AD56E3D00A56A21 /* AllMembersCell.swift in Sources */,
 				93D9BAB62ACE90D70089AA75 /* SignUp.swift in Sources */,
