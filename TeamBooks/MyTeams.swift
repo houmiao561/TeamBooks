@@ -58,7 +58,6 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
                 self.allNum = teamData.count
                 self.collectionView.reloadData()
                 
-                print(teamData)
                 for teamDatas in teamData{
                     self.teamNumberArray.append(teamDatas.value as! String)
                 }
@@ -82,10 +81,11 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MyTeamToTabBar" {
-            if let destinationVC = segue.destination as? TabBar, let item1VC = destinationVC.viewControllers?.first as? TeamDetail {
+            if let destinationVC = segue.destination as? TabBar,
+               let item1VC = destinationVC.viewControllers?[0]as? TeamDetail,
+               let item2VC = destinationVC.viewControllers?[1] as? AllMember {
                 item1VC.nameFormMYTEAMS = teamNumberArray[selectNum]
-                print(self.teamNumberArray)
-                print(teamNumberArray[selectNum])
+                item2VC.nameFormMYTEAMS = teamNumberArray[selectNum]
             }
         }
     }

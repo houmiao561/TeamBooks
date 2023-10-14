@@ -65,7 +65,7 @@ class TeamDetail: UIViewController {
                     case "TeamDate": self.teamDate.text = value as? String
                     case "TeamIntroduce":self.teamIntroduce.text = value as? String
                     case "TeamPassword":self.teamPassword.text = value as? String
-                    default:print("switch WRONG")
+                    default: break
                     }
                     
                 }
