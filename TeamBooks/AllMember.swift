@@ -18,6 +18,7 @@ class AllMember: UITableViewController {
     var nameFormMYTEAMS = ""
     var membersOfTeam = [String]()
     private let user = Auth.auth().currentUser!
+    var selectMemberUID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,23 @@ class AllMember: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "AllMembersToOneMember", sender: indexPath.row)
+        print(nameFormMYTEAMS)
+        print(membersOfTeam[indexPath.row])
+        ref = Database.database().reference().child("Teams").child("\(nameFormMYTEAMS)").child("TeamMembers")
+        ref.observe(.value, with: { (snapshot) in
+            print("!!!!!!!!")
+            if let teamDetailData = snapshot.value as? [String: Any] {
+                print(teamDetailData)
+                for (key, value) in teamDetailData{
+                    if value as! String == self.membersOfTeam[indexPath.row] {
+                        self.selectMemberUID = key
+                        self.performSegue(withIdentifier: "AllMembersToOneMember", sender: indexPath.row)
+                    }else{print("2131231231")}
+                }
+            }else{print("?????????")}
+            
+        })
+        
     }
     
     func fetchNumber() {
@@ -78,6 +95,17 @@ class AllMember: UITableViewController {
             }else{print("!!!!!!??????\(snapshot)")}
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AllMembersToOneMember" {
+            if let destinationVC = segue.destination as? OneMember{
+                destinationVC.teamName = nameFormMYTEAMS
+                destinationVC.memberUID = selectMemberUID
+            }
+        }
+    }
+    
+    
 }
 
 

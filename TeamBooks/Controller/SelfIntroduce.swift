@@ -35,11 +35,12 @@ class SelfIntroduce: UIViewController {
     
     @IBAction func add(_ sender: UIButton) {
         sendMessage = ["teamName":teamName.text!,
-                           "oneselfUID":oneselfUID.text!,
-                           "oneselfIntroduce":oneselfIntroduce.text!,
-                           "oneselfJob":oneselfJob.text!,
-                           "oneselfBirthday":oneselfBirthday.text!,
-                           "oneselfName":oneselfName.text!]
+                       "oneselfEmail":String(user.email!),
+                       "oneselfUID":oneselfUID.text!,
+                       "oneselfIntroduce":oneselfIntroduce.text!,
+                       "oneselfJob":oneselfJob.text!,
+                       "oneselfBirthday":oneselfBirthday.text!,
+                       "oneselfName":oneselfName.text!]
         
         ref.child("OneselfIntroduceInTeam").child("\(teamName.text!)").child("Members \(user.uid)").updateChildValues(sendMessage) { (error, _) in
             if let error = error {

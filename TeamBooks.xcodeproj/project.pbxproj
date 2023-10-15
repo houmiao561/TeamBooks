@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		933494B62ACFF9E900C17105 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933494B52ACFF9E900C17105 /* AccountDetail.swift */; };
 		93410C5B2ACD945100FA020A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93410C5A2ACD945100FA020A /* GoogleService-Info.plist */; };
+		9362DC0B2ADBC021008D1753 /* OneMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362DC0A2ADBC021008D1753 /* OneMemberCell.swift */; };
 		93862FBD2ADAF25F00B46CCE /* SelfIntroduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93862FBC2ADAF25F00B46CCE /* SelfIntroduce.swift */; };
+		93862FBF2ADBBCB800B46CCE /* OneMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93862FBE2ADBBCB800B46CCE /* OneMemberCell.xib */; };
 		938E27A22AD56DF500A56A21 /* AllMembersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 938E27A12AD56DF500A56A21 /* AllMembersCell.xib */; };
 		938E27A42AD56E3D00A56A21 /* AllMembersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938E27A32AD56E3D00A56A21 /* AllMembersCell.swift */; };
 		939301CA2AD585E50057A224 /* AddTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939301C92AD585E50057A224 /* AddTeam.swift */; };
@@ -37,7 +39,9 @@
 		8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		933494B52ACFF9E900C17105 /* AccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDetail.swift; path = TeamBooks/View/AccountDetail.swift; sourceTree = SOURCE_ROOT; };
 		93410C5A2ACD945100FA020A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9362DC0A2ADBC021008D1753 /* OneMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneMemberCell.swift; sourceTree = "<group>"; };
 		93862FBC2ADAF25F00B46CCE /* SelfIntroduce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIntroduce.swift; sourceTree = "<group>"; };
+		93862FBE2ADBBCB800B46CCE /* OneMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneMemberCell.xib; sourceTree = "<group>"; };
 		938E27A12AD56DF500A56A21 /* AllMembersCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllMembersCell.xib; sourceTree = "<group>"; };
 		938E27A32AD56E3D00A56A21 /* AllMembersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMembersCell.swift; sourceTree = "<group>"; };
 		939301C92AD585E50057A224 /* AddTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeam.swift; sourceTree = "<group>"; };
@@ -82,6 +86,15 @@
 				8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		93862FC22ADBBCF800B46CCE /* OneMember */ = {
+			isa = PBXGroup;
+			children = (
+				93862FBE2ADBBCB800B46CCE /* OneMemberCell.xib */,
+				9362DC0A2ADBC021008D1753 /* OneMemberCell.swift */,
+			);
+			path = OneMember;
 			sourceTree = "<group>";
 		};
 		93BACE142ACFB68F008FEED1 /* Model */ = {
@@ -151,6 +164,7 @@
 				93D1A9A72ACD353800762EAA /* Main.storyboard */,
 				93FE84F82ADA7FC3001F2050 /* CollectionIcon */,
 				93FE84F92ADA7FD9001F2050 /* AllMember */,
+				93862FC22ADBBCF800B46CCE /* OneMember */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93D9BAB12ACE7ABA0089AA75 /* CollectionCell.xib in Resources */,
+				93862FBF2ADBBCB800B46CCE /* OneMemberCell.xib in Resources */,
 				938E27A22AD56DF500A56A21 /* AllMembersCell.xib in Resources */,
 				93D1A9AE2ACD353900762EAA /* LaunchScreen.storyboard in Resources */,
 				93D1A9AB2ACD353900762EAA /* Assets.xcassets in Resources */,
@@ -314,6 +329,7 @@
 				93D1A9A42ACD353800762EAA /* SceneDelegate.swift in Sources */,
 				93862FBD2ADAF25F00B46CCE /* SelfIntroduce.swift in Sources */,
 				93F424A82ACD8AC000FC9700 /* CreatTeam.swift in Sources */,
+				9362DC0B2ADBC021008D1753 /* OneMemberCell.swift in Sources */,
 				93F424AC2ACD8B9100FC9700 /* TeamDetail.swift in Sources */,
 				93D1A9BA2ACD493600762EAA /* LogIn.swift in Sources */,
 				93F424AA2ACD8B1800FC9700 /* TabBar.swift in Sources */,
