@@ -374,12 +374,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Yourself Gesture" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SB3-Au-Eyk">
-                                <rect key="frame" x="104" y="532" width="185" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xad-dR-cxA">
+                                <rect key="frame" x="159" y="747" width="75" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="add:" destination="AVE-sQ-guh" eventType="touchUpInside" id="hbm-yp-rjr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ij2-tt-LNw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -387,7 +390,6 @@
                     <navigationItem key="navigationItem" id="wS4-x0-QtV"/>
                     <connections>
                         <outlet property="oneselfBirthday" destination="nA6-nC-6Zl" id="xwo-9x-Nkx"/>
-                        <outlet property="oneselfGesture" destination="SB3-Au-Eyk" id="Tak-mg-v2q"/>
                         <outlet property="oneselfIntroduce" destination="uOg-G5-HXG" id="dnV-mb-TQn"/>
                         <outlet property="oneselfJob" destination="rz4-24-Odu" id="m7L-c3-tgl"/>
                         <outlet property="oneselfName" destination="gsg-CG-3RS" id="uuR-kf-4ZH"/>
