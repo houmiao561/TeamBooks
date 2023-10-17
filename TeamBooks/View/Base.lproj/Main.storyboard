@@ -605,11 +605,83 @@
                             <outlet property="delegate" destination="u9n-QD-tKb" id="QCT-d2-gEn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="2rJ-PR-TYp"/>
+                    <navigationItem key="navigationItem" id="2rJ-PR-TYp">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="RZl-wy-Ftc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="9dN-1v-8mf">
+                                <rect key="frame" x="327.33333333333331" y="5" width="49.666666666666686" height="34.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="addComments:" destination="u9n-QD-tKb" eventType="touchUpInside" id="I3K-18-9Ma"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Ahu-j4-NYW" kind="showDetail" identifier="OneMemberToAddComments" id="uo7-rY-H1d"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ax-4G-O0T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6656" y="-582"/>
+            <point key="canvasLocation" x="6572" y="-582"/>
+        </scene>
+        <!--Add Comments-->
+        <scene sceneID="i30-Tg-6PM">
+            <objects>
+                <viewController id="Ahu-j4-NYW" customClass="AddComments" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6oX-vO-BHp">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrD-Bk-xR5">
+                                <rect key="frame" x="126" y="740" width="142" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Add Comments"/>
+                                <connections>
+                                    <action selector="button:" destination="Ahu-j4-NYW" eventType="touchUpInside" id="8RO-9i-JJT"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fQ8-Oe-iPm">
+                                <rect key="frame" x="30" y="110" width="333" height="622"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YrK-hj-LZs">
+                                        <rect key="frame" x="0.0" y="0.0" width="333" height="622"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="YrK-hj-LZs" secondAttribute="bottom" id="1iW-fi-GxJ"/>
+                                    <constraint firstItem="YrK-hj-LZs" firstAttribute="leading" secondItem="fQ8-Oe-iPm" secondAttribute="leading" id="4Pk-X1-bIL"/>
+                                    <constraint firstAttribute="trailing" secondItem="YrK-hj-LZs" secondAttribute="trailing" id="LuH-QX-p5Q"/>
+                                    <constraint firstItem="YrK-hj-LZs" firstAttribute="top" secondItem="fQ8-Oe-iPm" secondAttribute="top" id="TAd-M6-h8p"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="aUg-aJ-gwz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fQ8-Oe-iPm" firstAttribute="centerY" secondItem="6oX-vO-BHp" secondAttribute="centerY" id="Gnz-LH-7do"/>
+                            <constraint firstItem="HrD-Bk-xR5" firstAttribute="leading" secondItem="aUg-aJ-gwz" secondAttribute="leading" constant="126" id="LDS-6R-jlE"/>
+                            <constraint firstItem="fQ8-Oe-iPm" firstAttribute="top" secondItem="aUg-aJ-gwz" secondAttribute="top" constant="110" id="hWd-7T-c29"/>
+                            <constraint firstItem="HrD-Bk-xR5" firstAttribute="top" secondItem="fQ8-Oe-iPm" secondAttribute="bottom" constant="8" id="hc4-xJ-FTW"/>
+                            <constraint firstItem="fQ8-Oe-iPm" firstAttribute="leading" secondItem="aUg-aJ-gwz" secondAttribute="leading" constant="30" id="oPx-6b-ODF"/>
+                            <constraint firstItem="fQ8-Oe-iPm" firstAttribute="centerX" secondItem="HrD-Bk-xR5" secondAttribute="centerX" id="ppM-qm-iHc"/>
+                            <constraint firstItem="fQ8-Oe-iPm" firstAttribute="centerX" secondItem="6oX-vO-BHp" secondAttribute="centerX" id="tZ1-Wv-G73"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="X5H-cd-R68"/>
+                    <connections>
+                        <outlet property="addComments" destination="YrK-hj-LZs" id="NGO-kx-7G1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P27-69-zDJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7362.5954198473282" y="-582.3943661971831"/>
         </scene>
         <!--Team Introduce-->
         <scene sceneID="5b2-rq-8Km">
@@ -708,6 +780,9 @@
     <resources>
         <image name="Yummy" width="1024" height="1024"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

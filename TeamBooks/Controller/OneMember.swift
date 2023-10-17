@@ -25,7 +25,9 @@ class OneMember: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "OneMemberCell", bundle: nil), forCellReuseIdentifier: "OneMemberCell")
+        tableView.register(UINib(nibName: "CommentsCell", bundle: nil), forCellReuseIdentifier: "CommentsCell")
         downloadTextFromFirebase()
+        tableView.rowHeight = UITableView.automaticDimension
     }
     
     
@@ -57,7 +59,10 @@ class OneMember: UITableViewController {
             cell.name.text = name
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
+            cell.comments.text = "Comments"
+            cell.someoneName.text = "SomeoneName"
+            cell.profile.image = UIImage(named: "Yummy")
             return cell
         }
 
@@ -65,9 +70,9 @@ class OneMember: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 500 // 第一行的高度
+            return 500
         } else {
-            return 44.0 // 其他行的默认高度
+            return 150
         }
     }
     
@@ -111,6 +116,19 @@ class OneMember: UITableViewController {
                 self.tableView.reloadData()
             }else{print("!!!!!!??????\(snapshot)")}
         })
+    }
+    
+    @IBAction func addComments(_ sender: Any) {
+        performSegue(withIdentifier: "OneMemberToAddComments", sender: sender)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "OneMemberToAddComments" {
+            if let destinationVC = segue.destination as? AddComments{
+                destinationVC.teamName = self.teamName
+                destinationVC.memberUID = self.memberUID
+            }
+        }
     }
     
 }
