@@ -53,20 +53,16 @@ class AllMember: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print(nameFormMYTEAMS)
-        print(membersOfTeam[indexPath.row])
         ref = Database.database().reference().child("Teams").child("\(nameFormMYTEAMS)").child("TeamMembers")
         ref.observe(.value, with: { (snapshot) in
-            print("!!!!!!!!")
             if let teamDetailData = snapshot.value as? [String: Any] {
-                print(teamDetailData)
                 for (key, value) in teamDetailData{
                     if value as! String == self.membersOfTeam[indexPath.row] {
                         self.selectMemberUID = key
                         self.performSegue(withIdentifier: "AllMembersToOneMember", sender: indexPath.row)
-                    }else{print("2131231231")}
+                    }else{print("if value as! String == self.membersOfTeam[indexPath.row]")}
                 }
-            }else{print("?????????")}
+            }else{print("if let teamDetailData = snapshot.value as? [String: Any]")}
             
         })
         

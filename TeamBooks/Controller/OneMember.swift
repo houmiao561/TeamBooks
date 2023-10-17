@@ -21,6 +21,9 @@ class OneMember: UITableViewController {
     var job = ""
     var introduce = ""
     
+    typealias FirebaseCallback = (Int) -> Void
+    
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,13 @@ class OneMember: UITableViewController {
         tableView.register(UINib(nibName: "CommentsCell", bundle: nil), forCellReuseIdentifier: "CommentsCell")
         downloadTextFromFirebase()
         tableView.rowHeight = UITableView.automaticDimension
+        
+        ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of: .value, with: { snapshot in
+            if snapshot.exists() {
+                self.count = Int(snapshot.childrenCount)
+                self.tableView.reloadData()
+            } else {print("if snapshot.exists()")}
+        })
     }
     
     
@@ -43,7 +53,7 @@ class OneMember: UITableViewController {
         if section == 0{
             return 1
         }else{
-            return 20
+            return count
         }
        
     }
