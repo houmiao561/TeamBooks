@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class MyTeams: UIViewController {
     
@@ -19,13 +20,14 @@ class MyTeams: UIViewController {
     var teamNumberArray = [String]()
     var selectNum = 0
     let user = Auth.auth().currentUser
+    let storageRef = Storage.storage().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // 创建一个 UICollectionViewFlowLayout 对象
         let layout = UICollectionViewFlowLayout()
-        // 设置每行的 cell 个数，例如每行显示3个 cell
+        // 设置每行的 cell 个数 2
         let numberOfItemsPerRow: CGFloat = 2
         // 设置 cell 之间的间距
         let spacing: CGFloat = 20
@@ -46,7 +48,7 @@ class MyTeams: UIViewController {
         fetchNumOfCollection()//解决异步问题
         
     }
-   
+    
     @IBAction func CreatTeam(_ sender: UIButton) {
         performSegue(withIdentifier: "MyTeamToCreatTeam", sender: sender)
     }
@@ -89,7 +91,24 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath as IndexPath) as! CollectionViewCell
-        cell.TeamLogo.image = UIImage(named: "Yummy")
+        
+        let imageRef = storageRef.child("TeamLogo/").child("\(teamNumberArray[indexPath.item])")
+        imageRef.downloadURL { (url, error) in
+            if let downloadURL = url {
+                DispatchQueue.global().async {
+                    if let imageData = try? Data(contentsOf: downloadURL) {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            cell.TeamLogo.image = image
+                            self.collectionView.reloadData()
+                        }
+                    }
+                }
+            } else if let error = error {
+                print("Error getting download URL")
+            }
+        }
+        
         return cell
     }
     
@@ -97,6 +116,7 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
         selectNum = indexPath.item
         performSegue(withIdentifier: "MyTeamToTabBar", sender: self)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MyTeamToTabBar" {
             if let destinationVC = segue.destination as? TabBar,
@@ -109,12 +129,12 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            // 计算每行的cell个数，例如每行显示3个cell
-            let numberOfItemsPerRow: CGFloat = 2
-            let spacing: CGFloat = 10 // cell之间的间距
-            let totalSpacing = (numberOfItemsPerRow - 1) * spacing
-            let itemWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
-            return CGSize(width: itemWidth, height: itemWidth)
-        }
+        // 计算每行的cell个数，例如每行显示3个cell
+        let numberOfItemsPerRow: CGFloat = 2
+        let spacing: CGFloat = 10 // cell之间的间距
+        let totalSpacing = (numberOfItemsPerRow - 1) * spacing
+        let itemWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
+        return CGSize(width: itemWidth, height: itemWidth)
+    }
     
 }

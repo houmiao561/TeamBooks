@@ -73,7 +73,7 @@ extension AccountDetail:UIImagePickerControllerDelegate, UINavigationControllerD
 extension AccountDetail{
     
     func uploadImageToFirebaseStorage(image: UIImage) {
-        let imageRef = storageRef.child("ProfilePhoto/").child("\(user.email!)")
+        let imageRef = storageRef.child("ProfilePhoto/").child("Members \(user.uid)")
         if let imageData = image.jpegData(compressionQuality: 1.0) {
             // 开始上传图片
             imageRef.putData(imageData, metadata: nil) { (metadata, error) in
@@ -88,7 +88,7 @@ extension AccountDetail{
     
     
     func downloadImageFromFirebaseStorage(){
-        let imageRef = storageRef.child("ProfilePhoto/").child("\(user.email!)")
+        let imageRef = storageRef.child("ProfilePhoto/").child("Members \(user.uid)")
         
         imageRef.downloadURL { (url, error) in
             if let downloadURL = url {

@@ -16,7 +16,8 @@ class AllMember: UITableViewController {
     let storageRef = Storage.storage().reference()
     var allMembers = 0
     var nameFormMYTEAMS = ""
-    var membersOfTeam = [String]()
+    var membersUIDOfTeam = [String]()
+    var membersNameOfTeam = [String]()
     private let user = Auth.auth().currentUser!
     var selectMemberUID = ""
     
@@ -29,23 +30,29 @@ class AllMember: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllMembersCell", for: indexPath) as! AllMembersCell
-        
-        let imageRef = storageRef.child("ProfilePhoto/").child("\(membersOfTeam[indexPath.item])")
+
+        cell.memberName.text = membersNameOfTeam[indexPath.item]
+
+        // 异步下载图片
+        let imageRef = storageRef.child("ProfilePhoto/").child("\(membersUIDOfTeam[indexPath.item])")
         imageRef.downloadURL { (url, error) in
             if let downloadURL = url {
-                if let imageData = try? Data(contentsOf: downloadURL) {
-                    let image = UIImage(data: imageData)
-                    cell.profileImage.image = image
-                }
+                URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+                    if let imageData = data, let image = UIImage(data: imageData) {
+                        // 在主线程更新UI
+                        DispatchQueue.main.async {
+                            cell.profileImage.image = image
+                        }
+                    }
+                }.resume()
             } else if let error = error {
                 print("Error getting download URL: \(error.localizedDescription)")
             }
         }
-        
-        cell.memberName.text = membersOfTeam[indexPath.item]
-        
+
         return cell
     }
+
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allMembers
@@ -57,7 +64,7 @@ class AllMember: UITableViewController {
         ref.observe(.value, with: { (snapshot) in
             if let teamDetailData = snapshot.value as? [String: Any] {
                 for (key, value) in teamDetailData{
-                    if value as! String == self.membersOfTeam[indexPath.row] {
+                    if value as! String == self.membersNameOfTeam[indexPath.row] {
                         self.selectMemberUID = key
                         self.performSegue(withIdentifier: "AllMembersToOneMember", sender: indexPath.row)
                     }else{print("if value as! String == self.membersOfTeam[indexPath.row]")}
@@ -83,8 +90,9 @@ class AllMember: UITableViewController {
         ref.observe(.value, with: { (snapshot) in
             if let teamData = snapshot.value as? [String: Any] {
                 
-                for teamDatas in teamData{
-                    self.membersOfTeam.append(teamDatas.value as! String)
+                for (key,value) in teamData{
+                    self.membersUIDOfTeam.append(key)
+                    self.membersNameOfTeam.append(value as! String)
                 }
                 
                 self.tableView.reloadData()
