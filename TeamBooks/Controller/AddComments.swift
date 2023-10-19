@@ -13,6 +13,7 @@ class AddComments: UIViewController {
     
     @IBOutlet weak var addComments: UITextView!
     
+    //设置评论不能超过10条
     var teamName = ""
     var memberUID = ""//被点击
     var user = Auth.auth().currentUser!
