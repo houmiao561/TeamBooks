@@ -18,7 +18,9 @@ class CommentsCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        profile.layer.cornerRadius = profile.frame.size.width / 2.0
+        profile.layer.masksToBounds = true // 剪切超出圆角范围的内容
+        profile.contentMode = .scaleAspectFill
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

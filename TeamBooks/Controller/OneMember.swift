@@ -39,14 +39,14 @@ class OneMember: UITableViewController {
     }
     
     func getNum(){
-        ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of: .value, with: { snapshot in
+        ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of: .value) { snapshot in
             if let teamDetailData = snapshot.value as? [String: [String]] {
                 for (_,va) in teamDetailData{
                     self.count += va.count
                     self.tableView.reloadData()
                 }
             }
-        })
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,8 +80,8 @@ class OneMember: UITableViewController {
             var everyCellInFunc = [[String:String]]()       //存储[UID:Comments]
 
             ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of:.value) { snapshot in
-                var cellUID = [[String:String]]()
                 if let teamDetailData = snapshot.value as? [String: [String]] {
+                    
                     for (keyA, value) in teamDetailData{
                         //此时keyA是这个cell的用户UID，没有任何附加String
                         //此时value是[String]
@@ -110,13 +110,11 @@ class OneMember: UITableViewController {
                                         let image = UIImage(data: imageData)
                                         DispatchQueue.main.async {
                                             cell.profile.image = image
-                                            self.tableView.reloadData()
                                         }
                                     }
                                 }
-                            } else if let error = error {
-                                print("Error getting download URL")
                             }
+                            return
                         }
                         
                         
@@ -178,7 +176,7 @@ class OneMember: UITableViewController {
     }
 
     func downloadTextFromFirebase(){
-        ref.child("OneselfIntroduceInTeam").child(teamName).child("\(memberUID)").observe(.value, with: { (snapshot) in
+        ref.child("OneselfIntroduceInTeam").child(teamName).child("\(memberUID)").observeSingleEvent(of:.value) { (snapshot) in
             if let teamData = snapshot.value as? [String: Any] {
                 for (key, value) in teamData{
                     
@@ -193,7 +191,7 @@ class OneMember: UITableViewController {
                 }
                 self.tableView.reloadData()
             }else{print("!!!!!!??????\(snapshot)")}
-        })
+        }
     }
     
     @IBAction func addComments(_ sender: Any) {
