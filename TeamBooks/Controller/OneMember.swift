@@ -24,12 +24,11 @@ class OneMember: UITableViewController {
     var introduce = ""
     
     var count = 0//cell的个数
-    var everyCell = [[String:String]]()
     
     override func viewWillAppear(_ animated: Bool) {
         downloadTextFromFirebase()
         getNum()
-        getCellDetail()
+
     }
     
     override func viewDidLoad() {
@@ -37,13 +36,6 @@ class OneMember: UITableViewController {
         tableView.register(UINib(nibName: "OneMemberCell", bundle: nil), forCellReuseIdentifier: "OneMemberCell")
         tableView.register(UINib(nibName: "CommentsCell", bundle: nil), forCellReuseIdentifier: "CommentsCell")
         
-//        downloadTextFromFirebase()
-//        getNum()
-//        getCellDetail()
-        
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        print(everyCell)
     }
     
     func getNum(){
@@ -88,17 +80,48 @@ class OneMember: UITableViewController {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
             
+            var everyCellInFunc = [[String:String]]()
             
-            everycells = everyCell[indexPath.row]
-            
-            let keysArray = Array(everycells.keys)
-            for key in keysArray {
-                print("Key: \(key)")
-                cell.someoneName.text = key
-                cell.comments.text = everycells[key]
-            }
-            
-            
+            ref.child("Comments").child("\(teamName)").child("\(memberUID)").observe(.value, with: { snapshot in
+                if let teamDetailData = snapshot.value as? [String: [String]] {
+                    for (keyA, value) in teamDetailData{
+                        
+                        //此时value是[String]
+                        //此时value是某一个用户的comments
+                        let num = value.count - 1
+                        for i in 0...num{
+                            everyCellInFunc.append(["\(keyA) \(i)" : value[i]])
+                        }
+                        
+                        
+                        
+                        //通过Members UID得到name
+                        //只是在个人信息中循环找到oneselfName而已
+                        self.ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(keyA)").observe(.value, with: { (snapshot) in
+                            if let teamData = snapshot.value as? [String: Any] {
+                                for (keyB, value) in teamData{
+                                    switch keyB{
+                                    case "oneselfName": cell.someoneName.text = value as! String
+                                    default: break
+                                    }
+                                }
+                            }
+                        })
+
+                        
+                        
+                    }
+                    
+                    var everycell = [String:String]()
+                    everycell.removeAll()
+                    everycell = everyCellInFunc[indexPath.row]
+                    
+                    for v in everycell.values{
+                        cell.comments.text = v
+                    }
+                    
+                }
+            })
             return cell
         }
 
@@ -120,9 +143,9 @@ class OneMember: UITableViewController {
         
         let headerView = UIView()
         headerView.backgroundColor = UIColor.lightGray
+        
         // 自定义header视图的内容
         let label = UILabel()
-        
         label.frame = CGRect(x: 15, y: 15, width: 200, height: 20) // 调整位置和大小
         label.textColor = UIColor.black // 设置文本颜色
         label.font = UIFont.boldSystemFont(ofSize: 16) // 设置字体和大小
@@ -168,69 +191,69 @@ class OneMember: UITableViewController {
         }
     }
     
-    func getCellDetail(){
-        //get all text
-        var everyCellInFunc = [String:String]()
-        
-        ref.child("Comments").child("\(teamName)").child("\(memberUID)").observe(.value, with: { snapshot in
-            if let teamDetailData = snapshot.value as? [String: [String]] {
-                for (keyA, value) in teamDetailData{
-                    //此时value是[String]
-                    //此时value是某一个用户的comments
-                    let num = value.count - 1
-                    for i in 0...num{
-                        everyCellInFunc.removeAll()
-                        everyCellInFunc["\(keyA) \(i)"] = value[i]
-                        self.everyCell.append(everyCellInFunc)
-                    }
-                    self.tableView.reloadData()
-                    
-                    
-                    
-//                    //通过Members UID得到name
-//                    //只是在个人信息中循环找到oneselfName而已
-//                    self.ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(key)").observe(.value, with: { (snapshot) in
-//                        if let teamData = snapshot.value as? [String: Any] {
-//                            for (keyB, value) in teamData{
-//                                switch key{
-//                                case "oneselfName": cell.someoneName.text = (value as? String)!
-//                                    //?????????????????????????????????????????????????????????
-//                                default: break
-//                                }
-//                            }
-//                        }
-//                    })
-
-                    
-                }
-                
-            }
-        })
-        
-//        //get profile
-//        let imageRef = storageRef.child("ProfilePhoto/").child("\(memberUID)")
-//        //??????\(memberUID)会导致有头像都一致
-//        imageRef.downloadURL { (url, error) in
-//            if let downloadURL = url {
-//                
-//                
-////                DispatchQueue.global().async {
-////                    if let imageData = try? Data(contentsOf: downloadURL) {
-////                        let image = UIImage(data: imageData)
-////                        DispatchQueue.main.async {
-////                            cell.profile.image = image
-////                            self.tableView.reloadData()
+//    func getCellDetail(){
+//        //get all text
+//        var everyCellInFunc = [String:String]()
+//        
+//        ref.child("Comments").child("\(teamName)").child("\(memberUID)").observe(.value, with: { snapshot in
+//            if let teamDetailData = snapshot.value as? [String: [String]] {
+//                for (keyA, value) in teamDetailData{
+//                    //此时value是[String]
+//                    //此时value是某一个用户的comments
+//                    let num = value.count - 1
+//                    for i in 0...num{
+//                        everyCellInFunc.removeAll()
+//                        everyCellInFunc["\(keyA) \(i)"] = value[i]
+//                        self.everyCell.append(everyCellInFunc)
+//                    }
+//                    self.tableView.reloadData()
+//                    
+//                    
+//                    
+////                    //通过Members UID得到name
+////                    //只是在个人信息中循环找到oneselfName而已
+////                    self.ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(key)").observe(.value, with: { (snapshot) in
+////                        if let teamData = snapshot.value as? [String: Any] {
+////                            for (keyB, value) in teamData{
+////                                switch key{
+////                                case "oneselfName": cell.someoneName.text = (value as? String)!
+////                                    //?????????????????????????????????????????????????????????
+////                                default: break
+////                                }
+////                            }
 ////                        }
-////                    }
-////                }
+////                    })
+//
+//                    
+//                }
 //                
-//                
-//            } else {
-//                print("Error getting download URL")
 //            }
-//        }
-        
-    }
+//        })
+//        
+////        //get profile
+////        let imageRef = storageRef.child("ProfilePhoto/").child("\(memberUID)")
+////        //??????\(memberUID)会导致有头像都一致
+////        imageRef.downloadURL { (url, error) in
+////            if let downloadURL = url {
+////                
+////                
+//////                DispatchQueue.global().async {
+//////                    if let imageData = try? Data(contentsOf: downloadURL) {
+//////                        let image = UIImage(data: imageData)
+//////                        DispatchQueue.main.async {
+//////                            cell.profile.image = image
+//////                            self.tableView.reloadData()
+//////                        }
+//////                    }
+//////                }
+////                
+////                
+////            } else {
+////                print("Error getting download URL")
+////            }
+////        }
+//        
+//    }
     
     
 }
