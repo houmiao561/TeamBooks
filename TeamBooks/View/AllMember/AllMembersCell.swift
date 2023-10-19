@@ -15,6 +15,9 @@ class AllMembersCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         accessoryType = .disclosureIndicator
+        profileImage.layer.cornerRadius = profileImage.frame.size.width / 2.0
+        profileImage.layer.masksToBounds = true // 剪切超出圆角范围的内容
+        profileImage.contentMode = .scaleAspectFill
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

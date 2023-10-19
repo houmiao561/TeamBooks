@@ -24,6 +24,7 @@ class AllMember: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "AllMembersCell", bundle: nil), forCellReuseIdentifier: "AllMembersCell")
+        tableView.rowHeight = 50
         fetchNumber()
         fetchMembers()
     }

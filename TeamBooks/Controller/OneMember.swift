@@ -24,6 +24,7 @@ class OneMember: UITableViewController {
     var introduce = ""
     
     var count = 0//cell的个数
+    var everyCellInFunc = [[String:String]]()
     
     override func viewWillAppear(_ animated: Bool) {
         downloadTextFromFirebase()
@@ -35,7 +36,11 @@ class OneMember: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "OneMemberCell", bundle: nil), forCellReuseIdentifier: "OneMemberCell")
         tableView.register(UINib(nibName: "CommentsCell", bundle: nil), forCellReuseIdentifier: "CommentsCell")
-        
+        everyCellInFunc.sort { (item1, item2) -> Bool in
+            let key1 = item1.keys.first ?? ""
+            let key2 = item2.keys.first ?? ""
+            return key1 < key2 // 升序排序
+        }
     }
     
     func getNum(){
@@ -77,7 +82,7 @@ class OneMember: UITableViewController {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
             
-            var everyCellInFunc = [[String:String]]()       //存储[UID:Comments]
+            //var everyCellInFunc = [[String:String]]()       //存储[UID:Comments]
 
             ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of:.value) { snapshot in
                 if let teamDetailData = snapshot.value as? [String: [String]] {
@@ -88,16 +93,16 @@ class OneMember: UITableViewController {
                         //此时value是某一个用户的comments
                         let num = value.count - 1
                         for i in 0...num{
-                            everyCellInFunc.append(["\(keyA) \(i)" : value[i]])
+                            self.everyCellInFunc.append(["\(keyA) \(i)" : value[i]])
                         }
                         
                     }
                     
-                    for v in everyCellInFunc[indexPath.row].values{
+                    for v in self.everyCellInFunc[indexPath.row].values{
                         cell.comments.text = v
                     }
                     
-                    for k in everyCellInFunc[indexPath.row].keys{
+                    for k in self.everyCellInFunc[indexPath.row].keys{
                         //得到真正的不加任何String的UID
                         let realK = String(k.prefix(k.count - 2))
                         
@@ -123,7 +128,7 @@ class OneMember: UITableViewController {
                             if let teamData = snapshot.value as? [String: Any] {
                                 for (keyB, value) in teamData{
                                     if keyB == "oneselfName"{
-                                        for ks in everyCellInFunc[indexPath.row].keys{
+                                        for ks in self.everyCellInFunc[indexPath.row].keys{
                                             if ks == k{
                                                 cell.someoneName.text = value as? String
                                             }
@@ -152,7 +157,7 @@ class OneMember: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50 // 设置section之间的间距高度
+        return 40 // 设置section之间的间距高度
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -162,7 +167,7 @@ class OneMember: UITableViewController {
         
         // 自定义header视图的内容
         let label = UILabel()
-        label.frame = CGRect(x: 15, y: 15, width: 200, height: 20) // 调整位置和大小
+        label.frame = CGRect(x: 15, y: 10, width: 200, height: 20) // 调整位置和大小
         label.textColor = UIColor.black // 设置文本颜色
         label.font = UIFont.boldSystemFont(ofSize: 16) // 设置字体和大小
         if section == 0{
