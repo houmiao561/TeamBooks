@@ -56,8 +56,6 @@ class AddTeam: UIViewController {
                                       
                                     self.performSegue(withIdentifier: "AddTeamToSelfIntroduce", sender: sender)
                                     
-                                    
-                                    
                                 }else{
                                     print("?????????????")
                                 }
@@ -75,7 +73,6 @@ class AddTeam: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddTeamToSelfIntroduce" {
             if let destinationVC = segue.destination as? SelfIntroduce {
-                //print("teamName.text\(teamName.text)")
                 destinationVC.teamName123 = teamName.text!
                 destinationVC.oneselfUID123 = user!.uid
             }

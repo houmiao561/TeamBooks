@@ -14,10 +14,8 @@ class CollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        TeamLogo.translatesAutoresizingMaskIntoConstraints = false
-        TeamLogo.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        TeamLogo.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        layer.borderWidth = 1.0
+        TeamLogo.contentMode = .scaleAspectFill
+        layer.borderWidth = 0.5
         layer.borderColor = UIColor.gray.cgColor
         layer.cornerRadius = 10.0 // 设置圆角半径
         layer.masksToBounds = true // 剪切超出圆角范围的内容

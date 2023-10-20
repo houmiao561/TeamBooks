@@ -17,15 +17,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6pE-mW-xjS">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IYH-k2-tqS">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                    </imageView>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6pE-mW-xjS">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="6pE-mW-xjS" firstAttribute="leading" secondItem="IYH-k2-tqS" secondAttribute="leading" id="0Qg-pe-W26"/>
+                            <constraint firstAttribute="trailing" secondItem="6pE-mW-xjS" secondAttribute="trailing" id="Nhj-bw-uwm"/>
+                            <constraint firstItem="6pE-mW-xjS" firstAttribute="top" secondItem="IYH-k2-tqS" secondAttribute="top" id="any-0e-IOE"/>
+                            <constraint firstAttribute="bottom" secondItem="6pE-mW-xjS" secondAttribute="bottom" id="qTT-Xj-ZLr"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="6pE-mW-xjS" firstAttribute="leading" secondItem="Vhz-KS-mgo" secondAttribute="leading" id="1Nf-TP-ije"/>
-                    <constraint firstAttribute="trailing" secondItem="6pE-mW-xjS" secondAttribute="trailing" id="920-4A-gcB"/>
-                    <constraint firstItem="6pE-mW-xjS" firstAttribute="top" secondItem="Vhz-KS-mgo" secondAttribute="top" id="Hm4-8P-03r"/>
-                    <constraint firstAttribute="bottom" secondItem="6pE-mW-xjS" secondAttribute="bottom" id="ehm-q2-Lji"/>
+                    <constraint firstAttribute="bottom" secondItem="IYH-k2-tqS" secondAttribute="bottom" id="2F5-7h-NHp"/>
+                    <constraint firstItem="IYH-k2-tqS" firstAttribute="top" secondItem="Vhz-KS-mgo" secondAttribute="top" id="Afk-r4-KRV"/>
+                    <constraint firstItem="IYH-k2-tqS" firstAttribute="leading" secondItem="Vhz-KS-mgo" secondAttribute="leading" id="bQd-ar-3Dk"/>
+                    <constraint firstAttribute="trailing" secondItem="IYH-k2-tqS" secondAttribute="trailing" id="kh3-us-fWB"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="50" height="50"/>

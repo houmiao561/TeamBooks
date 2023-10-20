@@ -9,31 +9,57 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eJE-M3-xp9" customClass="AllMembersCell" customModule="TeamBooks" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="75" id="eJE-M3-xp9" customClass="AllMembersCell" customModule="TeamBooks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="451" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eJE-M3-xp9" id="DwH-1p-TSR">
-                <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="451" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="noa-OQ-UyB">
-                        <rect key="frame" x="20" y="0.0" width="48" height="44"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Y-ql-Amt">
-                        <rect key="frame" x="98" y="12" width="265" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tzy-JL-mcX">
+                        <rect key="frame" x="20" y="10" width="50" height="50"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yummy" translatesAutoresizingMaskIntoConstraints="NO" id="noa-OQ-UyB">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="R5D-NY-nYu"/>
+                            <constraint firstAttribute="height" constant="50" id="YGG-go-1uR"/>
+                        </constraints>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hdu-PW-TdY">
+                        <rect key="frame" x="80" y="10" width="351" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Y-ql-Amt">
+                                <rect key="frame" x="0.0" y="0.0" width="351" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="hdu-PW-TdY" secondAttribute="bottom" constant="10" id="0rr-NT-JnM"/>
+                    <constraint firstAttribute="trailing" secondItem="hdu-PW-TdY" secondAttribute="trailing" constant="20" id="3RM-rQ-SvJ"/>
+                    <constraint firstItem="tzy-JL-mcX" firstAttribute="top" secondItem="DwH-1p-TSR" secondAttribute="top" constant="10" id="DTy-h9-VCD"/>
+                    <constraint firstItem="hdu-PW-TdY" firstAttribute="centerY" secondItem="DwH-1p-TSR" secondAttribute="centerY" id="GSi-W9-JLz"/>
+                    <constraint firstAttribute="bottom" secondItem="tzy-JL-mcX" secondAttribute="bottom" constant="10" id="Izl-rQ-8aa"/>
+                    <constraint firstItem="tzy-JL-mcX" firstAttribute="leading" secondItem="DwH-1p-TSR" secondAttribute="leading" constant="20" id="Kz7-Lc-syF"/>
+                    <constraint firstItem="hdu-PW-TdY" firstAttribute="top" secondItem="DwH-1p-TSR" secondAttribute="top" constant="10" id="Mjz-Uh-jpG"/>
+                    <constraint firstItem="tzy-JL-mcX" firstAttribute="centerY" secondItem="DwH-1p-TSR" secondAttribute="centerY" id="s9s-P4-p9X"/>
+                    <constraint firstItem="hdu-PW-TdY" firstAttribute="leading" secondItem="tzy-JL-mcX" secondAttribute="trailing" constant="10" id="t7u-n8-so3"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="memberName" destination="Q6Y-ql-Amt" id="Bk4-PC-EJR"/>
                 <outlet property="profileImage" destination="noa-OQ-UyB" id="SiU-Mi-uUG"/>
             </connections>
-            <point key="canvasLocation" x="-77.099236641221367" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="-5.343511450381679" y="-21.83098591549296"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Yummy" width="1024" height="1024"/>
+    </resources>
 </document>

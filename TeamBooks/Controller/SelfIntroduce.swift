@@ -18,7 +18,6 @@ class SelfIntroduce: UIViewController {
     let user = Auth.auth().currentUser!
     
     @IBOutlet weak var teamName: UITextField!
-    @IBOutlet weak var oneselfUID: UITextField!
     
     @IBOutlet weak var oneselfIntroduce: UITextField!
     @IBOutlet weak var oneselfJob: UITextField!
@@ -30,13 +29,12 @@ class SelfIntroduce: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         teamName.text = teamName123
-        oneselfUID.text = oneselfUID123
     }
     
     @IBAction func add(_ sender: UIButton) {
         sendMessage = ["teamName":teamName.text!,
                        "oneselfEmail":String(user.email!),
-                       "oneselfUID":oneselfUID.text!,
+                       "oneselfUID":oneselfUID123,
                        "oneselfIntroduce":oneselfIntroduce.text!,
                        "oneselfJob":oneselfJob.text!,
                        "oneselfBirthday":oneselfBirthday.text!,

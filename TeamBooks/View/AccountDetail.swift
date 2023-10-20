@@ -22,7 +22,7 @@ class AccountDetail: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //downloadImageFromFirebaseStorage()
+        downloadImageFromFirebaseStorage()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         
         photo.addGestureRecognizer(tapGestureRecognizer)
@@ -74,7 +74,7 @@ extension AccountDetail{
     
     func uploadImageToFirebaseStorage(image: UIImage) {
         let imageRef = storageRef.child("ProfilePhoto/").child("Members \(user.uid)")
-        if let imageData = image.jpegData(compressionQuality: 1.0) {
+        if let imageData = image.jpegData(compressionQuality: 0.01) {
             // 开始上传图片
             imageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 if let error = error {

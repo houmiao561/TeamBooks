@@ -152,7 +152,7 @@ class OneMember: UITableViewController {
         if indexPath.section == 0 {
             return 500
         } else {
-            return 150
+            return 180
         }
     }
     
