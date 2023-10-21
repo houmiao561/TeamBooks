@@ -15,8 +15,6 @@ class CollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         TeamLogo.contentMode = .scaleAspectFill
-        layer.borderWidth = 0.5
-        layer.borderColor = UIColor.gray.cgColor
         layer.cornerRadius = 10.0 // 设置圆角半径
         layer.masksToBounds = true // 剪切超出圆角范围的内容
     }

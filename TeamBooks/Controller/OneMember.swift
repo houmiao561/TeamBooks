@@ -148,6 +148,10 @@ class OneMember: UITableViewController {
 
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 500
@@ -163,13 +167,13 @@ class OneMember: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.lightGray
+        
         
         // 自定义header视图的内容
         let label = UILabel()
         label.frame = CGRect(x: 15, y: 10, width: 200, height: 20) // 调整位置和大小
         label.textColor = UIColor.black // 设置文本颜色
-        label.font = UIFont.boldSystemFont(ofSize: 16) // 设置字体和大小
+        label.font = UIFont.boldSystemFont(ofSize: 20) // 设置字体和大小
         if section == 0{
             label.text = "My Introduce"
         }else{

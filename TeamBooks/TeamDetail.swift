@@ -25,6 +25,10 @@ class TeamDetail: UIViewController {
         super.viewDidLoad()
         downlodarTextFromFirebase()
         downloadImageFromFirebaseStorage()
+        
+        TeamLogo.contentMode = .scaleAspectFill
+        TeamLogo.layer.cornerRadius = 10.0 // 设置圆角半径
+        TeamLogo.layer.masksToBounds = true // 剪切超出圆角范围的内容
     }
  
     
