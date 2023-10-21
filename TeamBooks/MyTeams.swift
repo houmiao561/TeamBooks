@@ -25,18 +25,12 @@ class MyTeams: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 创建一个 UICollectionViewFlowLayout 对象
         let layout = UICollectionViewFlowLayout()
-        // 设置每行的 cell 个数 2
         let numberOfItemsPerRow: CGFloat = 2
-        // 设置 cell 之间的间距
-        let spacing: CGFloat = 20
-        // 计算 cell 的宽度
+        let spacing: CGFloat = 15
         let totalSpacing = (numberOfItemsPerRow - 1) * spacing
         let itemWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
-        // 设置每个 cell 的大小
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
-        // 设置 cell 之间的水平和垂直间距
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing
         // 将 layout 应用到 collectionView
@@ -47,6 +41,7 @@ class MyTeams: UIViewController {
         collectionView.delegate = self
         fetchNumOfCollection()//解决异步问题
         
+        teamNumberArray.sort()
     }
     
     @IBAction func CreatTeam(_ sender: UIButton) {
@@ -80,6 +75,7 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
                 
                 for teamDatas in teamData{
                     self.teamNumberArray.append(teamDatas.value as! String)
+                    self.teamNumberArray.sort()
                 }
             }else{print("!!!!!!??????\(snapshot)")}
         })
@@ -104,8 +100,6 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
                         }
                     }
                 }
-            } else if let error = error {
-                print("Error getting download URL")
             }
         }
         

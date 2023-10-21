@@ -34,7 +34,7 @@ class SignUp: UIViewController {
                 if let user = authResult?.user {
                     self.realtimeRef.child("Users").child("\(user.uid)").setValue(
                         ["UserUID":user.uid,
-                         "UserEmail":user.email])//保存到realtime,但是无法保存特殊字符
+                         "UserEmail":user.email])
                 }
             }
         }

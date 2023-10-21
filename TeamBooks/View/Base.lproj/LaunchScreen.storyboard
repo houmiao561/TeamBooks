@@ -17,13 +17,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Yummy" translatesAutoresizingMaskIntoConstraints="NO" id="CY0-PA-5GH">
-                                <rect key="frame" x="55" y="284" width="310" height="217"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EkW-5A-1qt">
+                                <rect key="frame" x="46.666666666666657" y="276" width="300" height="300"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Yummy" translatesAutoresizingMaskIntoConstraints="NO" id="CY0-PA-5GH">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="60R-UI-3xn"/>
+                                    <constraint firstAttribute="height" constant="300" id="rtA-0a-dPh"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EkW-5A-1qt" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="I57-92-AL5"/>
+                            <constraint firstItem="EkW-5A-1qt" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="nmO-Aw-eMG"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

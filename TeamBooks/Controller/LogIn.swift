@@ -33,10 +33,9 @@ class LogIn: UIViewController{
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alertController.addAction(cancelAction)
                 self.present(alertController,animated: true,completion: nil)
-            } else {
-                self.navigationController!.popToRootViewController(animated: true)
-            }
+            } else { }
         }
+        self.navigationController!.popToRootViewController(animated: true)
     }
     
 }
