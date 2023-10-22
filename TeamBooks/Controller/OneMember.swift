@@ -26,12 +26,6 @@ class OneMember: UITableViewController {
     var count = 0//cell的个数
     var everyCellInFunc = [[String:String]]()
     
-    override func viewWillAppear(_ animated: Bool) {
-        downloadTextFromFirebase()
-        getNum()
-
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "OneMemberCell", bundle: nil), forCellReuseIdentifier: "OneMemberCell")
@@ -41,6 +35,8 @@ class OneMember: UITableViewController {
             let key2 = item2.keys.first ?? ""
             return key1 < key2 // 升序排序
         }
+        downloadTextFromFirebase()
+        getNum()
     }
     
     func getNum(){

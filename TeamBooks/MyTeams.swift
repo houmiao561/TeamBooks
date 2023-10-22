@@ -26,13 +26,8 @@ class MyTeams: UIViewController {
         super.viewDidLoad()
         
         let layout = UICollectionViewFlowLayout()
-        let numberOfItemsPerRow: CGFloat = 2
-        let spacing: CGFloat = 15
-        let totalSpacing = (numberOfItemsPerRow - 1) * spacing
-        let itemWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
-        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
-        layout.minimumLineSpacing = spacing
-        layout.minimumInteritemSpacing = spacing
+        layout.itemSize = CGSize(width: 160, height: 160)
+
         // 将 layout 应用到 collectionView
         collectionView.setCollectionViewLayout(layout, animated: false)
         
@@ -120,15 +115,6 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
                 item2VC.nameFormMYTEAMS = teamNumberArray[selectNum]
             }
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 计算每行的cell个数，例如每行显示3个cell
-        let numberOfItemsPerRow: CGFloat = 2
-        let spacing: CGFloat = 10 // cell之间的间距
-        let totalSpacing = (numberOfItemsPerRow - 1) * spacing
-        let itemWidth = (collectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
-        return CGSize(width: itemWidth, height: itemWidth)
     }
     
 }

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>808189279990-3ouqu15i7r5htk1rpmlkh1sr48bolgv4.apps.googleusercontent.com</string>
+	<string>321812486042-dae8jb7hnefai3mk0v25v37j8ep2ee6q.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.808189279990-3ouqu15i7r5htk1rpmlkh1sr48bolgv4</string>
+	<string>com.googleusercontent.apps.321812486042-dae8jb7hnefai3mk0v25v37j8ep2ee6q</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCmeVlYOgxuShcXHgx9lp4zCyWHiE0iuG8</string>
+	<string>AIzaSyCJDZ_kffwqqFouGWK7EF3lRd-wfXyeMBA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>808189279990</string>
+	<string>321812486042</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>co.appbrewery.Flash-Chat-iOS13HM</string>
+	<string>com.houmiao.TeamBooks</string>
 	<key>PROJECT_ID</key>
-	<string>flash-chat-ios13-77912</string>
+	<string>teambooks-2e28b</string>
 	<key>STORAGE_BUCKET</key>
-	<string>flash-chat-ios13-77912.appspot.com</string>
+	<string>teambooks-2e28b.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:808189279990:ios:fcfdd8e395290a9fa8f6d7</string>
+	<string>1:321812486042:ios:3e78ac1a9cc62b85238c23</string>
 	<key>DATABASE_URL</key>
-	<string>https://flash-chat-ios13-77912-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+	<string>https://teambooks-2e28b-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

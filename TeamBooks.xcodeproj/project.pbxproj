@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		933494B62ACFF9E900C17105 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933494B52ACFF9E900C17105 /* AccountDetail.swift */; };
-		9347CB812AE265BE0001CC69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9347CB802AE265BE0001CC69 /* GoogleService-Info.plist */; };
+		9339F2932AE548DA0028B22E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9339F2922AE548DA0028B22E /* GoogleService-Info.plist */; };
 		9362DC0B2ADBC021008D1753 /* OneMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362DC0A2ADBC021008D1753 /* OneMemberCell.swift */; };
 		9376C7CF2AE3FC680097422C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9376C7CE2AE3FC680097422C /* IQKeyboardManagerSwift */; };
 		93862FBD2ADAF25F00B46CCE /* SelfIntroduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93862FBC2ADAF25F00B46CCE /* SelfIntroduce.swift */; };
@@ -42,7 +42,7 @@
 /* Begin PBXFileReference section */
 		8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		933494B52ACFF9E900C17105 /* AccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDetail.swift; path = TeamBooks/View/AccountDetail.swift; sourceTree = SOURCE_ROOT; };
-		9347CB802AE265BE0001CC69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9339F2922AE548DA0028B22E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9362DC0A2ADBC021008D1753 /* OneMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneMemberCell.swift; sourceTree = "<group>"; };
 		93862FBC2ADAF25F00B46CCE /* SelfIntroduce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfIntroduce.swift; sourceTree = "<group>"; };
 		93862FBE2ADBBCB800B46CCE /* OneMemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OneMemberCell.xib; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 				93D1A9BB2ACD4CDF00762EAA /* Controller */,
 				93D1A9AA2ACD353900762EAA /* Assets.xcassets */,
 				93D1A9AF2ACD353900762EAA /* Info.plist */,
-				9347CB802AE265BE0001CC69 /* GoogleService-Info.plist */,
+				9339F2922AE548DA0028B22E /* GoogleService-Info.plist */,
 			);
 			path = TeamBooks;
 			sourceTree = "<group>";
@@ -281,12 +281,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9339F2932AE548DA0028B22E /* GoogleService-Info.plist in Resources */,
 				93D9BAB12ACE7ABA0089AA75 /* CollectionCell.xib in Resources */,
 				93862FBF2ADBBCB800B46CCE /* OneMemberCell.xib in Resources */,
 				938E27A22AD56DF500A56A21 /* AllMembersCell.xib in Resources */,
 				93D1A9AE2ACD353900762EAA /* LaunchScreen.storyboard in Resources */,
 				93D1A9AB2ACD353900762EAA /* Assets.xcassets in Resources */,
-				9347CB812AE265BE0001CC69 /* GoogleService-Info.plist in Resources */,
 				93D1A9A92ACD353800762EAA /* Main.storyboard in Resources */,
 				93A401F92ADCE1DF00F9B88F /* CommentsCell.xib in Resources */,
 			);

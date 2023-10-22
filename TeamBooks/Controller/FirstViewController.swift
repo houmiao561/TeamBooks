@@ -9,21 +9,28 @@ import UIKit
 import FirebaseAuth
 class FirstViewController: UIViewController {
     
+    @IBOutlet weak var teamBooks: UILabel!
     var user = Auth.auth().currentUser
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        teamBooks.text = ""
+        var charIndex = 0.0
+        let titleText = "TeamBooks"
+        for letter in titleText {
+            Timer.scheduledTimer(withTimeInterval: 0.2 * charIndex, repeats: false) { timer in
+                self.teamBooks.text?.append(letter) //闭包要加self
+            }
+            charIndex += 1
+        }
     }
 
     @IBAction func LetsGoButton(_ sender: UIButton) {
         if user != nil{
             performSegue(withIdentifier: "FirstToMyTeam", sender: sender)
         }else{
-            let alertController = UIAlertController(title: "Something Wrong !", message: "Please Log In", preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            self.present(alertController,animated: true,completion: nil)
+            performSegue(withIdentifier: "FirstToLogIn", sender: sender)
         }
     }
     

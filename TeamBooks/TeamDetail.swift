@@ -29,6 +29,8 @@ class TeamDetail: UIViewController {
         TeamLogo.contentMode = .scaleAspectFill
         TeamLogo.layer.cornerRadius = 10.0 // 设置圆角半径
         TeamLogo.layer.masksToBounds = true // 剪切超出圆角范围的内容
+        TeamLogo.layer.borderWidth = 0.3 // 边框的粗细
+        TeamLogo.layer.borderColor = UIColor.lightGray.cgColor // 边框的颜色
     }
  
     

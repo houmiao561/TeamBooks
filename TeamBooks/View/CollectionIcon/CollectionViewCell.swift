@@ -17,6 +17,8 @@ class CollectionViewCell: UICollectionViewCell {
         TeamLogo.contentMode = .scaleAspectFill
         layer.cornerRadius = 10.0 // 设置圆角半径
         layer.masksToBounds = true // 剪切超出圆角范围的内容
+        layer.borderWidth = 0.3 // 边框的粗细
+        layer.borderColor = UIColor.lightGray.cgColor // 边框的颜色
     }
     
 }
