@@ -82,8 +82,6 @@ class OneMember: UITableViewController {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
             
-            //var everyCellInFunc = [[String:String]]()       //存储[UID:Comments]
-
             ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of:.value) { snapshot in
                 if let teamDetailData = snapshot.value as? [String: [String]] {
                     
@@ -161,15 +159,13 @@ class OneMember: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40 // 设置section之间的间距高度
+        return 40
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView = UIView()
         
-        
-        // 自定义header视图的内容
         let label = UILabel()
         label.frame = CGRect(x: 15, y: 10, width: 200, height: 20) // 调整位置和大小
         label.textColor = UIColor.black // 设置文本颜色
@@ -188,7 +184,6 @@ class OneMember: UITableViewController {
         ref.child("OneselfIntroduceInTeam").child(teamName).child("\(memberUID)").observeSingleEvent(of:.value) { (snapshot) in
             if let teamData = snapshot.value as? [String: Any] {
                 for (key, value) in teamData{
-                    
                     switch key{
                     case "oneselfName": self.name = (value as? String)!
                     case "oneselfIntroduce": self.introduce = (value as? String)!
@@ -196,10 +191,9 @@ class OneMember: UITableViewController {
                     case "oneselfBirthday":self.birthday = (value as? String)!
                     default: break
                     }
-                    
                 }
                 self.tableView.reloadData()
-            }else{print("!!!!!!??????\(snapshot)")}
+            }
         }
     }
     

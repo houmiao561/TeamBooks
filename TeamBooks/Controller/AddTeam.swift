@@ -35,7 +35,6 @@ class AddTeam: UIViewController {
                                 if let desiredChildSnapshot = teamDataSnapshot.childSnapshot(forPath:"TeamPassword") as? DataSnapshot {
                                     
                                     if self.teamPassword.text == desiredChildSnapshot.value as? String{
-                                        print("!!!!!!!!!!!!!")
                                         
                                         //！！！进来了！！
                                         
@@ -57,7 +56,7 @@ class AddTeam: UIViewController {
                                         self.performSegue(withIdentifier: "AddTeamToSelfIntroduce", sender: sender)
                                         
                                     }else{
-                                        let alertController = UIAlertController(title: "Password Wrong!", message: "Plz check your Team Password", preferredStyle: .alert)
+                                        let alertController = UIAlertController(title: "Password Wrong!", message: "Please check your Team Password", preferredStyle: .alert)
                                         let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                                         alertController.addAction(cancelAction)
                                         self.present(alertController,animated: true,completion: nil)
@@ -65,7 +64,7 @@ class AddTeam: UIViewController {
                                 }
                             }else{print("if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot")}
                         }else{
-                            let alertController = UIAlertController(title: "Team Name Wrong!", message: "Plz check your Team Name", preferredStyle: .alert)
+                            let alertController = UIAlertController(title: "Team Name Wrong!", message: "Please check your Team Name", preferredStyle: .alert)
                             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                             alertController.addAction(cancelAction)
                             self.present(alertController,animated: true,completion: nil)
@@ -74,7 +73,7 @@ class AddTeam: UIViewController {
                 }
             })
         }else{
-            let alertController = UIAlertController(title: "Plz add all info", message: "Some info hasn't been added!", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Please add all info", message: "Some info hasn't been added!", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
             self.present(alertController,animated: true,completion: nil)

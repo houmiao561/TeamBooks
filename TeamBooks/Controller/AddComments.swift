@@ -24,7 +24,7 @@ class AddComments: UIViewController {
     }
     
     @IBAction func button(_ sender: UIButton) {
-        if addComments != nil{
+        if addComments.text != ""{
             
             ref.child("Comments").child("\(teamName)").child("\(memberUID)").child("\(user.uid)").observeSingleEvent(of: .value, with: { (snapshot) in
                 print(snapshot.childrenCount)
@@ -36,7 +36,6 @@ class AddComments: UIViewController {
                         if let error = error {
                             print("Error updating data: \(error)")
                         } else {
-                            print("Data updated successfully")
                             self.dismiss(animated: true)
                         }
                     }
@@ -51,7 +50,6 @@ class AddComments: UIViewController {
                         if let error = error {
                             print("Error updating data: \(error)")
                         } else {
-                            print("Data updated successfully")
                             self.dismiss(animated: true)
                         }
                     }
@@ -59,7 +57,10 @@ class AddComments: UIViewController {
             })
             
         }else{
-            print("WRONG")
+            let alertController = UIAlertController(title: "Please write something", message: "You can't write anything and public it.", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            self.present(alertController,animated: true,completion: nil)
         }
     }
     

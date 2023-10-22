@@ -43,9 +43,7 @@ class SelfIntroduce: UIViewController {
         ref.child("OneselfIntroduceInTeam").child("\(teamName.text!)").child("Members \(user.uid)").updateChildValues(sendMessage) { (error, _) in
             if let error = error {
                 print("Error saving data: \(error.localizedDescription)")
-                
             } else {
-                print("Data successfully saved")
                 self.dismiss(animated: true)
             }
         }

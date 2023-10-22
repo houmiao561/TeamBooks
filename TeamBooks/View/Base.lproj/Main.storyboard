@@ -213,10 +213,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqe-Lu-U0L">
-                                <rect key="frame" x="73" y="281" width="290" height="33"/>
+                                <rect key="frame" x="46" y="281" width="317" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="If you don't have Account, plz Sign Up"/>
+                                <state key="normal" title="If you don't have Account, please Sign Up"/>
                                 <connections>
                                     <action selector="SignUp:" destination="Ucc-SP-ZRT" eventType="touchUpInside" id="pD4-7R-65K"/>
                                 </connections>
@@ -330,24 +330,37 @@
                                     <outlet property="delegate" destination="hDc-6i-2KH" id="cnV-y0-DxZ"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LZ8-qN-G8f">
-                                <rect key="frame" x="104.66666666666669" y="743" width="184" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49G-QI-mjM">
+                                <rect key="frame" x="46.666666666666657" y="738" width="300" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="6Qy-9X-Zbm"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Find a Team and Add"/>
+                                <buttonConfiguration key="configuration" style="plain" subtitle="If you want to add a Team or you want to change your Info in which Team, Please click it">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Your Info in Team">
+                                            <attributes>
+                                                <font key="NSFont" size="28" name="Helvetica"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <fontDescription key="subtitleFontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="15"/>
+                                </buttonConfiguration>
                                 <connections>
-                                    <action selector="AddTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="v0K-VC-CWD"/>
+                                    <action selector="AddTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="pmo-gp-POE"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KLG-Mg-G6I"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="LZ8-qN-G8f" firstAttribute="centerX" secondItem="DSm-EU-b0e" secondAttribute="centerX" id="2mI-YR-O5K"/>
                             <constraint firstItem="ZnV-fY-yJN" firstAttribute="top" secondItem="KLG-Mg-G6I" secondAttribute="top" constant="20" id="JCj-3F-1tg"/>
+                            <constraint firstItem="49G-QI-mjM" firstAttribute="centerX" secondItem="DSm-EU-b0e" secondAttribute="centerX" id="ah4-Wy-9bL"/>
                             <constraint firstItem="ZnV-fY-yJN" firstAttribute="leading" secondItem="KLG-Mg-G6I" secondAttribute="leading" constant="20" id="cVn-yb-aHT"/>
                             <constraint firstItem="KLG-Mg-G6I" firstAttribute="bottom" secondItem="ZnV-fY-yJN" secondAttribute="bottom" constant="80" id="d99-T0-9bz"/>
-                            <constraint firstItem="KLG-Mg-G6I" firstAttribute="bottom" secondItem="LZ8-qN-G8f" secondAttribute="bottom" constant="40" id="dpQ-IQ-vbK"/>
                             <constraint firstItem="KLG-Mg-G6I" firstAttribute="trailing" secondItem="ZnV-fY-yJN" secondAttribute="trailing" constant="20" id="gqF-Eh-oD4"/>
+                            <constraint firstItem="49G-QI-mjM" firstAttribute="top" secondItem="ZnV-fY-yJN" secondAttribute="bottom" id="sNF-Nd-q6j"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Teams" id="E9d-7p-P5V">
@@ -413,21 +426,31 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xad-dR-cxA">
-                                <rect key="frame" x="141.66666666666666" y="727.66666666666663" width="110" height="34.333333333333371"/>
+                                <rect key="frame" x="146.33333333333334" y="727.66666666666663" width="100.33333333333334" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Enter Team"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Add Team"/>
                                 <connections>
                                     <action selector="add:" destination="AVE-sQ-guh" eventType="touchUpInside" id="hbm-yp-rjr"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Yourself Info in This Team" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bv5-hD-GN3">
+                                <rect key="frame" x="30" y="70" width="333" height="60"/>
+                                <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ij2-tt-LNw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="bv5-hD-GN3" firstAttribute="top" secondItem="Ij2-tt-LNw" secondAttribute="top" constant="70" id="82T-8X-B4f"/>
                             <constraint firstItem="6Be-YW-INL" firstAttribute="leading" secondItem="Ij2-tt-LNw" secondAttribute="leading" constant="30" id="8uN-AK-r5b"/>
+                            <constraint firstItem="6Be-YW-INL" firstAttribute="top" secondItem="bv5-hD-GN3" secondAttribute="bottom" constant="20" id="HlQ-el-Pyx"/>
                             <constraint firstItem="6Be-YW-INL" firstAttribute="top" secondItem="Ij2-tt-LNw" secondAttribute="top" constant="150" id="N8d-A9-F6k"/>
                             <constraint firstItem="xad-dR-cxA" firstAttribute="centerX" secondItem="sz1-vp-JfY" secondAttribute="centerX" id="S6e-5U-QRU"/>
                             <constraint firstItem="Ij2-tt-LNw" firstAttribute="trailing" secondItem="6Be-YW-INL" secondAttribute="trailing" constant="30" id="Vro-UH-8YL"/>
+                            <constraint firstItem="Ij2-tt-LNw" firstAttribute="trailing" secondItem="bv5-hD-GN3" secondAttribute="trailing" constant="30" id="hzX-lD-fY4"/>
+                            <constraint firstItem="bv5-hD-GN3" firstAttribute="leading" secondItem="Ij2-tt-LNw" secondAttribute="leading" constant="30" id="md6-7c-iUs"/>
                             <constraint firstItem="Ij2-tt-LNw" firstAttribute="bottom" secondItem="xad-dR-cxA" secondAttribute="bottom" constant="80" id="yH6-tJ-h6d"/>
                         </constraints>
                     </view>
@@ -475,13 +498,23 @@
                                     <action selector="addTeam:" destination="6l7-zc-0zx" eventType="touchUpInside" id="eAq-Pp-KJG"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Your Team Name and Team Password" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Br5-ho-7D3">
+                                <rect key="frame" x="30" y="70" width="333" height="60"/>
+                                <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fTv-3G-Fcl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Br5-ho-7D3" firstAttribute="top" secondItem="fTv-3G-Fcl" secondAttribute="top" constant="70" id="1kr-wW-ffe"/>
                             <constraint firstItem="8iV-yD-rez" firstAttribute="leading" secondItem="fTv-3G-Fcl" secondAttribute="leading" constant="30" id="401-Ez-KKk"/>
+                            <constraint firstItem="8iV-yD-rez" firstAttribute="top" secondItem="Br5-ho-7D3" secondAttribute="bottom" constant="20" id="60b-nJ-7sX"/>
+                            <constraint firstItem="Br5-ho-7D3" firstAttribute="leading" secondItem="fTv-3G-Fcl" secondAttribute="leading" constant="30" id="FKG-1S-5xt"/>
                             <constraint firstItem="fTv-3G-Fcl" firstAttribute="trailing" secondItem="8iV-yD-rez" secondAttribute="trailing" constant="30" id="Sd7-Vq-xqu"/>
                             <constraint firstItem="8iV-yD-rez" firstAttribute="top" secondItem="fTv-3G-Fcl" secondAttribute="top" constant="150" id="UN4-5Q-src"/>
+                            <constraint firstItem="fTv-3G-Fcl" firstAttribute="trailing" secondItem="Br5-ho-7D3" secondAttribute="trailing" constant="30" id="fUt-lk-xCF"/>
                             <constraint firstItem="fTv-3G-Fcl" firstAttribute="bottom" secondItem="9jN-IG-GoL" secondAttribute="bottom" constant="80" id="u9q-3x-Udw"/>
                             <constraint firstItem="9jN-IG-GoL" firstAttribute="centerX" secondItem="LLs-RV-xqw" secondAttribute="centerX" id="v5v-qd-Hlp"/>
                         </constraints>
@@ -495,7 +528,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8j-bJ-ZFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="675"/>
+            <point key="canvasLocation" x="2751.9083969465646" y="674.64788732394368"/>
         </scene>
         <!--Creat Team-->
         <scene sceneID="bKN-W6-GvC">
@@ -508,7 +541,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zcf-er-UW6">
                                 <rect key="frame" x="30" y="80" width="333" height="28.666666666666671"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Your Team" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbQ-av-4Md">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Your Team!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbQ-av-4Md">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="28.666666666666668"/>
                                         <fontDescription key="fontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="31"/>
                                         <nil key="textColor"/>
@@ -701,7 +734,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="2rJ-PR-TYp">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="eCg-gX-X4K">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="yHk-ci-Vrg">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="yHk-ci-Vrg">
                                 <rect key="frame" x="248" y="5" width="129" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -731,7 +764,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fQ8-Oe-iPm">
                                 <rect key="frame" x="30" y="110" width="333" height="618"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write your comment to this member" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YrK-hj-LZs">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YrK-hj-LZs">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="618"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
@@ -766,6 +799,12 @@
                                     <constraint firstItem="HrD-Bk-xR5" firstAttribute="leading" secondItem="WnV-dy-FFz" secondAttribute="leading" id="sTJ-A4-sB5"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write Something..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soH-mI-5Fa">
+                                <rect key="frame" x="30" y="89.666666666666671" width="140.66666666666666" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aUg-aJ-gwz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -775,6 +814,8 @@
                             <constraint firstItem="aUg-aJ-gwz" firstAttribute="bottom" secondItem="WnV-dy-FFz" secondAttribute="bottom" constant="80" id="Eqc-vv-3Lb"/>
                             <constraint firstItem="fQ8-Oe-iPm" firstAttribute="centerX" secondItem="6oX-vO-BHp" secondAttribute="centerX" id="FDc-lC-80s"/>
                             <constraint firstItem="aUg-aJ-gwz" firstAttribute="bottom" secondItem="fQ8-Oe-iPm" secondAttribute="bottom" constant="114" id="Kwk-MF-5UE"/>
+                            <constraint firstItem="soH-mI-5Fa" firstAttribute="leading" secondItem="aUg-aJ-gwz" secondAttribute="leading" constant="30" id="Prf-kQ-ddk"/>
+                            <constraint firstItem="fQ8-Oe-iPm" firstAttribute="top" secondItem="soH-mI-5Fa" secondAttribute="bottom" id="bt7-b0-G8i"/>
                             <constraint firstItem="fQ8-Oe-iPm" firstAttribute="leading" secondItem="aUg-aJ-gwz" secondAttribute="leading" constant="30" id="eII-kl-wGH"/>
                             <constraint firstItem="WnV-dy-FFz" firstAttribute="centerX" secondItem="6oX-vO-BHp" secondAttribute="centerX" id="t6f-wr-GRa"/>
                         </constraints>
