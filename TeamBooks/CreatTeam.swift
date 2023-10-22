@@ -110,7 +110,7 @@ extension CreatTeam{
                 }
             }
         }else{
-            let alertController = UIAlertController(title: "Something Wrong !", message: "Plz add all info", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Plz add all info", message: "Some info hasn't been added!", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
             self.present(alertController,animated: true,completion: nil)

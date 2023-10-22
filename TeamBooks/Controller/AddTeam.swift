@@ -23,51 +23,62 @@ class AddTeam: UIViewController {
     }
 
     @IBAction func addTeam(_ sender: UIButton) {
-        
-        let newMember = self.ref.child("Teams").child(self.teamName.text!).child("TeamMembers")
-        let newTeam = self.ref.child("Users").child(self.user!.uid).child("Teams")
-        
-        ref.child("Teams").observe(.value, with: { (snapshot) in
-            for teamSnapshot in snapshot.children {
-                if let teamDataSnapshot = teamSnapshot as? DataSnapshot {
-                    if self.teamName.text == teamDataSnapshot.key{
-                        if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot{
-                            if let desiredChildSnapshot = teamDataSnapshot.childSnapshot(forPath:"TeamPassword") as? DataSnapshot {
-                                
-                                if self.teamPassword.text == desiredChildSnapshot.value as? String{
-                                    print("!!!!!!!!!!!!!")
+        if teamName.text != "" && teamPassword.text != ""{
+            let newMember = self.ref.child("Teams").child(self.teamName.text!).child("TeamMembers")
+            let newTeam = self.ref.child("Users").child(self.user!.uid).child("Teams")
+            
+            ref.child("Teams").observe(.value, with: { (snapshot) in
+                for teamSnapshot in snapshot.children {
+                    if let teamDataSnapshot = teamSnapshot as? DataSnapshot {
+                        if self.teamName.text == teamDataSnapshot.key{
+                            if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot{
+                                if let desiredChildSnapshot = teamDataSnapshot.childSnapshot(forPath:"TeamPassword") as? DataSnapshot {
                                     
-                                    //！！！进来了！！
-                                    
-                                    newMember.updateChildValues(["Members \(self.user!.uid)":self.user!.email!]) { (error, _) in
-                                        if let error = error {
-                                            print("Error saving data: \(error.localizedDescription)")
-                                        } else {
-                                            print("Data successfully saved")
+                                    if self.teamPassword.text == desiredChildSnapshot.value as? String{
+                                        print("!!!!!!!!!!!!!")
+                                        
+                                        //！！！进来了！！
+                                        
+                                        newMember.updateChildValues(["Members \(self.user!.uid)":self.user!.email!]) { (error, _) in
+                                            if let error = error {
+                                                print("Error saving data: \(error.localizedDescription)")
+                                            } else {
+                                                print("Data successfully saved")
+                                            }
                                         }
-                                    }
-                                    newTeam.updateChildValues(["Team \(self.teamName.text!)":self.teamName.text!]) { (error, _) in
-                                        if let error = error {
-                                            print("Error saving data: \(error.localizedDescription)")
-                                        } else {
-                                            print("Data successfully saved")
+                                        newTeam.updateChildValues(["Team \(self.teamName.text!)":self.teamName.text!]) { (error, _) in
+                                            if let error = error {
+                                                print("Error saving data: \(error.localizedDescription)")
+                                            } else {
+                                                print("Data successfully saved")
+                                            }
                                         }
+                                        
+                                        self.performSegue(withIdentifier: "AddTeamToSelfIntroduce", sender: sender)
+                                        
+                                    }else{
+                                        let alertController = UIAlertController(title: "Password Wrong!", message: "Plz check your Team Password", preferredStyle: .alert)
+                                        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                                        alertController.addAction(cancelAction)
+                                        self.present(alertController,animated: true,completion: nil)
                                     }
-                                      
-                                    self.performSegue(withIdentifier: "AddTeamToSelfIntroduce", sender: sender)
-                                    
-                                }else{
-                                    print("?????????????")
                                 }
-                            }
-                        }else{print("if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot")}
-                    }else{
-                        print("if self.teamName.text == teamDataSnapshot.key WRONG")
-                        
+                            }else{print("if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot")}
+                        }else{
+                            let alertController = UIAlertController(title: "Team Name Wrong!", message: "Plz check your Team Name", preferredStyle: .alert)
+                            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                            alertController.addAction(cancelAction)
+                            self.present(alertController,animated: true,completion: nil)
+                        }
                     }
                 }
-            }
-        })
+            })
+        }else{
+            let alertController = UIAlertController(title: "Plz add all info", message: "Some info hasn't been added!", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            self.present(alertController,animated: true,completion: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
