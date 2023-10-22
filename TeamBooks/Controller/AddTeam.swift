@@ -39,17 +39,13 @@ class AddTeam: UIViewController {
                                         //！！！进来了！！
                                         
                                         newMember.updateChildValues(["Members \(self.user!.uid)":self.user!.email!]) { (error, _) in
-                                            if let error = error {
-                                                print("Error saving data: \(error.localizedDescription)")
-                                            } else {
-                                                print("Data successfully saved")
+                                            if let _ = error {
+                                                
                                             }
                                         }
                                         newTeam.updateChildValues(["Team \(self.teamName.text!)":self.teamName.text!]) { (error, _) in
-                                            if let error = error {
-                                                print("Error saving data: \(error.localizedDescription)")
-                                            } else {
-                                                print("Data successfully saved")
+                                            if let _ = error {
+                                                
                                             }
                                         }
                                         
@@ -62,7 +58,7 @@ class AddTeam: UIViewController {
                                         self.present(alertController,animated: true,completion: nil)
                                     }
                                 }
-                            }else{print("if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot")}
+                            }
                         }else{
                             let alertController = UIAlertController(title: "Team Name Wrong!", message: "Please check your Team Name", preferredStyle: .alert)
                             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

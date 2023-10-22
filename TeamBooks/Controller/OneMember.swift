@@ -93,7 +93,6 @@ class OneMember: UITableViewController {
                         for i in 0...num{
                             self.everyCellInFunc.append(["\(keyA) \(i)" : value[i]])
                         }
-                        
                     }
                     
                     for v in self.everyCellInFunc[indexPath.row].values{
@@ -120,7 +119,6 @@ class OneMember: UITableViewController {
                             return
                         }
                         
-                        
                         //得到name
                         self.ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of:.value) { (snapshot) in
                             if let teamData = snapshot.value as? [String: Any] {
@@ -134,12 +132,9 @@ class OneMember: UITableViewController {
                                     }
                                 }
                             }
-                            return
                         }
                     }
-                    return
                 }
-                return
             }
             return cell
         }

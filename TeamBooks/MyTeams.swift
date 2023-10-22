@@ -77,7 +77,7 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
                     self.teamNumberArray.append(teamDatas.value as! String)
                     self.teamNumberArray.sort()
                 }
-            }else{print("!!!!!!??????\(snapshot)")}
+            }
         })
     }
     

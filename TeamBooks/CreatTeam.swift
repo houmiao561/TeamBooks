@@ -72,8 +72,8 @@ extension CreatTeam{
         let imageRef = storageRef.child("TeamLogo").child("\(teamName.text!)")
         if let imageData = image.jpegData(compressionQuality: 0.1) {
             imageRef.putData(imageData, metadata: nil) { (metadata, error) in
-                if let error = error {
-                    print("Error uploading image: \(error.localizedDescription)")
+                if let _ = error {
+                    
                 }
             }
         }
@@ -99,8 +99,8 @@ extension CreatTeam{
                     } else {
                         if self.teamName.text != nil{
                             self.ref.child("Teams").child("\(teamNameText)").setValue(sendTeamMessage) { (error, _) in
-                                if let error = error {
-                                    print("Error saving data:::")
+                                if let _ = error {
+                                    
                                 }else{
                                     self.dismiss(animated: true)
                                 }

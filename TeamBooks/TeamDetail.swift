@@ -45,9 +45,8 @@ class TeamDetail: UIViewController {
                         }
                     }
                 }
-            } else if let error = error {
-                // 处理获取下载 URL 的错误
-                print("Error getting download URL: \(error.localizedDescription)")
+            } else if let _ = error {
+                
             }
         }
         

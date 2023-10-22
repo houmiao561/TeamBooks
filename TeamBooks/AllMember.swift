@@ -46,8 +46,8 @@ class AllMember: UITableViewController {
                         }
                     }
                 }.resume()
-            } else if let error = error {
-                print("Error getting download URL: \(error.localizedDescription)")
+            } else if let _ = error {
+                
             }
         }
 
@@ -68,10 +68,9 @@ class AllMember: UITableViewController {
                     if value as! String == self.membersNameOfTeam[indexPath.row] {
                         self.selectMemberUID = key
                         self.performSegue(withIdentifier: "AllMembersToOneMember", sender: indexPath.row)
-                    }else{print("if value as! String == self.membersOfTeam[indexPath.row]")}
+                    }
                 }
-            }else{print("if let teamDetailData = snapshot.value as? [String: Any]")}
-            
+            }
         }
         
     }
@@ -82,7 +81,7 @@ class AllMember: UITableViewController {
             if let teamData = snapshot.value as? [String: Any] {
                 self.allMembers = teamData.count
                 self.tableView.reloadData()
-            }else{print("!!!!!!??????\(snapshot)")}
+            }
         }
     }
     
@@ -97,7 +96,7 @@ class AllMember: UITableViewController {
                 }
                 
                 self.tableView.reloadData()
-            }else{print("!!!!!!??????\(snapshot)")}
+            }
         }
     }
     
