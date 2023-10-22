@@ -27,7 +27,9 @@ class CreatTeam: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         teamLogo.addGestureRecognizer(tapGestureRecognizer)
         teamLogo.isUserInteractionEnabled = true
-        
+        teamLogo.contentMode = .scaleAspectFill
+        teamLogo.layer.cornerRadius = 5.0
+        teamLogo.layer.masksToBounds = true
     }
 
     @IBAction func addTeamButton(_ sender: UIButton) {

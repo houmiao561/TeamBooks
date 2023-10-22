@@ -27,8 +27,6 @@ class MyTeams: UIViewController {
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 160, height: 160)
-
-        // 将 layout 应用到 collectionView
         collectionView.setCollectionViewLayout(layout, animated: false)
         
         collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
