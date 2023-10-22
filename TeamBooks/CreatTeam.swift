@@ -24,40 +24,15 @@ class CreatTeam: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //点击手势
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         teamLogo.addGestureRecognizer(tapGestureRecognizer)
         teamLogo.isUserInteractionEnabled = true
-        
-        //下滑手势
-        let swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
-        swipeDownGestureRecognizer.direction = .down
-        view.addGestureRecognizer(swipeDownGestureRecognizer)
-        swipeDownGestureRecognizer.delegate = self
-        
-        //上划手势
-        let swipeUpGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeGesture(_:)))
-        swipeUpGestureRecognizer.direction = .up
-        view.addGestureRecognizer(swipeUpGestureRecognizer)
-        swipeUpGestureRecognizer.delegate = self
         
     }
 
     @IBAction func addTeamButton(_ sender: UIButton) {
         uploadImageToFirebase(image: teamLogo.image!)
-        uploadTextToFirebase { (isOccupied) in
-            print(isOccupied)
-            if isOccupied == true{
-                self.dismiss(animated: true)
-            }else{
-                let alertController = UIAlertController(title: "Something Wrong !", message: "1.Team Name has been occupied", preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(cancelAction)
-                self.present(alertController,animated: true,completion: nil)
-            }
-        }
-        
-        
+        uploadTextToFirebase()
     }
 }
 
@@ -99,72 +74,47 @@ extension CreatTeam{
             imageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 if let error = error {
                     print("Error uploading image: \(error.localizedDescription)")
-                } else {
-                    print("SucceedLoadUpPhoto!!!!")
                 }
             }
         }
     }
     
     
-    func uploadTextToFirebase(completion: @escaping (Bool) -> Void) {
-        if let teamNameText = self.teamName.text as? NSString,
-           let teamIntroduceText = self.teamIntroduce.text as? NSString,
-           let teamPassword = self.teamPassword.text as? NSString,
-           let teamDate = self.teamDate.text as? NSString {
-            let sendTeamMessage = ["TeamName": teamNameText,
-                                   "TeamIntroduce": teamIntroduceText,
-                                   "TeamPassword": teamPassword,
-                                   "TeamDate": teamDate]
-            ref.child("Teams").child("\(teamNameText)").observeSingleEvent(of: .value) { (snapshot) in
-                if snapshot.exists() {
-                    print("DATA EXISTS")
-                    completion(false)
-                } else {
-                    self.ref.child("Teams").child("\(teamNameText)").setValue(sendTeamMessage) { (error, _) in
-                        if let error = error {
-                            print("Error saving data: \(error.localizedDescription)")
-                            completion(false)
-                        } else {
-                            print("Data successfully saved")
-                            completion(true)
+    func uploadTextToFirebase() {
+        if teamName.text != "" && teamDate.text != "" && teamPassword.text != "" && teamIntroduce.text != ""{
+            if let teamNameText = self.teamName.text,
+               let teamIntroduceText = self.teamIntroduce.text,
+               let teamPassword = self.teamPassword.text,
+               let teamDate = self.teamDate.text{
+                let sendTeamMessage = ["TeamName": teamNameText,
+                                       "TeamIntroduce": teamIntroduceText,
+                                       "TeamPassword": teamPassword,
+                                       "TeamDate": teamDate] as [String : Any]
+                ref.child("Teams").child("\(teamNameText)").observeSingleEvent(of: .value) { (snapshot) in
+                    if snapshot.exists() {
+                        let alertController = UIAlertController(title: "Something Wrong !", message: "Team Name has been occupied", preferredStyle: .alert)
+                        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController,animated: true,completion: nil)
+                    } else {
+                        if self.teamName.text != nil{
+                            self.ref.child("Teams").child("\(teamNameText)").setValue(sendTeamMessage) { (error, _) in
+                                if let error = error {
+                                    print("Error saving data:::")
+                                }else{
+                                    self.dismiss(animated: true)
+                                }
+                            }
                         }
                     }
                 }
             }
-        } else {
-            completion(false)
+        }else{
+            let alertController = UIAlertController(title: "Something Wrong !", message: "Plz add all info", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            self.present(alertController,animated: true,completion: nil)
         }
     }
 }
-
-
-
-
-
-
-
-
-//MARK: -Gesture
-extension CreatTeam: UIGestureRecognizerDelegate{
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }//与其他手势协同工作
-    
-    @objc func handleSwipeGesture(_ gestureRecognizer: UISwipeGestureRecognizer) {
-        if gestureRecognizer.direction == .down{
-            view.resignFirstResponder()
-        }
-        if gestureRecognizer.direction == .up{
-            view.resignFirstResponder()
-        }
-    }
-    
-}
-
-
-
-
-
-
 
