@@ -25,6 +25,7 @@ class OneMember: UITableViewController {
     
     var count = 0//cell的个数
     var everyCellInFunc = [[String:String]]()
+    var isDownLoad = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class OneMember: UITableViewController {
         }
         downloadTextFromFirebase()
         getNum()
+        self.tableView.reloadData()
     }
     
     func getNum(){
@@ -84,56 +86,61 @@ class OneMember: UITableViewController {
             
             ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of:.value) { snapshot in
                 if let teamDetailData = snapshot.value as? [String: [String]] {
-                    
-                    for (keyA, value) in teamDetailData{
-                        //此时keyA是这个cell的用户UID，没有任何附加String
-                        //此时value是[String]
-                        //此时value是某一个用户的comments
-                        let num = value.count - 1
-                        for i in 0...num{
-                            self.everyCellInFunc.append(["\(keyA) \(i)" : value[i]])
+                    if self.isDownLoad == false {
+                        for (keyA, value) in teamDetailData{
+                            //此时keyA是这个cell的用户UID，没有任何附加String
+                            //此时value是[String]
+                            //此时value是某一个用户的comments
+                            let num = value.count - 1
+                            for i in 0...num{
+                                self.everyCellInFunc.append(["\(keyA) \(i)" : value[i]])
+                            }
                         }
-                    }
-                    
-                    for v in self.everyCellInFunc[indexPath.row].values{
-                        cell.comments.text = v
-                    }
-                    
-                    for k in self.everyCellInFunc[indexPath.row].keys{
-                        //得到真正的不加任何String的UID
-                        let realK = String(k.prefix(k.count - 2))
                         
-                        //得到profile
-                        let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(realK)")
-                        imageRef.downloadURL { (url, error) in
-                            if let downloadURL = url {
-                                DispatchQueue.global().async {
-                                    if let imageData = try? Data(contentsOf: downloadURL) {
-                                        let image = UIImage(data: imageData)
-                                        DispatchQueue.main.async {
-                                            cell.profile.image = image
+                        for v in self.everyCellInFunc[indexPath.row].values{
+                            cell.comments.text = v
+                        }
+                        
+                        for k in self.everyCellInFunc[indexPath.row].keys{
+                            //得到真正的不加任何String的UID
+                            let realK = String(k.prefix(k.count - 2))
+                            
+                            //得到profile
+                            let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(realK)")
+                            imageRef.downloadURL { (url, error) in
+                                if let downloadURL = url {
+                                    DispatchQueue.global().async {
+                                        if let imageData = try? Data(contentsOf: downloadURL) {
+                                            let image = UIImage(data: imageData)
+                                            DispatchQueue.main.async {
+                                                cell.profile.image = image
+                                            }
                                         }
                                     }
                                 }
+                                return
                             }
-                            return
-                        }
-                        
-                        //得到name
-                        self.ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of:.value) { (snapshot) in
-                            if let teamData = snapshot.value as? [String: Any] {
-                                for (keyB, value) in teamData{
-                                    if keyB == "oneselfName"{
-                                        for ks in self.everyCellInFunc[indexPath.row].keys{
-                                            if ks == k{
-                                                cell.someoneName.text = value as? String
+                            
+                            //得到name
+                            self.ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of:.value) { (snapshot) in
+                                if let teamData = snapshot.value as? [String: Any] {
+                                    for (keyB, value) in teamData{
+                                        if keyB == "oneselfName"{
+                                            for ks in self.everyCellInFunc[indexPath.row].keys{
+                                                if ks == k{
+                                                    cell.someoneName.text = value as? String
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
                         }
+                        self.tableView.reloadData()
+                        self.isDownLoad = true
                     }
+                    
+                    
                 }
             }
             return cell
@@ -208,7 +215,7 @@ class OneMember: UITableViewController {
     @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
             let location = gestureRecognizer.location(in: tableView)
-            if let indexPath = tableView.indexPathForSelectedRow {
+            if let indexPath = tableView.indexPathForRow(at: location){
                 let section = indexPath.section
                 let row = indexPath.row
                 
@@ -218,6 +225,7 @@ class OneMember: UITableViewController {
                     print(self.everyCellInFunc)
                     print(section)
                     print(row)
+                    print(self.everyCellInFunc[row])
                     ref.child("Comments").child("\(teamName)").child("\(memberUID)").child("\(user.uid)")
                 }
             }
