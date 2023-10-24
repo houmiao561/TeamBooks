@@ -33,16 +33,6 @@ class AddTeam: UIViewController {
                         
                         switch teamDataSnapshot.key{
                         case self.teamName.text: 
-                            print("123")
-                        default:
-                            print("456")
-                        }
-                        
-                        
-                        
-                        
-                        
-                        if self.teamName.text == teamDataSnapshot.key{
                             if let teamDataSnapshot123 = teamDataSnapshot as? DataSnapshot{
                                 if let desiredChildSnapshot = teamDataSnapshot.childSnapshot(forPath:"TeamPassword") as? DataSnapshot {
                                     
@@ -71,17 +61,8 @@ class AddTeam: UIViewController {
                                     }
                                 }
                             }
-                            
-                            
-                            
-                            
-                            
-                            
-                        }else{
-                            let alertController = UIAlertController(title: "Team Name Wrong!", message: "Please check your Team Name", preferredStyle: .alert)
-                            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                            alertController.addAction(cancelAction)
-                            self.present(alertController,animated: true,completion: nil)
+                        default:
+                            break
                         }
                     }
                 }
