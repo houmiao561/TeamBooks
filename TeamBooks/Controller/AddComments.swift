@@ -13,7 +13,6 @@ class AddComments: UIViewController {
     
     @IBOutlet weak var addComments: UITextView!
     
-    //设置评论不能超过10条
     var teamName = ""
     var memberUID = ""//被点击
     var user = Auth.auth().currentUser!
@@ -27,18 +26,28 @@ class AddComments: UIViewController {
         if addComments.text != ""{
             
             ref.child("Comments").child("\(teamName)").child("\(memberUID)").child("\(user.uid)").observeSingleEvent(of: .value, with: { (snapshot) in
-                print(snapshot.childrenCount)
+                
                 if var currentArray = snapshot.value as? [String] {
-                    currentArray.append("\(self.addComments.text!)")
                     
-                    // 更新Firebase数据库
-                    self.ref.child("Comments").child("\(self.teamName)").child("\(self.memberUID)").child("\(self.user.uid)").setValue(currentArray) { (error, ref) in
-                        if let error = error {
-                            print("Error updating data: \(error)")
-                        } else {
-                            self.dismiss(animated: true)
+                    if currentArray.count <= 10{
+                        
+                        currentArray.append("\(self.addComments.text!)")
+                        
+                        // 更新Firebase数据库
+                        self.ref.child("Comments").child("\(self.teamName)").child("\(self.memberUID)").child("\(self.user.uid)").setValue(currentArray) { (error, ref) in
+                            if let error = error {
+                                print("Error updating data: \(error)")
+                            } else {
+                                self.dismiss(animated: true)
+                            }
                         }
+                    }else{
+                        let alertController = UIAlertController(title: "You can't add new Comments", message: "Everyone can only add 10 Comments", preferredStyle: .alert)
+                        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController,animated: true,completion: nil)
                     }
+                    
                 }
                 
                 else {

@@ -16,6 +16,7 @@ class MyTeams: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var ref: DatabaseReference!
+    var ref123 = Database.database().reference()
     var allNum = 0
     var teamNumberArray = [String]()
     var selectNum = 0
@@ -35,6 +36,11 @@ class MyTeams: UIViewController {
         fetchNumOfCollection()//解决异步问题
         
         teamNumberArray.sort()
+        
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        collectionView.addGestureRecognizer(longPressGesture)
+        collectionView.reloadData()
     }
     
     @IBAction func CreatTeam(_ sender: UIButton) {
@@ -45,6 +51,61 @@ class MyTeams: UIViewController {
         performSegue(withIdentifier: "MyTeamToAddTeam", sender: sender)
     }
     
+    
+    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            let location = gestureRecognizer.location(in: collectionView)
+            if let indexPath = collectionView.indexPathForItem(at: location) {
+                let item = indexPath.item
+                
+                let alertController = UIAlertController(title: "If you want to quit This Team?", message: "This action will delete All Your Info In This Team", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                
+                let detailAction = UIAlertAction(title: "Yes", style: .default) { action in
+                    
+                    let deleteTeamsRef = self.ref123.child("Teams").child("\(self.teamNumberArray[item])").child("TeamMembers").child("Members \(self.user!.uid)")
+                    deleteTeamsRef.removeValue(){ error,_ in
+                        if let error = error {
+                            print("Failed to remove data: \(error.localizedDescription)")
+                        } else {
+                            
+                            
+                            let deleteIntroduceRef = self.ref123.child("OneselfIntroduceInTeam").child("\(self.teamNumberArray[item])")
+                            deleteIntroduceRef.child("Members \(self.user!.uid)").removeValue(){error,_ in
+                                if let error = error {
+                                    print("Failed to remove data: \(error.localizedDescription)")
+                                } else {
+                                    
+                                    
+                                    let deleteUserRef = self.ref123.child("Users").child("\(self.user!.uid)").child("Teams")
+                                    deleteUserRef.child("Team \(self.teamNumberArray[item])").removeValue(){error,_ in
+                                        if let error = error {
+                                            print("Failed to remove data: \(error.localizedDescription)")
+                                        } else {
+                                            print("Data removed successfully")
+                                            // 在数据成功删除后，刷新collectionView或执行其他操作
+                                            self.teamNumberArray.remove(at: item)
+                                            self.collectionView.reloadData()
+                                            return
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            
+                        }
+                    }
+                    
+                }
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(detailAction)
+                self.present(alertController,animated: true,completion: nil)
+                
+            }
+        }
+    }
+
     
 }
 

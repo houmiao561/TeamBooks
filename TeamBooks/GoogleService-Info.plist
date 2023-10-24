@@ -2,22 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>321812486042-dae8jb7hnefai3mk0v25v37j8ep2ee6q.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.321812486042-dae8jb7hnefai3mk0v25v37j8ep2ee6q</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCJDZ_kffwqqFouGWK7EF3lRd-wfXyeMBA</string>
+	<string>AIzaSyAXOuzNBAzFYZ-DgUIZNEJ5p5Jgyyt0lTU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>321812486042</string>
+	<string>606733769255</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.houmiao.TeamBooks</string>
 	<key>PROJECT_ID</key>
-	<string>teambooks-2e28b</string>
+	<string>teambooksremake</string>
 	<key>STORAGE_BUCKET</key>
-	<string>teambooks-2e28b.appspot.com</string>
+	<string>teambooksremake.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +25,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:321812486042:ios:3e78ac1a9cc62b85238c23</string>
+	<string>1:606733769255:ios:6b74809dddbf2113490c02</string>
 	<key>DATABASE_URL</key>
-	<string>https://teambooks-2e28b-default-rtdb.firebaseio.com</string>
+	<string>https://teambooksremake-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>
