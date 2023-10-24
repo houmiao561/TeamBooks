@@ -29,7 +29,7 @@ class AddComments: UIViewController {
                 
                 if var currentArray = snapshot.value as? [String] {
                     
-                    if currentArray.count <= 10{
+                    if currentArray.count <= 9{
                         
                         currentArray.append("\(self.addComments.text!)")
                         
@@ -42,7 +42,7 @@ class AddComments: UIViewController {
                             }
                         }
                     }else{
-                        let alertController = UIAlertController(title: "You can't add new Comments", message: "Everyone can only add 10 Comments", preferredStyle: .alert)
+                        let alertController = UIAlertController(title: "You can't add new Comments", message: "Everyone can only add 10 Comments.If you want to add new Comments.Please Long Pressed your comments and delete it.", preferredStyle: .alert)
                         let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                         alertController.addAction(cancelAction)
                         self.present(alertController,animated: true,completion: nil)

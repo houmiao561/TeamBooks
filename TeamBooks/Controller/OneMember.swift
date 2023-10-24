@@ -30,6 +30,10 @@ class OneMember: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "OneMemberCell", bundle: nil), forCellReuseIdentifier: "OneMemberCell")
         tableView.register(UINib(nibName: "CommentsCell", bundle: nil), forCellReuseIdentifier: "CommentsCell")
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        tableView.addGestureRecognizer(longPressGesture)
+        
         everyCellInFunc.sort { (item1, item2) -> Bool in
             let key1 = item1.keys.first ?? ""
             let key2 = item2.keys.first ?? ""
@@ -201,5 +205,23 @@ class OneMember: UITableViewController {
         }
     }
     
+    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            let location = gestureRecognizer.location(in: tableView)
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let section = indexPath.section
+                let row = indexPath.row
+                
+                if section == 0 {
+                    return
+                } else {
+                    print(self.everyCellInFunc)
+                    print(section)
+                    print(row)
+                    ref.child("Comments").child("\(teamName)").child("\(memberUID)").child("\(user.uid)")
+                }
+            }
+        }
+    }
     
 }
