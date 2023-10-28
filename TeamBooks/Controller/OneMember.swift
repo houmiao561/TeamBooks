@@ -11,11 +11,11 @@ import FirebaseAuth
 import FirebaseStorage
 
 class OneMember: UITableViewController {
-
+    
     var teamName = ""
     var memberUID = ""//个人主页的那个人的UID
     let user = Auth.auth().currentUser!
-    let ref = Database.database().reference()
+    var ref = Database.database().reference()
     let storageRef = Storage.storage().reference()
     
     var name = ""
@@ -29,7 +29,6 @@ class OneMember: UITableViewController {
     
     var finalNameArray:[String] = []
     var finalCommentsArray:[String] = []
-    var finalImageArray2:[Data] = []
     var finalImageArray:[UIImage] = []
     
     var isDownLoad = false
@@ -51,14 +50,6 @@ class OneMember: UITableViewController {
         getNum()
         downLoadCommentsFromFirebas()
         
-        print(finalNameArray)
-        print("")
-        print("\(finalImageArray)")
-        print("")
-        print(finalCommentsArray)
-        print("")
-        print("\(finalImageArray2)")
-        
         self.tableView.reloadData()
     }
     
@@ -72,11 +63,11 @@ class OneMember: UITableViewController {
             }
         }
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0{
@@ -84,9 +75,9 @@ class OneMember: UITableViewController {
         }else{
             return count
         }
-       
+        
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -101,70 +92,30 @@ class OneMember: UITableViewController {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
             
-//            ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of:.value) { snapshot in
-//                if let teamDetailData = snapshot.value as? [String: [String]] {
-//                    for (keyA, value) in teamDetailData{
-//                        //此时keyA是这个cell的用户UID，没有任何附加String
-//                        //此时value是[String]
-//                        //此时value是某一个用户的comments
-//                        let num = value.count - 1
-//                        for i in 0...num{
-//                            self.everyCellInFunc.append(["\(keyA) \(i)" : value[i]])
-//                        }
-//                    }
-//                    
-//                    
-//                    for v in self.everyCellInFunc[indexPath.row].values{
-//                        cell.comments.text = v
-//                    }
-//                    
-//                    for k in self.everyCellInFunc[indexPath.row].keys{
-//                        //得到真正的不加任何String的UID
-//                        let realK = String(k.prefix(k.count - 2))
-//                        
-//                        //得到profile
-//                        let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(realK)")
-//                        imageRef.downloadURL { (url, error) in
-//                            if let downloadURL = url {
-//                                DispatchQueue.global().async {
-//                                    if let imageData = try? Data(contentsOf: downloadURL) {
-//                                        let image = UIImage(data: imageData)
-//                                        DispatchQueue.main.async {
-//                                            cell.profile.image = image
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                            return
-//                        }
-//                        
-//                        //得到name
-//                        self.ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of:.value) { (snapshot) in
-//                            if let teamData = snapshot.value as? [String: Any] {
-//                                for (keyB, value) in teamData{
-//                                    if keyB == "oneselfName"{
-//                                        for ks in self.everyCellInFunc[indexPath.row].keys{
-//                                            if ks == k{
-//                                                cell.someoneName.text = value as? String
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        }
-//                    }
-//                    
-//                    
-//                }
-//            }
+            cell.comments.text = finalCommentsArray[indexPath.row]
+            
+            let realK = String(finalNameArray[indexPath.row].prefix(finalNameArray[indexPath.row].count - 2))
+                ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of: .value) { Snapshot,error in
+                    if let thisMember = Snapshot.value as? [String:String] {
+                        for (key, value) in thisMember{
+                            if key == "oneselfName"{
+                                cell.someoneName.text = value
+                            }
+                        }
+                    }
+                }
+            
+            cell.someoneName.text = finalNameArray[indexPath.row]
+            
+            //cell.profile.image = finalImageArray[indexPath.row]
             return cell
         }
-
+        
     }
     
     func downLoadCommentsFromFirebas(){
-        ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of:.value){ snapshot,error  in
-            
+        
+        ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of:.value) { snapshot,error  in
             if let teamDetailData = snapshot.value as? [String: [String]] {
                 for (keyA, value) in teamDetailData{
                     //此时keyA是这个cell的用户UID，没有任何附加String
@@ -173,65 +124,52 @@ class OneMember: UITableViewController {
                     let num = value.count - 1
                     for i in 0...num{
                         self.everyCellInFunc.append(["\(keyA) \(i)" : value[i]])
-                        //此时everyCellInFunc中每个字典都为加了序号i的UID
-                        //此时everyCellInFunc中为 [ [UID0:comments] , [UID1:comments] ]
+                        //print("append everyCellInFunc")
+                        // [ UID 0: Comments1 ]
                     }
                 }
-                
-                //comments
-                for vs in self.everyCellInFunc{
-                    for v in vs.values{
-                        self.finalCommentsArray.append(v)
-                    }
-                }
-                
-                
-                for ks in self.everyCellInFunc{
-                    
-                    //ks为单组[UID0:comments]
-                    for k in ks.keys{
-                        
-                        //得到真正的不加任何String的UID
-                        let realK = String(k.prefix(k.count - 2))
-                        
-                        //得到profile
-                        let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(realK)")
-                        imageRef.downloadURL { (url, error) in
-                            if let downloadURL = url {
-                                DispatchQueue.global().async {
-                                    if let imageData = try? Data(contentsOf: downloadURL) {
-                                        let image = UIImage(data: imageData)
-                                        self.finalImageArray.append(image!)
-                                        self.finalImageArray2.append(imageData)
-                                    }
-                                }
-                            }
-                            return
-                        }
-                        
-                        //得到name
-                        self.ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of:.value) { (snapshot,error)  in
-                            if let teamData = snapshot.value as? [String: Any] {
-                                for (keyB, value) in teamData{
-                                    if keyB == "oneselfName"{
-                                        self.finalNameArray.append(value as! String)
-//                                        for ks in self.everyCellInFunc[indexPath.row].keys{
-//                                            if ks == k{
-//                                                cell.someoneName.text = value as? String
-//                                            }
-//                                        }
-                                        
-                                    }
-                                }
-                            }
-                        }
-                        
-                    }
-                }
-                
+            }
+        
+        
+        
+        for vs in self.everyCellInFunc{  // vs: [ UID 0: Comments1 ]
+            
+            for v in vs.values{
+                self.finalCommentsArray.append(v)
+            }
+            for k in vs.keys{
+                self.finalNameArray.append(k)
+                let realK = String(k.prefix(k.count - 2))
                 
             }
+            
         }
+        
+        for ks in self.everyCellInFunc{ //ks [String : String]
+            
+            for k in ks.keys {
+                print(k)
+                //得到真正的不加任何String的UID
+                let realK = String(k.prefix(k.count - 2))
+                
+                //得到profile
+                let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(realK)")
+                imageRef.downloadURL { (url, error) in
+                    if let downloadURL = url {
+                        
+                        if let imageData = try? Data(contentsOf: downloadURL) {
+                            let image = UIImage(data: imageData)
+                            self.finalImageArray.append(image!)
+                        }
+                    }
+                }
+            }
+        }
+        
+        self.tableView.reloadData()
+        
+        }
+        
     }
     
     
@@ -269,7 +207,7 @@ class OneMember: UITableViewController {
         headerView.addSubview(label)
         return headerView
     }
-
+    
     func downloadTextFromFirebase(){
         ref.child("OneselfIntroduceInTeam").child(teamName).child("\(memberUID)").observeSingleEvent(of:.value) { (snapshot) in
             if let teamData = snapshot.value as? [String: Any] {
