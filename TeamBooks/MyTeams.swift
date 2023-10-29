@@ -26,6 +26,8 @@ class MyTeams: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.reloadData()
+        
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 160, height: 160)
         collectionView.setCollectionViewLayout(layout, animated: false)

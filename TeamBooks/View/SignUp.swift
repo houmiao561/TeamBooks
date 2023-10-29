@@ -30,16 +30,17 @@ class SignUp: UIViewController {
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alertController.addAction(cancelAction)
                 self.present(alertController,animated: true,completion: nil)
+                
             } else {//登录成功保存到firebase
+                
                 if let user = authResult?.user {
                     self.realtimeRef.child("Users").child("\(user.uid)").setValue(
                         ["UserUID":user.uid,
                          "UserEmail":user.email])
+                    self.navigationController!.popViewController(animated: true)
                 }
             }
         }
-        
-        self.navigationController!.popViewController(animated: true)
         
     }
     

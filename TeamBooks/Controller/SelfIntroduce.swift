@@ -40,11 +40,28 @@ class SelfIntroduce: UIViewController {
                        "oneselfBirthday":oneselfBirthday.text!,
                        "oneselfName":oneselfName.text!]
         
+        
         ref.child("OneselfIntroduceInTeam").child("\(teamName.text!)").child("Members \(user.uid)").updateChildValues(sendMessage) { (error, _) in
             if let error = error {
                 print("Error saving data: \(error.localizedDescription)")
             } else {
-                self.dismiss(animated: true)
+                
+                let alertController = UIAlertController(title: "Join Team Succeed", message: "Click OK to MyTeams", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "OK", style: .default, handler: { UIAlertAction in
+                    if let viewControllers = self.navigationController?.viewControllers {
+                        for viewController in viewControllers {
+                            if viewController is MyTeams {
+                                self.navigationController?.popToViewController(viewController, animated: true)
+                                break
+                            }
+                        }
+                    }
+                })
+                alertController.addAction(cancelAction)
+                self.present(alertController,animated: true,completion: nil)
+                
+                
+                
             }
         }
         
