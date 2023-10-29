@@ -18,12 +18,13 @@ class OneMember: UITableViewController {
     var ref = Database.database().reference()
     let storageRef = Storage.storage().reference()
     
+    //下面四个时section0的信息载体
     var name = ""
     var birthday = ""
     var job = ""
     var introduce = ""
     
-    var count = 0//cell的个数
+    var count = 0//section1中的cell的个数
     
     var everyCellInFunc = [[String:String]]()//中介载体而已
     
@@ -41,11 +42,6 @@ class OneMember: UITableViewController {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         tableView.addGestureRecognizer(longPressGesture)
         
-        everyCellInFunc.sort { (item1, item2) -> Bool in
-            let key1 = item1.keys.first ?? ""
-            let key2 = item2.keys.first ?? ""
-            return key1 < key2 // 升序排序
-        }
         downloadTextFromFirebase()
         getNum()
         downLoadCommentsFromFirebas()
@@ -95,18 +91,15 @@ class OneMember: UITableViewController {
             cell.comments.text = finalCommentsArray[indexPath.row]
             
             let realK = String(finalNameArray[indexPath.row].prefix(finalNameArray[indexPath.row].count - 2))
-                ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of: .value) { Snapshot,error in
-                    if let thisMember = Snapshot.value as? [String:String] {
-                        for (key, value) in thisMember{
-                            if key == "oneselfName"{
-                                cell.someoneName.text = value
-                            }
+            ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of: .value) { Snapshot,error in
+                if let thisMember = Snapshot.value as? [String:String] {
+                    for (key, value) in thisMember{
+                        if key == "oneselfName"{
+                            cell.someoneName.text = value
                         }
                     }
                 }
-            
-            cell.someoneName.text = finalNameArray[indexPath.row]
-            
+            }
             //cell.profile.image = finalImageArray[indexPath.row]
             return cell
         }
@@ -124,7 +117,6 @@ class OneMember: UITableViewController {
                     let num = value.count - 1
                     for i in 0...num{
                         self.everyCellInFunc.append(["\(keyA) \(i)" : value[i]])
-                        //print("append everyCellInFunc")
                         // [ UID 0: Comments1 ]
                     }
                 }
@@ -132,15 +124,13 @@ class OneMember: UITableViewController {
         
         
         
-        for vs in self.everyCellInFunc{  // vs: [ UID 0: Comments1 ]
+        for vs in self.everyCellInFunc{  // vs: [ UID 0: Comments1 ] 此时UID有序号
             
             for v in vs.values{
                 self.finalCommentsArray.append(v)
             }
             for k in vs.keys{
                 self.finalNameArray.append(k)
-                let realK = String(k.prefix(k.count - 2))
-                
             }
             
         }
@@ -148,7 +138,6 @@ class OneMember: UITableViewController {
         for ks in self.everyCellInFunc{ //ks [String : String]
             
             for k in ks.keys {
-                print(k)
                 //得到真正的不加任何String的UID
                 let realK = String(k.prefix(k.count - 2))
                 
@@ -242,20 +231,47 @@ class OneMember: UITableViewController {
         if gestureRecognizer.state == .began {
             let location = gestureRecognizer.location(in: tableView)
             if let indexPath = tableView.indexPathForRow(at: location){
+                
+                // 行位置
                 let section = indexPath.section
                 let row = indexPath.row
-                
+                // 要删除的值
+                let valueToDelete = "\(everyCellInFunc[row].values.first!)"
+                // 进入循环并且child("\(deleteNum)")
+                var deleteNum = 0
+
                 if section == 0 {
                     return
                 } else {
-                    print(self.everyCellInFunc)
-                    print(section)
-                    print(row)
-                    print(self.everyCellInFunc[row])
-                    ref.child("Comments").child("\(teamName)").child("\(memberUID)").child("\(user.uid)")
+                    let realK = String(self.everyCellInFunc[row].keys.first!.prefix(self.everyCellInFunc[row].keys.first!.count - 2))
+                    if self.user.uid == realK{
+                        let alertController = UIAlertController(title: "If you want to delete your Comments?", message: "This operation cannot be undone.", preferredStyle: .alert)
+                        let yesAction = UIAlertAction(title: "Yes", style: .default){ (action) in
+                            self.ref.child("Comments").child("\(self.teamName)").child("\(self.memberUID)").child("\(self.user.uid)").observeSingleEvent(of: .value) { DataSnapshot,error in
+                                if let teamDetailData = DataSnapshot.value as? [String]{
+                                    for teamDetailDataChild in teamDetailData{
+                                        if teamDetailDataChild == valueToDelete{
+                                            self.ref.child("Comments").child("\(self.teamName)").child("\(self.memberUID)").child("\(self.user.uid)").child("\(deleteNum)").removeValue()
+                                            self.navigationController?.popViewController(animated: true)
+                                            return
+                                        }
+                                        deleteNum += 1
+                                    }
+                                }
+                            }
+                        }
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                        alertController.addAction(cancelAction)
+                        alertController.addAction(yesAction)
+                        self.present(alertController,animated: true,completion: nil)
+                    }else{
+                        let alertController = UIAlertController(title: "You can't delete others Comments", message: "It isn't your Comments", preferredStyle: .alert)
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController,animated: true,completion: nil)
+                    }
                 }
             }
         }
     }
-    
 }
