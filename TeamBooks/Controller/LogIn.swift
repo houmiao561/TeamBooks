@@ -29,13 +29,20 @@ class LogIn: UIViewController{
     @IBAction func LogIn(_ sender: UIButton) {
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (authResult, error) in
             if let _ = error {
-                let alertController = UIAlertController(title: "Something Wrong !", message: "Plz check your email and password.", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Something Wrong!", message: "Plz check your email and password.", preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alertController.addAction(cancelAction)
                 self.present(alertController,animated: true,completion: nil)
-            } else { }
+            } else { 
+                let alertController = UIAlertController(title: "Great!", message: "Log In Succeed.", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "OK", style: .default,handler: { UIAlertAction in
+                    self.navigationController!.popToRootViewController(animated: true)
+                })
+                alertController.addAction(cancelAction)
+                self.present(alertController,animated: true,completion: nil)
+            }
         }
-        self.navigationController!.popToRootViewController(animated: true)
+        
     }
     
 }

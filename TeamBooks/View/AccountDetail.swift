@@ -38,8 +38,19 @@ class AccountDetail: UIViewController {
     @IBAction func LogOut(_ sender: UIButton) {
         do{
             try Auth.auth().signOut()
+            showLogoutAlert()
         }catch{}
     }
+    
+    func showLogoutAlert() {
+        let alertController = UIAlertController(title: "Great！", message: "Log Out Succeed", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { UIAlertAction in
+            self.navigationController?.popToRootViewController(animated: true)
+        })
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
     @IBAction func saveAll(_ sender: UIButton) {
         uploadImageToFirebaseStorage(image: photo.image!)
