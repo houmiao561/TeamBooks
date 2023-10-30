@@ -34,6 +34,7 @@ class MyTeams: UIViewController {
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
         view.addSubview(activityIndicatorView)
+        
         activityIndicatorView.startAnimating()
         
         let layout = UICollectionViewFlowLayout()
@@ -144,6 +145,7 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
                     self.teamNumberArray.sort()
                 }
             }
+            self.activityIndicatorView.stopAnimating()
         })
     }
     
