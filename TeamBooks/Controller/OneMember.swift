@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
+import NVActivityIndicatorView
 
 class OneMember: UITableViewController {
     
@@ -34,7 +35,18 @@ class OneMember: UITableViewController {
     
     var isDownLoad = false
     
+    var activityIndicatorView: NVActivityIndicatorView!
+    
     override func viewDidLoad() {
+        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
+        // 将加载动画视图添加到父视图中并居中
+        activityIndicatorView.center = view.center
+        activityIndicatorView.padding = 20
+        view.addSubview(activityIndicatorView)
+        
+        activityIndicatorView.startAnimating()
+        
         super.viewDidLoad()
         tableView.register(UINib(nibName: "OneMemberCell", bundle: nil), forCellReuseIdentifier: "OneMemberCell")
         tableView.register(UINib(nibName: "CommentsCell", bundle: nil), forCellReuseIdentifier: "CommentsCell")
@@ -96,6 +108,7 @@ class OneMember: UITableViewController {
                     for (key, value) in thisMember{
                         if key == "oneselfName"{
                             cell.someoneName.text = value
+                            
                         }
                     }
                 }
@@ -210,6 +223,7 @@ class OneMember: UITableViewController {
                     }
                 }
                 self.tableView.reloadData()
+                self.activityIndicatorView.stopAnimating()
             }
         }
     }

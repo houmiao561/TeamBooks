@@ -17,6 +17,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="umi-tR-qsG">
                         <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemYellowColor"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" systemColor="systemYellowColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="jHL-6T-23l" kind="relationship" relationship="rootViewController" id="gf8-e6-sCT"/>
@@ -54,7 +58,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-rJ-fDY">
                                 <rect key="frame" x="157.5" y="787.5" width="99.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Let's GO !"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Let's GO !">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="LetsGoButton:" destination="jHL-6T-23l" eventType="touchUpInside" id="J7f-7e-UF0"/>
                                 </connections>
@@ -76,11 +83,14 @@
                                 <rect key="frame" x="248" y="5" width="146" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Account Setting"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Account Setting">
+                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="AccountSetting:" destination="jHL-6T-23l" eventType="touchUpInside" id="Fi0-nh-556"/>
                                 </connections>
                             </button>
+                            <color key="tintColor" systemColor="systemYellowColor"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -117,7 +127,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaM-Op-8Xe">
                                 <rect key="frame" x="150" y="787.5" width="114" height="34.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Save Profile"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save Profile">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="saveAll:" destination="3iz-I7-qpl" eventType="touchUpInside" id="5hm-yV-CmI"/>
                                 </connections>
@@ -166,7 +179,9 @@
                                 <rect key="frame" x="307" y="5" width="87" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Log Out"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Log Out">
+                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="LogOut:" destination="3iz-I7-qpl" eventType="touchUpInside" id="pF5-eQ-Fos"/>
                                 </connections>
@@ -208,7 +223,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JWh-uD-KJo">
                                 <rect key="frame" x="172" y="787.5" width="70.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Log In"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Log In">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="LogIn:" destination="Ucc-SP-ZRT" eventType="touchUpInside" id="yeg-kb-zic"/>
                                 </connections>
@@ -217,7 +235,9 @@
                                 <rect key="frame" x="67" y="270" width="317" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="If you don't have Account, please Sign Up"/>
+                                <state key="normal" title="If you don't have Account, please Sign Up">
+                                    <color key="titleColor" systemColor="systemYellowColor"/>
+                                </state>
                                 <connections>
                                     <action selector="SignUp:" destination="Ucc-SP-ZRT" eventType="touchUpInside" id="pD4-7R-65K"/>
                                 </connections>
@@ -272,12 +292,15 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSZ-Wr-Ei6">
                                 <rect key="frame" x="165" y="787.5" width="84" height="34.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Sign Up"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign Up">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="SignUp:" destination="gGC-fn-eRN" eventType="touchUpInside" id="zO8-Zn-Jdb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The password must be 6 string long or more." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvY-hH-LUc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The password must be 6 string long or more." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvY-hH-LUc">
                                 <rect key="frame" x="41" y="264" width="344" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -347,6 +370,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Change Info in Team" subtitle="If you want to add a Team or you want to change your Info in which Team, Please click it">
                                     <fontDescription key="titleFontDescription" name="Baskerville" family="Baskerville" pointSize="29"/>
                                     <fontDescription key="subtitleFontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="16"/>
+                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="AddTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="pmo-gp-POE"/>
@@ -370,7 +394,9 @@
                                 <rect key="frame" x="317.5" y="5" width="76.5" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="person.3.sequence.fill" catalog="system" title="+" buttonSize="mini"/>
+                                <buttonConfiguration key="configuration" style="plain" image="person.3.sequence.fill" catalog="system" title="+" buttonSize="mini">
+                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="CreatTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="8Re-yy-QX0"/>
                                 </connections>
@@ -429,7 +455,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xad-dR-cxA">
                                 <rect key="frame" x="179" y="747.5" width="56" height="34.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Join"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Join">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="add:" destination="AVE-sQ-guh" eventType="touchUpInside" id="hbm-yp-rjr"/>
                                 </connections>
@@ -494,7 +523,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9jN-IG-GoL">
                                 <rect key="frame" x="156" y="747.5" width="102.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Find Team"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Find Team">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="addTeam:" destination="6l7-zc-0zx" eventType="touchUpInside" id="eAq-Pp-KJG"/>
                                 </connections>
@@ -635,7 +667,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQP-fI-vZr">
                                 <rect key="frame" x="132" y="771.5" width="150" height="34.5"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Creat Your Team"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Creat Your Team">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="addTeamButton:" destination="XT2-sA-dRk" eventType="touchUpInside" id="dgO-ct-QPV"/>
                                 </connections>
@@ -739,7 +774,9 @@
                                 <rect key="frame" x="264.5" y="5" width="129.5" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system" title="Comments"/>
+                                <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system" title="Comments">
+                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="addComments:" destination="u9n-QD-tKb" eventType="touchUpInside" id="d6p-6g-fpc"/>
                                 </connections>
@@ -786,7 +823,10 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrD-Bk-xR5">
                                         <rect key="frame" x="0.0" y="0.0" width="142" height="34.5"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Add Comments"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Add Comments">
+                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="button:" destination="Ahu-j4-NYW" eventType="touchUpInside" id="8RO-9i-JJT"/>
                                         </connections>
@@ -931,6 +971,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemYellowColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="Zm2-rC-vug" kind="relationship" relationship="viewControllers" id="UaK-ng-hKJ"/>
@@ -942,6 +983,7 @@
             <point key="canvasLocation" x="4727" y="-249"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="systemBlueColor"/>
     <resources>
         <image name="Yummy" width="1024" height="1024"/>
         <image name="pawprint.fill" catalog="system" width="128" height="112"/>
@@ -953,6 +995,12 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

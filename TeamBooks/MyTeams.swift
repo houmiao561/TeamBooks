@@ -23,11 +23,18 @@ class MyTeams: UIViewController {
     var selectNum = 0
     let user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
+    var activityIndicatorView: NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.reloadData()
+        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
+        // 将加载动画视图添加到父视图中并居中
+        activityIndicatorView.center = view.center
+        activityIndicatorView.padding = 20
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimating()
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 160, height: 160)
@@ -44,6 +51,8 @@ class MyTeams: UIViewController {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         collectionView.addGestureRecognizer(longPressGesture)
         collectionView.reloadData()
+        
+        
     }
     
     @IBAction func CreatTeam(_ sender: UIButton) {
@@ -159,7 +168,7 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
                 }
             }
         }
-        
+        self.activityIndicatorView.stopAnimating()
         return cell
     }
     

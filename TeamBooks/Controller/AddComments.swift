@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import NVActivityIndicatorView
 
 class AddComments: UIViewController {
     
@@ -17,12 +18,21 @@ class AddComments: UIViewController {
     var memberUID = ""//被点击
     var user = Auth.auth().currentUser!
     var ref = Database.database().reference()
+    var activityIndicatorView: NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
+        // 将加载动画视图添加到父视图中并居中
+        activityIndicatorView.center = view.center
+        activityIndicatorView.padding = 20
+        view.addSubview(activityIndicatorView)
     }
     
     @IBAction func button(_ sender: UIButton) {
+        activityIndicatorView.startAnimating()
+        
         if addComments.text != ""{
             
             ref.child("Comments").child("\(teamName)").child("\(memberUID)").child("\(user.uid)").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -60,11 +70,12 @@ class AddComments: UIViewController {
                             print("Error updating data: \(error)")
                         } else {
                             self.dismiss(animated: true)
+                            
                         }
                     }
                 }
             })
-            
+            self.activityIndicatorView.stopAnimating()
         }else{
             let alertController = UIAlertController(title: "Please write something", message: "You can't write anything and public it.", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

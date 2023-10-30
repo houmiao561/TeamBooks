@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
+import NVActivityIndicatorView
 
 class AllMember: UITableViewController {
 
@@ -20,9 +21,20 @@ class AllMember: UITableViewController {
     var membersNameOfTeam = [String]()
     private let user = Auth.auth().currentUser!
     var selectMemberUID = ""
+    var activityIndicatorView: NVActivityIndicatorView!
     
     override func viewDidLoad() {
+        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
+        // 将加载动画视图添加到父视图中并居中
+        activityIndicatorView.center = view.center
+        activityIndicatorView.padding = 20
+        view.addSubview(activityIndicatorView)
+        
+        activityIndicatorView.startAnimating()
+        
         super.viewDidLoad()
+        
         tableView.register(UINib(nibName: "AllMembersCell", bundle: nil), forCellReuseIdentifier: "AllMembersCell")
         tableView.rowHeight = 70
         fetchNumber()
@@ -38,6 +50,7 @@ class AllMember: UITableViewController {
                 for (key, value) in teamDetailData{
                     if key == "oneselfName"{
                         cell.memberName.text = (value as! String)
+                        self.activityIndicatorView.stopAnimating()
                     }
                 }
             }
