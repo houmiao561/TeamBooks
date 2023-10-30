@@ -25,7 +25,7 @@ class LogIn: UIViewController{
         super.viewDidLoad()
         
         // 创建加载动画视图，选择适合您应用的样式、颜色和大小
-        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .purple, padding: nil)
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
         // 将加载动画视图添加到父视图中并居中
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20

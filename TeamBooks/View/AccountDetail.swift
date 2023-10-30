@@ -8,13 +8,15 @@
 import UIKit
 import FirebaseAuth
 import FirebaseStorage
+import NVActivityIndicatorView
 
 class AccountDetail: UIViewController {
     
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var currentUID: UITextField!
     
-    
+    var activityIndicatorView: NVActivityIndicatorView!
+
     let storageRef = Storage.storage().reference()
     let user = Auth.auth().currentUser!
     private let imagePicker = UIImagePickerController()
@@ -33,9 +35,19 @@ class AccountDetail: UIViewController {
         photo.contentMode = .scaleAspectFill
         
         currentUID.text = user.uid
+        
+        
+        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
+        // 将加载动画视图添加到父视图中并居中
+        activityIndicatorView.center = view.center
+        activityIndicatorView.padding = 20
+
+        view.addSubview(activityIndicatorView)
     }
     
     @IBAction func LogOut(_ sender: UIButton) {
+        self.activityIndicatorView.stopAnimating()
         do{
             try Auth.auth().signOut()
             showLogoutAlert()
@@ -43,12 +55,16 @@ class AccountDetail: UIViewController {
     }
     
     func showLogoutAlert() {
-        let alertController = UIAlertController(title: "Great！", message: "Log Out Succeed", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: { UIAlertAction in
-            self.navigationController?.popToRootViewController(animated: true)
-        })
-        alertController.addAction(okAction)
+        self.activityIndicatorView.stopAnimating()
+        let alertController = UIAlertController(title: "Great!", message: "Log Out Succeed.", preferredStyle: .alert)
+        // 显示 UIAlertController
         self.present(alertController, animated: true, completion: nil)
+        
+        // 延时两秒后自动关闭 UIAlertController
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            alertController.dismiss(animated: true, completion: nil)
+            self.navigationController!.popToRootViewController(animated: true)
+        }
     }
     
     
