@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import NVActivityIndicatorView
 
 class MyTeams: UIViewController {
     

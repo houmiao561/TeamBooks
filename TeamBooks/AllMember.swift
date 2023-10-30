@@ -15,8 +15,8 @@ class AllMember: UITableViewController {
     var ref: DatabaseReference!
     let storageRef = Storage.storage().reference()
     var allMembers = 0
-    var nameFormMYTEAMS = ""
-    var membersUIDOfTeam = [String]()
+    var nameFormMYTEAMS = ""//teamName
+    var membersUIDOfTeam = [String]() //"Member UID"
     var membersNameOfTeam = [String]()
     private let user = Auth.auth().currentUser!
     var selectMemberUID = ""
@@ -32,7 +32,16 @@ class AllMember: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllMembersCell", for: indexPath) as! AllMembersCell
 
-        cell.memberName.text = membersNameOfTeam[indexPath.item]
+        ref = Database.database().reference().child("OneselfIntroduceInTeam").child("\(nameFormMYTEAMS)").child("\(membersUIDOfTeam[indexPath.row])")
+        ref.observeSingleEvent(of: .value) { DataSnapshot in
+            if let teamDetailData = DataSnapshot.value as? [String: Any] {
+                for (key, value) in teamDetailData{
+                    if key == "oneselfName"{
+                        cell.memberName.text = (value as! String)
+                    }
+                }
+            }
+        }
 
         // 异步下载图片
         let imageRef = storageRef.child("ProfilePhoto/").child("\(membersUIDOfTeam[indexPath.item])")
@@ -46,8 +55,6 @@ class AllMember: UITableViewController {
                         }
                     }
                 }.resume()
-            } else if let _ = error {
-                
             }
         }
 
