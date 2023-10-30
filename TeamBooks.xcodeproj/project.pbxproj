@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B14B39665C76300B6DECCAC /* Pods_TeamBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7F9EAEE37FD336796FA180 /* Pods_TeamBooks.framework */; };
 		933494B62ACFF9E900C17105 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933494B52ACFF9E900C17105 /* AccountDetail.swift */; };
 		9362DC0B2ADBC021008D1753 /* OneMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9362DC0A2ADBC021008D1753 /* OneMemberCell.swift */; };
 		936B48142AE798A50007B09F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 936B48132AE798A50007B09F /* GoogleService-Info.plist */; };
@@ -36,11 +37,10 @@
 		93F424AC2ACD8B9100FC9700 /* TeamDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424AB2ACD8B9100FC9700 /* TeamDetail.swift */; };
 		93F424AE2ACD8BC900FC9700 /* AllMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F424AD2ACD8BC900FC9700 /* AllMember.swift */; };
 		93FE84FD2ADA817B001F2050 /* OneMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FE84FC2ADA817B001F2050 /* OneMember.swift */; };
-		B2B4933DB5F0EF576B613712 /* Pods_TeamBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D7F9EAEE37FD336796FA180 /* Pods_TeamBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		933494B52ACFF9E900C17105 /* AccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountDetail.swift; path = TeamBooks/View/AccountDetail.swift; sourceTree = SOURCE_ROOT; };
 		9362DC0A2ADBC021008D1753 /* OneMemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneMemberCell.swift; sourceTree = "<group>"; };
 		936B48132AE798A50007B09F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -71,8 +71,8 @@
 		93F424AB2ACD8B9100FC9700 /* TeamDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TeamDetail.swift; path = TeamBooks/TeamDetail.swift; sourceTree = SOURCE_ROOT; };
 		93F424AD2ACD8BC900FC9700 /* AllMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllMember.swift; path = TeamBooks/AllMember.swift; sourceTree = SOURCE_ROOT; };
 		93FE84FC2ADA817B001F2050 /* OneMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneMember.swift; sourceTree = "<group>"; };
-		A20A5FAA4A9EF55963CC10A1 /* Pods-TeamBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBooks.debug.xcconfig"; path = "Target Support Files/Pods-TeamBooks/Pods-TeamBooks.debug.xcconfig"; sourceTree = "<group>"; };
-		FB16D442661D6B3F793CD700 /* Pods-TeamBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBooks.release.xcconfig"; path = "Target Support Files/Pods-TeamBooks/Pods-TeamBooks.release.xcconfig"; sourceTree = "<group>"; };
+		A7352DED74DE96894FCD89E1 /* Pods-TeamBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBooks.debug.xcconfig"; path = "Target Support Files/Pods-TeamBooks/Pods-TeamBooks.debug.xcconfig"; sourceTree = "<group>"; };
+		DAEA65B0403F9B015D38D175 /* Pods-TeamBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamBooks.release.xcconfig"; path = "Target Support Files/Pods-TeamBooks/Pods-TeamBooks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,18 +80,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2B4933DB5F0EF576B613712 /* Pods_TeamBooks.framework in Frameworks */,
 				9376C7CF2AE3FC680097422C /* IQKeyboardManagerSwift in Frameworks */,
+				1B14B39665C76300B6DECCAC /* Pods_TeamBooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B5FB85E30FA9960DA4FF88D /* Frameworks */ = {
+		571863089FBAF6D7E5D7B4B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8C44C70F13839822D8109F66 /* Pods_TeamBooks.framework */,
+				8D7F9EAEE37FD336796FA180 /* Pods_TeamBooks.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -128,7 +128,7 @@
 				93D1A9A02ACD353800762EAA /* TeamBooks */,
 				93D1A99F2ACD353800762EAA /* Products */,
 				BE475E50075B7AB06E010662 /* Pods */,
-				0B5FB85E30FA9960DA4FF88D /* Frameworks */,
+				571863089FBAF6D7E5D7B4B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,8 +209,8 @@
 		BE475E50075B7AB06E010662 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A20A5FAA4A9EF55963CC10A1 /* Pods-TeamBooks.debug.xcconfig */,
-				FB16D442661D6B3F793CD700 /* Pods-TeamBooks.release.xcconfig */,
+				A7352DED74DE96894FCD89E1 /* Pods-TeamBooks.debug.xcconfig */,
+				DAEA65B0403F9B015D38D175 /* Pods-TeamBooks.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -222,11 +222,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 93D1A9B22ACD353900762EAA /* Build configuration list for PBXNativeTarget "TeamBooks" */;
 			buildPhases = (
-				4B8FC2E2F349CCC668FA1E9F /* [CP] Check Pods Manifest.lock */,
+				43AEDEE8E4FDC8532B7D0266 /* [CP] Check Pods Manifest.lock */,
 				93D1A99A2ACD353800762EAA /* Sources */,
 				93D1A99B2ACD353800762EAA /* Frameworks */,
 				93D1A99C2ACD353800762EAA /* Resources */,
-				C2A5D58BA2BFA2D87D79C92F /* [CP] Embed Pods Frameworks */,
+				6F1C0F21064787FA80629C49 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -295,7 +295,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4B8FC2E2F349CCC668FA1E9F /* [CP] Check Pods Manifest.lock */ = {
+		43AEDEE8E4FDC8532B7D0266 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -317,7 +317,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C2A5D58BA2BFA2D87D79C92F /* [CP] Embed Pods Frameworks */ = {
+		6F1C0F21064787FA80629C49 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -507,7 +507,7 @@
 		};
 		93D1A9B32ACD353900762EAA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A20A5FAA4A9EF55963CC10A1 /* Pods-TeamBooks.debug.xcconfig */;
+			baseConfigurationReference = A7352DED74DE96894FCD89E1 /* Pods-TeamBooks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -538,7 +538,7 @@
 		};
 		93D1A9B42ACD353900762EAA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB16D442661D6B3F793CD700 /* Pods-TeamBooks.release.xcconfig */;
+			baseConfigurationReference = DAEA65B0403F9B015D38D175 /* Pods-TeamBooks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
