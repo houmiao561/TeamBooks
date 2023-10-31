@@ -15,15 +15,6 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        teamBooks.text = ""
-        var charIndex = 0.0
-        let titleText = "TeamBooks"
-        for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: 0.2 * charIndex, repeats: false) { timer in
-                self.teamBooks.text?.append(letter) //闭包要加self
-            }
-            charIndex += 1
-        }
     }
 
     @IBAction func LetsGoButton(_ sender: UIButton) {

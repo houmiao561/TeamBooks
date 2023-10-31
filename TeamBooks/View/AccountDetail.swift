@@ -29,7 +29,6 @@ class AccountDetail: UIViewController {
         
         photo.addGestureRecognizer(tapGestureRecognizer)
         photo.isUserInteractionEnabled = true
-        
         photo.layer.cornerRadius = photo.frame.size.width / 2.0
         photo.layer.masksToBounds = true // 剪切超出圆角范围的内容
         photo.contentMode = .scaleAspectFill
@@ -42,7 +41,6 @@ class AccountDetail: UIViewController {
         // 将加载动画视图添加到父视图中并居中
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
-
         view.addSubview(activityIndicatorView)
     }
     
@@ -52,6 +50,28 @@ class AccountDetail: UIViewController {
             try Auth.auth().signOut()
             showLogoutAlert()
         }catch{}
+    }
+    
+    @IBAction func deleteAcc(_ sender: Any) {
+        let alertController = UIAlertController(title: "If you want to delete your Account?", message: "This operation cannot be undone.", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default){ (action) in
+            do {
+                if let navigationController = self.navigationController {
+                    try Auth.auth().signOut() // 登出当前用户
+                    self.user.delete { (error) in
+                        if let error = error {
+                            print("Error deleting user: \(error.localizedDescription)")
+                        } else {
+                            navigationController.popToRootViewController(animated: true)
+                        }
+                    }
+                }
+            } catch { print("Error signing out") }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(yesAction)
+        self.present(alertController,animated: true,completion: nil)
     }
     
     func showLogoutAlert() {

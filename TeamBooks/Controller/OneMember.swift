@@ -59,6 +59,9 @@ class OneMember: UITableViewController {
         downLoadCommentsFromFirebas()
         
         self.tableView.reloadData()
+        
+        tableView.allowsSelection = false
+
     }
     
     func getNum(){

@@ -41,7 +41,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VgS-Fc-7Hs">
                                 <rect key="frame" x="30" y="142" width="354" height="70.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTZ-9b-Ufk">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TeamBooks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTZ-9b-Ufk">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="70.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="59"/>
                                         <nil key="textColor"/>
@@ -157,14 +157,27 @@
                                     </textField>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXT-I9-pAy">
+                                <rect key="frame" x="299" y="587.5" width="85" height="34.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Log Out">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="LogOut:" destination="3iz-I7-qpl" eventType="touchUpInside" id="qbr-M5-t4u"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AAP-9l-fRr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="AAP-9l-fRr" firstAttribute="trailing" secondItem="QXT-I9-pAy" secondAttribute="trailing" constant="30" id="4I8-5Q-HkN"/>
                             <constraint firstItem="Klc-ef-uIg" firstAttribute="top" secondItem="AAP-9l-fRr" secondAttribute="top" id="99K-5S-JQD"/>
                             <constraint firstItem="AAP-9l-fRr" firstAttribute="trailing" secondItem="3NT-Gh-lXk" secondAttribute="trailing" constant="30" id="OrQ-VF-iQ5"/>
                             <constraint firstAttribute="trailing" secondItem="ccA-AU-2xf" secondAttribute="trailing" constant="30" id="OvX-UV-akc"/>
                             <constraint firstItem="BaM-Op-8Xe" firstAttribute="centerX" secondItem="ICE-rZ-DWP" secondAttribute="centerX" id="X8c-0P-p5D"/>
+                            <constraint firstItem="QXT-I9-pAy" firstAttribute="top" secondItem="3NT-Gh-lXk" secondAttribute="bottom" constant="30" id="amf-Se-S7d"/>
                             <constraint firstItem="Klc-ef-uIg" firstAttribute="centerX" secondItem="ICE-rZ-DWP" secondAttribute="centerX" id="eIE-RH-6UQ"/>
                             <constraint firstItem="3NT-Gh-lXk" firstAttribute="leading" secondItem="AAP-9l-fRr" secondAttribute="leading" constant="30" id="hb8-5m-LlE"/>
                             <constraint firstItem="AAP-9l-fRr" firstAttribute="bottom" secondItem="BaM-Op-8Xe" secondAttribute="bottom" constant="40" id="jOb-rd-xCd"/>
@@ -174,16 +187,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Account Detail" id="QMp-tc-CWo">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Bbh-MG-82N">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="N8U-k0-WgE">
-                                <rect key="frame" x="307" y="5" width="87" height="34.5"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="zWD-kQ-lWh">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="5Su-1t-hV3">
+                                <rect key="frame" x="341.5" y="5" width="52.5" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Log Out">
+                                <buttonConfiguration key="configuration" style="plain" image="trash.fill" catalog="system" title=" ">
                                     <color key="baseForegroundColor" systemColor="systemYellowColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="LogOut:" destination="3iz-I7-qpl" eventType="touchUpInside" id="pF5-eQ-Fos"/>
+                                    <action selector="deleteAcc:" destination="3iz-I7-qpl" eventType="touchUpInside" id="Vnl-oy-pqv"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -300,9 +313,8 @@
                                     <action selector="SignUp:" destination="gGC-fn-eRN" eventType="touchUpInside" id="zO8-Zn-Jdb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The password must be 6 string long or more." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvY-hH-LUc">
-                                <rect key="frame" x="41" y="264" width="344" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The password must be 6 string long or more." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvY-hH-LUc">
+                                <rect key="frame" x="43.5" y="270" width="340.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -312,8 +324,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YAn-Me-CzB" firstAttribute="top" secondItem="46a-6N-8zZ" secondAttribute="top" constant="60" id="CcD-VA-Khs"/>
+                            <constraint firstItem="46a-6N-8zZ" firstAttribute="trailing" secondItem="FvY-hH-LUc" secondAttribute="trailing" constant="30" id="Dvi-Rj-qy5"/>
                             <constraint firstItem="46a-6N-8zZ" firstAttribute="trailing" secondItem="YAn-Me-CzB" secondAttribute="trailing" constant="20" id="bEd-Ue-WCc"/>
                             <constraint firstItem="YAn-Me-CzB" firstAttribute="leading" secondItem="46a-6N-8zZ" secondAttribute="leading" constant="20" id="iEe-tq-1gk"/>
+                            <constraint firstItem="FvY-hH-LUc" firstAttribute="top" secondItem="YAn-Me-CzB" secondAttribute="bottom" constant="30" id="mHM-sz-kOa"/>
                             <constraint firstItem="dSZ-Wr-Ei6" firstAttribute="centerX" secondItem="acP-Z9-cPu" secondAttribute="centerX" id="oR1-14-8mH"/>
                             <constraint firstItem="46a-6N-8zZ" firstAttribute="bottom" secondItem="dSZ-Wr-Ei6" secondAttribute="bottom" constant="40" id="t26-IE-k8U"/>
                         </constraints>
@@ -361,48 +375,45 @@
                                     <outlet property="delegate" destination="hDc-6i-2KH" id="cnV-y0-DxZ"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49G-QI-mjM">
-                                <rect key="frame" x="57" y="782" width="300" height="78"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="6Qy-9X-Zbm"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Change Info in Team" subtitle="If you want to add a Team or you want to change your Info in which Team, Please click it">
-                                    <fontDescription key="titleFontDescription" name="Baskerville" family="Baskerville" pointSize="29"/>
-                                    <fontDescription key="subtitleFontDescription" name="AppleSymbols" family="Apple Symbols" pointSize="16"/>
-                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="AddTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="pmo-gp-POE"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="78" translatesAutoresizingMaskIntoConstraints="NO" id="ycI-ob-6Al">
+                                <rect key="frame" x="45.5" y="782" width="323" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49G-QI-mjM">
+                                        <rect key="frame" x="0.0" y="0.0" width="122.5" height="75"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="person.fill" catalog="system" title="Join">
+                                            <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="AddTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="pmo-gp-POE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Dgd-gl-ZpJ">
+                                        <rect key="frame" x="200.5" y="0.0" width="122.5" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="person.3.fill" catalog="system" title="Creat" buttonSize="mini">
+                                            <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="CreatTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="dHu-uY-ukd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="KLG-Mg-G6I"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZnV-fY-yJN" firstAttribute="top" secondItem="KLG-Mg-G6I" secondAttribute="top" constant="20" id="JCj-3F-1tg"/>
-                            <constraint firstItem="49G-QI-mjM" firstAttribute="centerX" secondItem="DSm-EU-b0e" secondAttribute="centerX" id="ah4-Wy-9bL"/>
+                            <constraint firstItem="ycI-ob-6Al" firstAttribute="top" secondItem="ZnV-fY-yJN" secondAttribute="bottom" id="Zx9-uh-SBw"/>
                             <constraint firstItem="ZnV-fY-yJN" firstAttribute="leading" secondItem="KLG-Mg-G6I" secondAttribute="leading" constant="20" id="cVn-yb-aHT"/>
                             <constraint firstItem="KLG-Mg-G6I" firstAttribute="bottom" secondItem="ZnV-fY-yJN" secondAttribute="bottom" constant="80" id="d99-T0-9bz"/>
                             <constraint firstItem="KLG-Mg-G6I" firstAttribute="trailing" secondItem="ZnV-fY-yJN" secondAttribute="trailing" constant="20" id="gqF-Eh-oD4"/>
-                            <constraint firstItem="49G-QI-mjM" firstAttribute="top" secondItem="ZnV-fY-yJN" secondAttribute="bottom" id="sNF-Nd-q6j"/>
+                            <constraint firstItem="ycI-ob-6Al" firstAttribute="centerX" secondItem="DSm-EU-b0e" secondAttribute="centerX" id="zaQ-R2-b4j"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Teams" id="E9d-7p-P5V">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="cPv-yS-oRL">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="U6w-9F-dfA">
-                                <rect key="frame" x="317.5" y="5" width="76.5" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="person.3.sequence.fill" catalog="system" title="+" buttonSize="mini">
-                                    <color key="baseForegroundColor" systemColor="systemYellowColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="CreatTeam:" destination="hDc-6i-2KH" eventType="touchUpInside" id="8Re-yy-QX0"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="My Teams" id="E9d-7p-P5V"/>
                     <connections>
                         <outlet property="collectionView" destination="ZnV-fY-yJN" id="9cH-5M-i5Q"/>
                         <segue destination="g1t-lJ-f76" kind="show" identifier="MyTeamToTabBar" id="O4h-Ph-HCj"/>
@@ -412,7 +423,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wwe-NT-5R2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3867.9389312977096" y="-250"/>
+            <point key="canvasLocation" x="3866.666666666667" y="-250.44642857142856"/>
         </scene>
         <!--Self Introduce-->
         <scene sceneID="wz3-yb-d9Q">
@@ -988,8 +999,10 @@
         <image name="Yummy" width="1024" height="1024"/>
         <image name="pawprint.fill" catalog="system" width="128" height="112"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="person.3.sequence.fill" catalog="system" width="128" height="63"/>
+        <image name="person.3.fill" catalog="system" width="128" height="66"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="teddybear.fill" catalog="system" width="126" height="128"/>
+        <image name="trash.fill" catalog="system" width="117" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -997,7 +1010,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
