@@ -48,6 +48,7 @@ class AddComments: UIViewController {
                             if let error = error {
                                 print("Error updating data: \(error)")
                             } else {
+                                self.activityIndicatorView.stopAnimating()
                                 self.dismiss(animated: true)
                             }
                         }
@@ -55,9 +56,9 @@ class AddComments: UIViewController {
                         let alertController = UIAlertController(title: "You can't add new Comments", message: "Everyone can only add 10 Comments.If you want to add new Comments.Please Long Pressed your comments and delete it.", preferredStyle: .alert)
                         let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                         alertController.addAction(cancelAction)
+                        self.activityIndicatorView.stopAnimating()
                         self.present(alertController,animated: true,completion: nil)
                     }
-                    
                 }
                 
                 else {
@@ -69,17 +70,17 @@ class AddComments: UIViewController {
                         if let error = error {
                             print("Error updating data: \(error)")
                         } else {
+                            self.activityIndicatorView.stopAnimating()
                             self.dismiss(animated: true)
-                            
                         }
                     }
                 }
             })
-            self.activityIndicatorView.stopAnimating()
         }else{
             let alertController = UIAlertController(title: "Please write something", message: "You can't write anything and public it.", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
+            self.activityIndicatorView.stopAnimating()
             self.present(alertController,animated: true,completion: nil)
         }
     }
