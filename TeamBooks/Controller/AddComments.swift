@@ -49,7 +49,14 @@ class AddComments: UIViewController {
                                 print("Error updating data: \(error)")
                             } else {
                                 self.activityIndicatorView.stopAnimating()
-                                self.dismiss(animated: true)
+                                
+                                let alertController = UIAlertController(title: "Great!", message: "Add Succeed.", preferredStyle: .alert)
+                                self.present(alertController, animated: true, completion: nil)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    alertController.dismiss(animated: true)
+                                }
+                                
+                                
                             }
                         }
                     }else{
@@ -71,7 +78,16 @@ class AddComments: UIViewController {
                             print("Error updating data: \(error)")
                         } else {
                             self.activityIndicatorView.stopAnimating()
-                            self.dismiss(animated: true)
+                            
+                            let alertController = UIAlertController(title: "Great!", message: "Add Succeed.", preferredStyle: .alert)
+                            // 显示 UIAlertController
+                            self.present(alertController, animated: true, completion: nil)
+                            // 延时两秒后自动关闭 UIAlertController
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                alertController.dismiss(animated: true)
+                            }
+                            
+                            
                         }
                     }
                 }
