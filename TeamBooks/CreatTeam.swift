@@ -72,7 +72,7 @@ extension CreatTeam{
     
     func uploadImageToFirebase(image: UIImage) {
         let imageRef = storageRef.child("TeamLogo").child("\(teamName.text!)")
-        if let imageData = image.jpegData(compressionQuality: 0.1) {
+        if let imageData = image.jpegData(compressionQuality: 0.0001) {
             imageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 if let _ = error {
                     

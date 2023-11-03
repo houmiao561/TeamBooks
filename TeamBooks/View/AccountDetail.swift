@@ -121,7 +121,7 @@ extension AccountDetail{
     
     func uploadImageToFirebaseStorage(image: UIImage) {
         let imageRef = storageRef.child("ProfilePhoto/").child("Members \(user.uid)")
-        if let imageData = image.jpegData(compressionQuality: 0.01) {
+        if let imageData = image.jpegData(compressionQuality: 0.0001) {
             // 开始上传图片
             imageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 if let error = error {

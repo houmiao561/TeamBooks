@@ -52,6 +52,7 @@ class AddTeam: UIViewController {
                                         }
                                         
                                         self.performSegue(withIdentifier: "AddTeamToSelfIntroduce", sender: sender)
+                                        break
                                         
                                     }else{
                                         let alertController = UIAlertController(title: "Password Wrong!", message: "Please check your Team Password", preferredStyle: .alert)
