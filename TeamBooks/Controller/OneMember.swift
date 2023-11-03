@@ -185,7 +185,7 @@ class OneMember: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 500
+            return 600
         } else {
             return 180
         }

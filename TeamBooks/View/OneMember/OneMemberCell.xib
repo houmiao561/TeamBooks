@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,33 +30,40 @@
                         </constraints>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8o1-nu-X62">
-                        <rect key="frame" x="30" y="360" width="303" height="105.33333333333331"/>
+                        <rect key="frame" x="30" y="360" width="303" height="213"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTQ-zD-Jct">
-                                <rect key="frame" x="0.0" y="0.0" width="303" height="20.333333333333332"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTQ-zD-Jct">
+                                <rect key="frame" x="0.0" y="0.0" width="303" height="11"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boe-3c-NEY">
-                                <rect key="frame" x="0.0" y="28.333333333333314" width="303" height="20.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Boe-3c-NEY">
+                                <rect key="frame" x="0.0" y="19" width="303" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJo-a8-ePv">
-                                <rect key="frame" x="0.0" y="56.666666666666693" width="303" height="20.333333333333336"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJo-a8-ePv">
+                                <rect key="frame" x="0.0" y="27" width="303" height="50"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ucv-DB-XGH">
-                                <rect key="frame" x="0.0" y="85" width="303" height="20.333333333333329"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cSB-Ty-8Kr">
+                                <rect key="frame" x="0.0" y="85" width="303" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="cSB-Ty-8Kr" secondAttribute="bottom" id="Vq0-v5-iv5"/>
+                            <constraint firstItem="cSB-Ty-8Kr" firstAttribute="leading" secondItem="8o1-nu-X62" secondAttribute="leading" id="fe8-2R-mTf"/>
+                            <constraint firstAttribute="trailing" secondItem="cSB-Ty-8Kr" secondAttribute="trailing" id="wQX-hK-2LL"/>
+                            <constraint firstItem="cSB-Ty-8Kr" firstAttribute="top" secondItem="FJo-a8-ePv" secondAttribute="bottom" constant="8" id="zgz-zr-fGE"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
@@ -63,12 +71,13 @@
                     <constraint firstItem="8o1-nu-X62" firstAttribute="top" secondItem="VhY-kM-aQf" secondAttribute="bottom" constant="30" id="NNB-Zn-VAS"/>
                     <constraint firstAttribute="trailing" secondItem="8o1-nu-X62" secondAttribute="trailing" constant="30" id="UeO-yV-heg"/>
                     <constraint firstItem="8o1-nu-X62" firstAttribute="leading" secondItem="LUE-hn-fq7" secondAttribute="leading" constant="30" id="glk-0h-BzX"/>
+                    <constraint firstAttribute="bottom" secondItem="8o1-nu-X62" secondAttribute="bottom" constant="-75" id="ri7-6A-3Nd"/>
                     <constraint firstItem="VhY-kM-aQf" firstAttribute="centerX" secondItem="LUE-hn-fq7" secondAttribute="centerX" id="svO-8M-lmG"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="birthday" destination="Boe-3c-NEY" id="OKm-Ve-ZDL"/>
-                <outlet property="introduce" destination="Ucv-DB-XGH" id="jFw-IX-WQL"/>
+                <outlet property="introduce" destination="cSB-Ty-8Kr" id="AlQ-xd-4uj"/>
                 <outlet property="job" destination="FJo-a8-ePv" id="nPu-5h-JzO"/>
                 <outlet property="name" destination="lTQ-zD-Jct" id="cdL-Wi-nZK"/>
             </connections>
@@ -77,5 +86,11 @@
     </objects>
     <resources>
         <image name="Yummy" width="1024" height="1024"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -102,7 +102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v0P-JP-Xnh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2590" y="-250"/>
+            <point key="canvasLocation" x="2589.8550724637685" y="-250.44642857142856"/>
         </scene>
         <!--Account Detail-->
         <scene sceneID="Hjv-pg-QMg">
@@ -923,7 +923,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1UM-3d-BRV">
                                 <rect key="frame" x="57" y="432" width="300" height="300"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jV7-Qs-y1P">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jV7-Qs-y1P">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="av7-u7-XI6"/>
@@ -932,7 +932,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YL-B3-hkg">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0YL-B3-hkg">
                                         <rect key="frame" x="0.0" y="25" width="300" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="d4u-TY-gNn"/>
@@ -941,7 +941,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEu-bL-2If">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEu-bL-2If">
                                         <rect key="frame" x="0.0" y="50" width="300" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="ZxI-R3-qo4"/>
@@ -950,12 +950,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKV-Vn-XnJ">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="W3M-mF-dy8">
                                         <rect key="frame" x="0.0" y="75" width="300" height="225"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="Fbz-zV-syd"/>
@@ -978,7 +979,7 @@
                     <connections>
                         <outlet property="TeamLogo" destination="FFw-TX-jzO" id="dSY-ps-oAV"/>
                         <outlet property="teamDate" destination="BEu-bL-2If" id="zaY-5Q-OBj"/>
-                        <outlet property="teamIntroduce" destination="ZKV-Vn-XnJ" id="YSz-pS-Qbc"/>
+                        <outlet property="teamIntroduce" destination="W3M-mF-dy8" id="zDU-Qo-JlX"/>
                         <outlet property="teamName" destination="jV7-Qs-y1P" id="ECd-cW-kii"/>
                         <outlet property="teamPassword" destination="0YL-B3-hkg" id="j7V-1Z-1Qd"/>
                     </connections>

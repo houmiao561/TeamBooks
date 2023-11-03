@@ -13,9 +13,10 @@ class TeamDetail: UIViewController {
     
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamDate: UILabel!
-    @IBOutlet weak var teamIntroduce: UILabel!
+//    @IBOutlet weak var teamIntroduce: UILabel!
     @IBOutlet weak var teamPassword: UILabel!
     @IBOutlet weak var TeamLogo: UIImageView!
+    @IBOutlet weak var teamIntroduce: UITextView!
     
     var ref: DatabaseReference!
     var nameFormMYTEAMS = ""
