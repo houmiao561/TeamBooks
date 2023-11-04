@@ -480,17 +480,40 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="48f-OH-rqk">
+                                <rect key="frame" x="30" y="531" width="100" height="150"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Yummy" translatesAutoresizingMaskIntoConstraints="NO" id="MXi-Xh-6aT">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="8hK-M3-hfJ"/>
+                                    <constraint firstAttribute="width" constant="100" id="UsM-Uu-ajI"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a photo to introduce yourself" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I61-aF-Zz3">
+                                <rect key="frame" x="30" y="502" width="354" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ij2-tt-LNw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bv5-hD-GN3" firstAttribute="top" secondItem="Ij2-tt-LNw" secondAttribute="top" constant="70" id="82T-8X-B4f"/>
+                            <constraint firstItem="I61-aF-Zz3" firstAttribute="leading" secondItem="Ij2-tt-LNw" secondAttribute="leading" constant="30" id="8uL-SA-vfW"/>
                             <constraint firstItem="6Be-YW-INL" firstAttribute="leading" secondItem="Ij2-tt-LNw" secondAttribute="leading" constant="30" id="8uN-AK-r5b"/>
                             <constraint firstItem="6Be-YW-INL" firstAttribute="top" secondItem="bv5-hD-GN3" secondAttribute="bottom" constant="20" id="HlQ-el-Pyx"/>
+                            <constraint firstItem="Ij2-tt-LNw" firstAttribute="trailing" secondItem="I61-aF-Zz3" secondAttribute="trailing" constant="30" id="McJ-WC-0lB"/>
                             <constraint firstItem="6Be-YW-INL" firstAttribute="top" secondItem="Ij2-tt-LNw" secondAttribute="top" constant="150" id="N8d-A9-F6k"/>
+                            <constraint firstItem="48f-OH-rqk" firstAttribute="top" secondItem="I61-aF-Zz3" secondAttribute="bottom" constant="8.5" id="QEl-NZ-9TM"/>
+                            <constraint firstItem="48f-OH-rqk" firstAttribute="leading" secondItem="Ij2-tt-LNw" secondAttribute="leading" constant="30" id="Rm9-aI-SYN"/>
                             <constraint firstItem="xad-dR-cxA" firstAttribute="centerX" secondItem="sz1-vp-JfY" secondAttribute="centerX" id="S6e-5U-QRU"/>
                             <constraint firstItem="Ij2-tt-LNw" firstAttribute="trailing" secondItem="6Be-YW-INL" secondAttribute="trailing" constant="30" id="Vro-UH-8YL"/>
                             <constraint firstItem="Ij2-tt-LNw" firstAttribute="trailing" secondItem="bv5-hD-GN3" secondAttribute="trailing" constant="30" id="hzX-lD-fY4"/>
+                            <constraint firstItem="I61-aF-Zz3" firstAttribute="top" secondItem="6Be-YW-INL" secondAttribute="bottom" constant="10" id="kbB-Qg-Igz"/>
                             <constraint firstItem="bv5-hD-GN3" firstAttribute="leading" secondItem="Ij2-tt-LNw" secondAttribute="leading" constant="30" id="md6-7c-iUs"/>
                             <constraint firstItem="Ij2-tt-LNw" firstAttribute="bottom" secondItem="xad-dR-cxA" secondAttribute="bottom" constant="80" id="yH6-tJ-h6d"/>
                         </constraints>
@@ -501,12 +524,13 @@
                         <outlet property="oneselfIntroduce" destination="uOg-G5-HXG" id="dnV-mb-TQn"/>
                         <outlet property="oneselfJob" destination="rz4-24-Odu" id="m7L-c3-tgl"/>
                         <outlet property="oneselfName" destination="gsg-CG-3RS" id="uuR-kf-4ZH"/>
+                        <outlet property="selfPhotp" destination="MXi-Xh-6aT" id="cqT-fe-f6P"/>
                         <outlet property="teamName" destination="UeB-gu-TrJ" id="tC3-cE-EMq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhy-C7-7da" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3500" y="675"/>
+            <point key="canvasLocation" x="3500.0000000000005" y="675"/>
         </scene>
         <!--Add Team-->
         <scene sceneID="Kj1-Pi-WTo">

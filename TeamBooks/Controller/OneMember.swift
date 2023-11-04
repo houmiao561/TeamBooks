@@ -14,7 +14,7 @@ import NVActivityIndicatorView
 class OneMember: UITableViewController {
     
     var teamName = ""
-    var memberUID = ""//个人主页的那个人的UID
+    var memberUID = ""//个人主页的那个人的UID""
     let user = Auth.auth().currentUser!
     var ref = Database.database().reference()
     let storageRef = Storage.storage().reference()
@@ -26,15 +26,11 @@ class OneMember: UITableViewController {
     var introduce = ""
     
     var count = 0//section1中的cell的个数
-    
     var everyCellInFunc = [[String:String]]()//中介载体而已
-    
     var finalNameArray:[String] = []
     var finalCommentsArray:[String] = []
     var finalImageArray:[UIImage] = []
-    
-    var isDownLoad = false
-    
+//    var isDownLoad = false
     var activityIndicatorView: NVActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -98,6 +94,16 @@ class OneMember: UITableViewController {
             cell.introduce.text = introduce
             cell.job.text = job
             cell.name.text = name
+            let imageRef = self.storageRef.child("UserIntroducePhoto").child("\(memberUID)")
+            imageRef.downloadURL { url, error in
+                if let downloadURL = url {
+                    if let imageData = try? Data(contentsOf: downloadURL) {
+                        let image = UIImage(data: imageData)
+                        cell.selfimage.image = image
+                    }
+                }
+            }
+            
             return cell
         }else{
             
@@ -116,7 +122,7 @@ class OneMember: UITableViewController {
                     }
                 }
             }
-            //cell.profile.image = finalImageArray[indexPath.row]
+            cell.profile.image = finalImageArray[indexPath.row]
             return cell
         }
         

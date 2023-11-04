@@ -80,6 +80,7 @@
                 <outlet property="introduce" destination="cSB-Ty-8Kr" id="AlQ-xd-4uj"/>
                 <outlet property="job" destination="FJo-a8-ePv" id="nPu-5h-JzO"/>
                 <outlet property="name" destination="lTQ-zD-Jct" id="cdL-Wi-nZK"/>
+                <outlet property="selfimage" destination="Sl1-h8-htW" id="zwc-Id-181"/>
             </connections>
             <point key="canvasLocation" x="38.931297709923662" y="140.84507042253523"/>
         </tableViewCell>

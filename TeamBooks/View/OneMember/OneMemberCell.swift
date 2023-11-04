@@ -15,6 +15,7 @@ class OneMemberCell: UITableViewCell {
 //    @IBOutlet weak var introduce: UILabel!
     @IBOutlet weak var introduce: UITextView!
     
+    @IBOutlet weak var selfimage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

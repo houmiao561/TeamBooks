@@ -65,6 +65,7 @@ class AddTeam: UIViewController {
                         default:
                             break
                         }
+                        break
                     }
                 }
             })
