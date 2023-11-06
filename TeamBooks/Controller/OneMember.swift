@@ -89,6 +89,7 @@ class OneMember: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0{
+            self.activityIndicatorView.startAnimating()
             let cell = tableView.dequeueReusableCell(withIdentifier: "OneMemberCell", for: indexPath) as! OneMemberCell
             cell.birthday.text = birthday
             cell.introduce.text = introduce
@@ -100,6 +101,7 @@ class OneMember: UITableViewController {
                     if let imageData = try? Data(contentsOf: downloadURL) {
                         let image = UIImage(data: imageData)
                         cell.selfimage.image = image
+                        self.activityIndicatorView.stopAnimating()
                     }
                 }
             }

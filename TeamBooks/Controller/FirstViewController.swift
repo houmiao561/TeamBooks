@@ -18,7 +18,7 @@ class FirstViewController: UIViewController {
     }
 
     @IBAction func LetsGoButton(_ sender: UIButton) {
-        var user = Auth.auth().currentUser
+        let user = Auth.auth().currentUser
         if user != nil{
             performSegue(withIdentifier: "FirstToMyTeam", sender: sender)
         }else{
@@ -27,7 +27,7 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func AccountSetting(_ sender: UIButton) {
-        var user = Auth.auth().currentUser
+        let user = Auth.auth().currentUser
         if user == nil{
             performSegue(withIdentifier: "FirstToLogIn", sender: sender)
         }else{

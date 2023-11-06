@@ -23,7 +23,7 @@ class AccountDetail: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.activityIndicatorView.startAnimating()//执行完downloadImageFromFirebaseStorage()之后动画结束
         downloadImageFromFirebaseStorage()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         
@@ -45,7 +45,7 @@ class AccountDetail: UIViewController {
     }
     
     @IBAction func LogOut(_ sender: UIButton) {
-        self.activityIndicatorView.stopAnimating()
+        self.activityIndicatorView.startAnimating()
         do{
             try Auth.auth().signOut()
             showLogoutAlert()
@@ -56,12 +56,14 @@ class AccountDetail: UIViewController {
         let alertController = UIAlertController(title: "If you want to delete your Account?", message: "This operation cannot be undone.", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .default){ (action) in
             do {
+                self.activityIndicatorView.startAnimating()
                 if let navigationController = self.navigationController {
                     try Auth.auth().signOut() // 登出当前用户
                     self.user.delete { (error) in
                         if let error = error {
                             print("Error deleting user: \(error.localizedDescription)")
                         } else {
+                            self.activityIndicatorView.stopAnimating()
                             navigationController.popToRootViewController(animated: true)
                         }
                     }
@@ -89,6 +91,7 @@ class AccountDetail: UIViewController {
     
     
     @IBAction func saveAll(_ sender: UIButton) {
+        self.activityIndicatorView.startAnimating()
         uploadImageToFirebaseStorage(image: photo.image!)
     }
 }
@@ -118,7 +121,7 @@ extension AccountDetail:UIImagePickerControllerDelegate, UINavigationControllerD
 
 //MARK: -Firebase Photo
 extension AccountDetail{
-    
+    //上传图片
     func uploadImageToFirebaseStorage(image: UIImage) {
         let imageRef = storageRef.child("ProfilePhoto/").child("Members \(user.uid)")
         if let imageData = image.jpegData(compressionQuality: 0.0001) {
@@ -127,13 +130,21 @@ extension AccountDetail{
                 if let error = error {
                     print("Error uploading image: \(error.localizedDescription)")
                 } else {
-                    print("SucceedLoadUpPhoto!!!!")
+                    self.activityIndicatorView.stopAnimating()
+                    let alertController = UIAlertController(title: "Great!", message: "Up Load Profile Succeed.", preferredStyle: .alert)
+                    // 显示 UIAlertController
+                    self.present(alertController, animated: true, completion: nil)
+                    // 延时两秒后自动关闭 UIAlertController
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        alertController.dismiss(animated: true, completion: nil)
+                        self.navigationController!.popToRootViewController(animated: true)
+                    }
                 }
             }
         }
     }
     
-    
+    //下载图片
     func downloadImageFromFirebaseStorage(){
         let imageRef = storageRef.child("ProfilePhoto/").child("Members \(user.uid)")
         
@@ -144,6 +155,7 @@ extension AccountDetail{
                         let image = UIImage(data: imageData)
                         DispatchQueue.main.async {
                             self.photo.image =  image
+                            self.activityIndicatorView.stopAnimating()
                         }
                     }
                 }
