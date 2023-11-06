@@ -417,7 +417,7 @@
                     <connections>
                         <outlet property="collectionView" destination="ZnV-fY-yJN" id="9cH-5M-i5Q"/>
                         <segue destination="g1t-lJ-f76" kind="show" identifier="MyTeamToTabBar" id="O4h-Ph-HCj"/>
-                        <segue destination="XT2-sA-dRk" kind="showDetail" identifier="MyTeamToCreatTeam" id="4IO-1Y-zou"/>
+                        <segue destination="XT2-sA-dRk" kind="show" identifier="MyTeamToCreatTeam" id="4IO-1Y-zou"/>
                         <segue destination="6l7-zc-0zx" kind="show" identifier="MyTeamToAddTeam" id="apj-7J-6Ea"/>
                     </connections>
                 </viewController>
@@ -603,11 +603,11 @@
             <objects>
                 <viewController id="XT2-sA-dRk" customClass="CreatTeam" customModule="TeamBooks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Il5-ug-W8y">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zcf-er-UW6">
-                                <rect key="frame" x="30" y="80" width="354" height="28.5"/>
+                                <rect key="frame" x="30" y="172" width="354" height="28.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Your Team!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbQ-av-4Md">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="28.5"/>
@@ -618,7 +618,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="W6c-yi-HbO">
-                                <rect key="frame" x="30" y="118.5" width="354" height="54.5"/>
+                                <rect key="frame" x="30" y="210.5" width="354" height="54.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLE-Qc-mWw">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
@@ -634,7 +634,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b3x-5C-WOj">
-                                <rect key="frame" x="30" y="183" width="354" height="54.5"/>
+                                <rect key="frame" x="30" y="275" width="354" height="54.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wY6-eS-Utp">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
@@ -650,7 +650,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oOg-Ym-xeh">
-                                <rect key="frame" x="30" y="247.5" width="354" height="54.5"/>
+                                <rect key="frame" x="30" y="339.5" width="354" height="54.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qm8-SW-9AN">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
@@ -666,7 +666,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vib-hX-Lxg">
-                                <rect key="frame" x="30" y="312" width="354" height="54.5"/>
+                                <rect key="frame" x="30" y="404" width="354" height="54.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Introduce" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJq-wZ-TNJ">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
@@ -681,26 +681,8 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f1q-XE-YxQ">
-                                <rect key="frame" x="30" y="376.5" width="200" height="220"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9P-P5-al5">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Yummy" translatesAutoresizingMaskIntoConstraints="NO" id="KuR-yk-5t8">
-                                        <rect key="frame" x="0.0" y="20.5" width="200" height="199.5"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="220" id="6dj-0N-t8e"/>
-                                    <constraint firstAttribute="width" constant="200" id="gIu-cM-Kej"/>
-                                </constraints>
-                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQP-fI-vZr">
-                                <rect key="frame" x="132" y="771.5" width="150" height="34.5"/>
+                                <rect key="frame" x="132" y="747.5" width="150" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Creat Your Team">
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -710,29 +692,64 @@
                                     <action selector="addTeamButton:" destination="XT2-sA-dRk" eventType="touchUpInside" id="dgO-ct-QPV"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="SwY-Sf-QJ9">
+                                <rect key="frame" x="30" y="476" width="354" height="220"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f1q-XE-YxQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="220"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9P-P5-al5">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Yummy" translatesAutoresizingMaskIntoConstraints="NO" id="KuR-yk-5t8">
+                                                <rect key="frame" x="0.0" y="20.5" width="200" height="199.5"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="220" id="6dj-0N-t8e"/>
+                                            <constraint firstAttribute="width" constant="200" id="gIu-cM-Kej"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click the photo to change your Team Logo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxz-ky-pUY">
+                                        <rect key="frame" x="220" y="0.0" width="134" height="220"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="rxz-ky-pUY" secondAttribute="trailing" id="16X-6y-OTp"/>
+                                    <constraint firstAttribute="bottom" secondItem="rxz-ky-pUY" secondAttribute="bottom" id="CPr-tI-Bxa"/>
+                                    <constraint firstItem="rxz-ky-pUY" firstAttribute="top" secondItem="SwY-Sf-QJ9" secondAttribute="top" id="oDp-0V-M0k"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DxU-sg-fAe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="f1q-XE-YxQ" firstAttribute="leading" secondItem="DxU-sg-fAe" secondAttribute="leading" constant="30" id="1p6-v4-e2K"/>
                             <constraint firstItem="vib-hX-Lxg" firstAttribute="leading" secondItem="DxU-sg-fAe" secondAttribute="leading" constant="30" id="3Yo-sS-AcA"/>
                             <constraint firstItem="b3x-5C-WOj" firstAttribute="leading" secondItem="DxU-sg-fAe" secondAttribute="leading" constant="30" id="959-Nl-qt3"/>
                             <constraint firstItem="DxU-sg-fAe" firstAttribute="trailing" secondItem="W6c-yi-HbO" secondAttribute="trailing" constant="30" id="Aa4-Ad-oID"/>
                             <constraint firstItem="Zcf-er-UW6" firstAttribute="leading" secondItem="DxU-sg-fAe" secondAttribute="leading" constant="30" id="E86-2C-KMn"/>
                             <constraint firstItem="DxU-sg-fAe" firstAttribute="trailing" secondItem="b3x-5C-WOj" secondAttribute="trailing" constant="30" id="H1R-1f-HRj"/>
+                            <constraint firstItem="SwY-Sf-QJ9" firstAttribute="leading" secondItem="DxU-sg-fAe" secondAttribute="leading" constant="30" id="JvE-Ih-bvm"/>
                             <constraint firstItem="DxU-sg-fAe" firstAttribute="trailing" secondItem="vib-hX-Lxg" secondAttribute="trailing" constant="30" id="K7y-N4-Gsy"/>
                             <constraint firstItem="W6c-yi-HbO" firstAttribute="top" secondItem="Zcf-er-UW6" secondAttribute="bottom" constant="10" id="LNO-aD-KHV"/>
                             <constraint firstItem="W6c-yi-HbO" firstAttribute="leading" secondItem="DxU-sg-fAe" secondAttribute="leading" constant="30" id="Na2-yh-9rV"/>
                             <constraint firstItem="vib-hX-Lxg" firstAttribute="top" secondItem="oOg-Ym-xeh" secondAttribute="bottom" constant="10" id="OUb-3e-QyV"/>
+                            <constraint firstItem="DxU-sg-fAe" firstAttribute="trailing" secondItem="SwY-Sf-QJ9" secondAttribute="trailing" constant="30" id="WcV-1X-4dW"/>
                             <constraint firstItem="BQP-fI-vZr" firstAttribute="centerX" secondItem="Il5-ug-W8y" secondAttribute="centerX" id="WdV-nA-0Gv"/>
                             <constraint firstItem="DxU-sg-fAe" firstAttribute="trailing" secondItem="oOg-Ym-xeh" secondAttribute="trailing" constant="30" id="XEo-5N-Shg"/>
                             <constraint firstItem="DxU-sg-fAe" firstAttribute="bottom" secondItem="BQP-fI-vZr" secondAttribute="bottom" constant="80" id="XLt-Pi-NGF"/>
                             <constraint firstItem="Zcf-er-UW6" firstAttribute="top" secondItem="DxU-sg-fAe" secondAttribute="top" constant="80" id="dxH-xX-Cjs"/>
-                            <constraint firstItem="f1q-XE-YxQ" firstAttribute="top" secondItem="vib-hX-Lxg" secondAttribute="bottom" constant="10" id="dze-p3-y2f"/>
                             <constraint firstItem="oOg-Ym-xeh" firstAttribute="leading" secondItem="DxU-sg-fAe" secondAttribute="leading" constant="30" id="gcL-KR-4PN"/>
                             <constraint firstItem="b3x-5C-WOj" firstAttribute="top" secondItem="W6c-yi-HbO" secondAttribute="bottom" constant="10" id="rcC-Od-Tuc"/>
                             <constraint firstItem="DxU-sg-fAe" firstAttribute="trailing" secondItem="Zcf-er-UW6" secondAttribute="trailing" constant="30" id="u70-id-cwe"/>
                             <constraint firstItem="oOg-Ym-xeh" firstAttribute="top" secondItem="b3x-5C-WOj" secondAttribute="bottom" constant="10" id="v5S-7p-NoU"/>
+                            <constraint firstItem="SwY-Sf-QJ9" firstAttribute="top" secondItem="vib-hX-Lxg" secondAttribute="bottom" constant="17.5" id="zmn-wp-R2H"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Creat Team" id="H94-cz-PuD"/>
@@ -746,7 +763,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sFJ-y4-qkd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4175" y="675"/>
+            <point key="canvasLocation" x="4173.913043478261" y="675"/>
         </scene>
         <!--All Member-->
         <scene sceneID="1qW-L5-DdI">
