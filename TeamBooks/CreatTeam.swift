@@ -19,13 +19,16 @@ class CreatTeam: UIViewController {
     
     private let ref = Database.database().reference()
     private let storageRef = Storage.storage().reference()
-    private let imagePicker = UIImagePickerController()
     private let user = Auth.auth().currentUser
     var activityIndicatorView: NVActivityIndicatorView!
+    
+    private let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        //注册点击图片手势
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         teamLogo.addGestureRecognizer(tapGestureRecognizer)
         teamLogo.isUserInteractionEnabled = true
@@ -33,7 +36,9 @@ class CreatTeam: UIViewController {
         teamLogo.layer.cornerRadius = 5.0
         teamLogo.layer.masksToBounds = true
         
-        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        
+        
+        //注册加载动画
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
@@ -53,7 +58,7 @@ class CreatTeam: UIViewController {
 
 
 
-//MARK: -PictureSelect
+//MARK: -PictureSelect Gesture
 extension CreatTeam:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @objc func imageTapped() {

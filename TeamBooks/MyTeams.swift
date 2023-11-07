@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import FirebaseDatabase
 import FirebaseStorage
 import NVActivityIndicatorView
 
@@ -18,42 +17,55 @@ class MyTeams: UIViewController {
     
     var ref: DatabaseReference!
     var ref123 = Database.database().reference()
-    var allNum = 0
-    var teamNumberArray = [String]()
-    var selectNum = 0
     let user = Auth.auth().currentUser
     let storageRef = Storage.storage().reference()
+    
     var activityIndicatorView: NVActivityIndicatorView!
+    
+    var allNum = 0  //所有的team的数量
+    var teamNumberArray = [String]()    //teamName数组
+    var selectNum = 0   //点击时，选择的是第几个
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        // 注册加载动画，并直接start
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
-        // 将加载动画视图添加到父视图中并居中
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
         view.addSubview(activityIndicatorView)
-        
         activityIndicatorView.startAnimating()
         
+        
+        
+        //设置collection中的布局
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 160, height: 160)
         collectionView.setCollectionViewLayout(layout, animated: false)
         
+        
+        
+        //注册cell信息
         collectionView.register(UINib(nibName: "CollectionCell", bundle: nil), forCellWithReuseIdentifier: "CollectionCell")
+        
+        
+        
+        //因为不是collection controller，所以需要代理
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        
+        
+        //执行函数
         fetchNumOfCollection()//解决异步问题
-        
         teamNumberArray.sort()
-        
-        
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-        collectionView.addGestureRecognizer(longPressGesture)
         collectionView.reloadData()
         
         
+        //注册长按手势
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        collectionView.addGestureRecognizer(longPressGesture)
+
     }
     
     @IBAction func CreatTeam(_ sender: UIButton) {
@@ -63,62 +75,6 @@ class MyTeams: UIViewController {
     @IBAction func AddTeam(_ sender: UIButton) {
         performSegue(withIdentifier: "MyTeamToAddTeam", sender: sender)
     }
-    
-    
-    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        if gestureRecognizer.state == .began {
-            let location = gestureRecognizer.location(in: collectionView)
-            if let indexPath = collectionView.indexPathForItem(at: location) {
-                let item = indexPath.item
-                
-                let alertController = UIAlertController(title: "If you want to quit This Team?", message: "This action will delete All Your Info In This Team", preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                
-                let detailAction = UIAlertAction(title: "Yes", style: .default) { action in
-                    
-                    let deleteTeamsRef = self.ref123.child("Teams").child("\(self.teamNumberArray[item])").child("TeamMembers").child("Members \(self.user!.uid)")
-                    deleteTeamsRef.removeValue(){ error,_ in
-                        if let error = error {
-                            print("Failed to remove data: \(error.localizedDescription)")
-                        } else {
-                            
-                            
-                            let deleteIntroduceRef = self.ref123.child("OneselfIntroduceInTeam").child("\(self.teamNumberArray[item])")
-                            deleteIntroduceRef.child("Members \(self.user!.uid)").removeValue(){error,_ in
-                                if let error = error {
-                                    print("Failed to remove data: \(error.localizedDescription)")
-                                } else {
-                                    
-                                    
-                                    let deleteUserRef = self.ref123.child("Users").child("\(self.user!.uid)").child("Teams")
-                                    deleteUserRef.child("Team \(self.teamNumberArray[item])").removeValue(){error,_ in
-                                        if let error = error {
-                                            print("Failed to remove data: \(error.localizedDescription)")
-                                        } else {
-                                            print("Data removed successfully")
-                                            // 在数据成功删除后，刷新collectionView或执行其他操作
-                                            self.teamNumberArray.remove(at: item)
-                                            self.collectionView.reloadData()
-                                            return
-                                        }
-                                    }
-                                    
-                                }
-                            }
-                            
-                        }
-                    }
-                    
-                }
-                
-                alertController.addAction(cancelAction)
-                alertController.addAction(detailAction)
-                self.present(alertController,animated: true,completion: nil)
-                
-            }
-        }
-    }
-
     
 }
 
@@ -131,6 +87,7 @@ class MyTeams: UIViewController {
 
 
 
+//MARK: -Collection and Cell
 extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
     
     func fetchNumOfCollection() {
@@ -190,4 +147,69 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
         }
     }
     
+}
+
+
+
+
+
+
+
+
+
+
+
+//MARK: -Gesture
+extension MyTeams{
+    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            let location = gestureRecognizer.location(in: collectionView)
+            if let indexPath = collectionView.indexPathForItem(at: location) {
+                let item = indexPath.item
+                
+                
+                //开始建立Alert
+                let alertController = UIAlertController(title: "If you want to quit This Team?", message: "This action will delete All Your Info In This Team", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                let detailAction = UIAlertAction(title: "Yes", style: .default) { action in
+                    
+                    
+                    //进入闭包，执行点击Yes之后的代码
+                    let deleteTeamsRef = self.ref123.child("Teams").child("\(self.teamNumberArray[item])").child("TeamMembers").child("Members \(self.user!.uid)")
+                    deleteTeamsRef.removeValue(){ error,_ in
+                        if let error = error {
+                            print("Failed to remove data: \(error.localizedDescription)")
+                        } else {
+                            let deleteIntroduceRef = self.ref123.child("OneselfIntroduceInTeam").child("\(self.teamNumberArray[item])")
+                            deleteIntroduceRef.child("Members \(self.user!.uid)").removeValue(){error,_ in
+                                if let error = error {
+                                    print("Failed to remove data: \(error.localizedDescription)")
+                                } else {
+                                    
+                                    
+                                    let deleteUserRef = self.ref123.child("Users").child("\(self.user!.uid)").child("Teams")
+                                    deleteUserRef.child("Team \(self.teamNumberArray[item])").removeValue(){error,_ in
+                                        if let error = error {
+                                            print("Failed to remove data: \(error.localizedDescription)")
+                                        } else {
+                                            print("Data removed successfully")
+                                            // 在数据成功删除后，刷新collectionView或执行其他操作
+                                            self.teamNumberArray.remove(at: item)
+                                            self.collectionView.reloadData()
+                                            return
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }//闭包结束
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(detailAction)
+                self.present(alertController,animated: true,completion: nil)
+                
+            }
+        }
+    }
 }

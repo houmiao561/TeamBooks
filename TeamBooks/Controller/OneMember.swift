@@ -13,26 +13,27 @@ import NVActivityIndicatorView
 
 class OneMember: UITableViewController {
     
-    var teamName = ""
-    var memberUID = ""//个人主页的那个人的UID""
     let user = Auth.auth().currentUser!
     var ref = Database.database().reference()
     var storageRef = Storage.storage().reference()
+    var activityIndicatorView: NVActivityIndicatorView!
     
-    //下面四个时section0的信息载体
+    //下面四个时section0自我介绍部分的信息载体
     var name = ""
     var birthday = ""
     var job = ""
     var introduce = ""
     
-    var count = 0//section1中的cell的个数
-    var everyCellInFunc = [[String:String]]()//中介载体而已
-    var finalNameArray:[String] = []
-    var finalCommentsArray:[String] = []
-    var activityIndicatorView: NVActivityIndicatorView!
+    var teamName = ""   //teamName
+    var memberUID = ""  //个人主页的那个人的UID""
+    var count = 0   //section1中的cell的个数
+    var everyCellInFunc = [[String:String]]()   //中介载体而已
+    var finalNameArray:[String] = []    //最终的name数组
+    var finalCommentsArray:[String] = []    //最终的comments数组
     
     override func viewDidLoad() {
-        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        
+        //注册加载动画
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
@@ -40,7 +41,7 @@ class OneMember: UITableViewController {
         
         
         super.viewDidLoad()
-        tableView.allowsSelection = false
+        
         
         
         //注册cell信息
@@ -48,16 +49,19 @@ class OneMember: UITableViewController {
         tableView.register(UINib(nibName: "CommentsCell", bundle: nil), forCellReuseIdentifier: "CommentsCell")
         
         
+        
         //注册手势
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         tableView.addGestureRecognizer(longPressGesture)
         
-        tableView.reloadData()
+        
+        
         
         //执行函数
         downloadTextFromFirebase()
         getNum()
         downLoadCommentsFromFirebas()
+        tableView.allowsSelection = false
         self.tableView.reloadData()
     }
     
@@ -75,6 +79,100 @@ class OneMember: UITableViewController {
     }
     
 }
+
+
+
+
+
+
+
+//MARK: -TableView and Cell
+extension OneMember{
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if section == 0{
+            return 1
+        }else{
+            return count
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OneMemberCell", for: indexPath) as! OneMemberCell
+            cell.birthday.text = birthday
+            cell.introduce.text = introduce
+            cell.job.text = job
+            cell.name.text = name
+            
+            let imageRef = self.storageRef.child("UserIntroducePhoto").child("\(self.teamName)").child("Member \(self.user.uid)")
+            imageRef.downloadURL { (url, error) in
+                if let downloadURL = url {
+                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+                        if let imageData = data, let image = UIImage(data: imageData) {
+                            // 在主线程更新UI
+                            DispatchQueue.main.async {
+                                cell.selfimage.image = image
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }.resume()
+                }
+            }
+            
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
+            
+            //显示评论
+            cell.comments.text = finalCommentsArray[indexPath.row]
+            
+            //显示name而不是email，所以需要一步转换过程
+            let realK = String(finalNameArray[indexPath.row].prefix(finalNameArray[indexPath.row].count - 2))
+            ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of: .value) { Snapshot,error in
+                if let thisMember = Snapshot.value as? [String:String] {
+                    for (key, value) in thisMember{
+                        if key == "oneselfName"{
+                            cell.someoneName.text = value
+                        }
+                    }
+                }
+            }
+            
+            //显示头像
+            let imageRef = self.storageRef.child("ProfilePhoto/").child("Member \(realK)")
+            imageRef.downloadURL { (url, error) in
+                if let downloadURL = url {
+                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+                        if let imageData = data, let image = UIImage(data: imageData) {
+                            // 在主线程更新UI
+                            DispatchQueue.main.async {
+                                cell.profile.image = image
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }.resume()
+                }
+            }
+            return cell
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 600
+        } else {
+            return 180
+        }
+    }
+}
+
 
 
 
@@ -260,89 +358,3 @@ extension OneMember{
 
 
 
-//MARK: -TableView and Cell
-extension OneMember{
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if section == 0{
-            return 1
-        }else{
-            return count
-        }
-        
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.section == 0{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OneMemberCell", for: indexPath) as! OneMemberCell
-            cell.birthday.text = birthday
-            cell.introduce.text = introduce
-            cell.job.text = job
-            cell.name.text = name
-            
-            let imageRef = self.storageRef.child("UserIntroducePhoto").child("\(self.teamName)").child("Member \(self.user.uid)")
-            imageRef.downloadURL { (url, error) in
-                if let downloadURL = url {
-                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
-                        if let imageData = data, let image = UIImage(data: imageData) {
-                            // 在主线程更新UI
-                            DispatchQueue.main.async {
-                                cell.selfimage.image = image
-                                self.tableView.reloadData()
-                            }
-                        }
-                    }.resume()
-                }
-            }
-            
-            return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
-            
-            //显示评论
-            cell.comments.text = finalCommentsArray[indexPath.row]
-            
-            //显示name而不是email，所以需要一步转换过程
-            let realK = String(finalNameArray[indexPath.row].prefix(finalNameArray[indexPath.row].count - 2))
-            ref.child("OneselfIntroduceInTeam").child(self.teamName).child("Members \(realK)").observeSingleEvent(of: .value) { Snapshot,error in
-                if let thisMember = Snapshot.value as? [String:String] {
-                    for (key, value) in thisMember{
-                        if key == "oneselfName"{
-                            cell.someoneName.text = value
-                        }
-                    }
-                }
-            }
-            
-            //显示头像
-            let imageRef = self.storageRef.child("ProfilePhoto/").child("Member \(realK)")
-            imageRef.downloadURL { (url, error) in
-                if let downloadURL = url {
-                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
-                        if let imageData = data, let image = UIImage(data: imageData) {
-                            // 在主线程更新UI
-                            DispatchQueue.main.async {
-                                cell.profile.image = image
-                                self.tableView.reloadData()
-                            }
-                        }
-                    }.resume()
-                }
-            }
-            return cell
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 600
-        } else {
-            return 180
-        }
-    }
-}

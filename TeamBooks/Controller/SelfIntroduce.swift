@@ -12,40 +12,47 @@ import FirebaseStorage
 import NVActivityIndicatorView
 
 class SelfIntroduce: UIViewController {
-
-    var teamName123 = ""
-    var oneselfUID123 = ""
-    let ref = Database.database().reference()
-    var sendMessage = ["":""]
-    let user = Auth.auth().currentUser!
-    let storageRef = Storage.storage().reference()
-    
-    private let imagePicker = UIImagePickerController()
-    var activityIndicatorView: NVActivityIndicatorView!
     
     @IBOutlet weak var selfPhotp: UIImageView!
     @IBOutlet weak var teamName: UITextField!
-    
     @IBOutlet weak var oneselfIntroduce: UITextField!
     @IBOutlet weak var oneselfJob: UITextField!
     @IBOutlet weak var oneselfBirthday: UITextField!
     @IBOutlet weak var oneselfName: UITextField!
     
+    let ref = Database.database().reference()
+    let user = Auth.auth().currentUser!
+    let storageRef = Storage.storage().reference()
+    private let imagePicker = UIImagePickerController()
+    var activityIndicatorView: NVActivityIndicatorView!
     
+    var teamName123 = ""    //teamName
+    var oneselfUID123 = ""  //UID
+    var sendMessage = ["":""]   //自我介绍时需要添加的信息
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        teamName.text = teamName123
+        
+        
+        
+        //注册手势信息
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         selfPhotp.addGestureRecognizer(tapGestureRecognizer)
         selfPhotp.isUserInteractionEnabled = true
         
-        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        
+        
+        //注册加载动画
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
-        // 将加载动画视图添加到父视图中并居中
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
         view.addSubview(activityIndicatorView)
+        
+        
+        
+        //执行函数
+        teamName.text = teamName123
     }
     
     @IBAction func add(_ sender: UIButton) {
@@ -74,9 +81,19 @@ class SelfIntroduce: UIViewController {
             }
         }
         uploadImageToFirebaseStorage(image: self.selfPhotp.image!)
-        
     }
     
+}
+
+
+
+
+
+
+
+
+//MARK: -Firebase
+extension SelfIntroduce{
     func uploadImageToFirebaseStorage(image: UIImage) {
         let imageRef = storageRef.child("UserIntroducePhoto").child("\(teamName123)").child("Members \(user.uid)")
         if let imageData = image.jpegData(compressionQuality: 0.0001) {
@@ -91,13 +108,16 @@ class SelfIntroduce: UIViewController {
             }
         }
     }
-    
-    
-
 }
 
 
 
+
+
+
+
+
+//MARK: -Gesture
 extension SelfIntroduce:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @objc func imageTapped() {

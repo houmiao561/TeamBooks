@@ -14,27 +14,30 @@ class AddComments: UIViewController {
     
     @IBOutlet weak var addComments: UITextView!
     
-    var teamName = ""
-    var memberUID = ""//被点击
     var user = Auth.auth().currentUser!
     var ref = Database.database().reference()
     var activityIndicatorView: NVActivityIndicatorView!
     
+    var teamName = ""   //name
+    var memberUID = ""  //被点击
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        
+        
+        //注册加载信息
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
-        // 将加载动画视图添加到父视图中并居中
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
         view.addSubview(activityIndicatorView)
     }
     
+    
+    
     @IBAction func button(_ sender: UIButton) {
         activityIndicatorView.startAnimating()
         
         if addComments.text != ""{
-            
             ref.child("Comments").child("\(teamName)").child("\(memberUID)").child("\(user.uid)").observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if var currentArray = snapshot.value as? [String] {

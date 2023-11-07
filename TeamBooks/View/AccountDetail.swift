@@ -19,29 +19,34 @@ class AccountDetail: UIViewController {
 
     let storageRef = Storage.storage().reference()
     let user = Auth.auth().currentUser!
-    private let imagePicker = UIImagePickerController()
+    
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.activityIndicatorView.startAnimating()//执行完downloadImageFromFirebaseStorage()之后动画结束
-        downloadImageFromFirebaseStorage()
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         
+        downloadImageFromFirebaseStorage()
+        currentUID.text = user.uid
+        
+        
+        //注册点击手势
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         photo.addGestureRecognizer(tapGestureRecognizer)
         photo.isUserInteractionEnabled = true
         photo.layer.cornerRadius = photo.frame.size.width / 2.0
         photo.layer.masksToBounds = true // 剪切超出圆角范围的内容
         photo.contentMode = .scaleAspectFill
         
-        currentUID.text = user.uid
         
-        
-        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        //注册加载动画
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
-        // 将加载动画视图添加到父视图中并居中
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
         view.addSubview(activityIndicatorView)
+        
+        
+        //执行完downloadImageFromFirebaseStorage()之后动画结束
+        self.activityIndicatorView.startAnimating()
     }
     
     @IBAction func LogOut(_ sender: UIButton) {
@@ -79,7 +84,6 @@ class AccountDetail: UIViewController {
     func showLogoutAlert() {
         self.activityIndicatorView.stopAnimating()
         let alertController = UIAlertController(title: "Great!", message: "Log Out Succeed.", preferredStyle: .alert)
-        // 显示 UIAlertController
         self.present(alertController, animated: true, completion: nil)
         
         // 延时两秒后自动关闭 UIAlertController
@@ -89,7 +93,6 @@ class AccountDetail: UIViewController {
         }
     }
     
-    
     @IBAction func saveAll(_ sender: UIButton) {
         self.activityIndicatorView.startAnimating()
         uploadImageToFirebaseStorage(image: photo.image!)
@@ -97,6 +100,11 @@ class AccountDetail: UIViewController {
 }
 
 
+
+
+
+
+//MARK: -ImagePicker
 extension AccountDetail:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @objc func imageTapped() {
@@ -160,7 +168,6 @@ extension AccountDetail{
                     }
                 }
             } else if let error = error {
-                // 处理获取下载 URL 的错误
                 print("Error getting download URL: \(error.localizedDescription)")
             }
         }

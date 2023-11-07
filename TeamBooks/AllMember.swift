@@ -15,30 +15,57 @@ class AllMember: UITableViewController {
 
     var ref: DatabaseReference!
     let storageRef = Storage.storage().reference()
-    var allMembers = 0
-    var nameFormMYTEAMS = ""//teamName
-    var membersUIDOfTeam = [String]() //"Member UID"
-    var membersNameOfTeam = [String]()
-    private let user = Auth.auth().currentUser!
-    var selectMemberUID = ""
+    let user = Auth.auth().currentUser!
     var activityIndicatorView: NVActivityIndicatorView!
     
+    var allMembers = 0  //members的数量
+    var nameFormMYTEAMS = ""    //teamName
+    var membersUIDOfTeam = [String]()   //"Member UID"，注意String(Member )
+    var membersNameOfTeam = [String]()  //Name
+    var selectMemberUID = ""    //选择的Member的UID
+    
+    
     override func viewDidLoad() {
-        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        
+        //注册加载动画并执行
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
-        // 将加载动画视图添加到父视图中并居中
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
         view.addSubview(activityIndicatorView)
-        
         activityIndicatorView.startAnimating()
+        
+        
         
         super.viewDidLoad()
         
+        
+        
+        //注册cell信息
         tableView.register(UINib(nibName: "AllMembersCell", bundle: nil), forCellReuseIdentifier: "AllMembersCell")
         tableView.rowHeight = 70
+        
+        
+        
+        
+        //执行函数
         fetchNumber()
         fetchMembers()
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+//MARK: -Tableview
+extension AllMember{
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return allMembers
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,11 +100,6 @@ class AllMember: UITableViewController {
 
         return cell
     }
-
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allMembers
-    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -92,9 +114,30 @@ class AllMember: UITableViewController {
                 }
             }
         }
-        
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AllMembersToOneMember" {
+            if let destinationVC = segue.destination as? OneMember{
+                destinationVC.teamName = nameFormMYTEAMS
+                destinationVC.memberUID = selectMemberUID
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+//MARK: -Fireabse
+extension AllMember{
+    
+    //先获取数量
     func fetchNumber() {
         self.ref = Database.database().reference().child("Teams").child(nameFormMYTEAMS).child("TeamMembers")
         ref.observeSingleEvent(of:.value) { (snapshot) in
@@ -105,6 +148,7 @@ class AllMember: UITableViewController {
         }
     }
     
+    //再获取名字和UID
     func fetchMembers(){
         self.ref = Database.database().reference().child("Teams").child(nameFormMYTEAMS).child("TeamMembers")
         ref.observeSingleEvent(of:.value) { (snapshot) in
@@ -119,17 +163,6 @@ class AllMember: UITableViewController {
             }
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AllMembersToOneMember" {
-            if let destinationVC = segue.destination as? OneMember{
-                destinationVC.teamName = nameFormMYTEAMS
-                destinationVC.memberUID = selectMemberUID
-            }
-        }
-    }
-    
-    
 }
 
 

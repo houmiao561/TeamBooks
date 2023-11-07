@@ -9,11 +9,11 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
-import FirebaseDatabase
 import FirebaseStorage
 import NVActivityIndicatorView
 
-class SignUp: UIViewController {//创建账号时就包括了登录
+class SignUp: UIViewController {
+    //创建账号时就包括了登录
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
@@ -25,9 +25,8 @@ class SignUp: UIViewController {//创建账号时就包括了登录
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        //注册加载动画
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
-        // 将加载动画视图添加到父视图中并居中
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
         view.addSubview(activityIndicatorView)
@@ -60,16 +59,9 @@ class SignUp: UIViewController {//创建账号时就包括了登录
                     alertController.dismiss(animated: true, completion: nil)
                     self.navigationController!.popToRootViewController(animated: true)
                 }
-                
-                
-                
-                
             }
         }
         
     }
-    
-    
-    
     
 }

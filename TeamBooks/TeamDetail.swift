@@ -13,28 +13,42 @@ class TeamDetail: UIViewController {
     
     @IBOutlet weak var teamName: UILabel!
     @IBOutlet weak var teamDate: UILabel!
-//    @IBOutlet weak var teamIntroduce: UILabel!
     @IBOutlet weak var teamPassword: UILabel!
     @IBOutlet weak var TeamLogo: UIImageView!
     @IBOutlet weak var teamIntroduce: UITextView!
     
     var ref: DatabaseReference!
-    var nameFormMYTEAMS = ""
     let storageRef = Storage.storage().reference()
+    
+    var nameFormMYTEAMS = ""    //点击MyTeams中的任意一个之后，传过来的TeamName
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //执行函数
         downlodarTextFromFirebase()
         downloadImageFromFirebaseStorage()
         
+        
+        //照片修饰框架
         TeamLogo.contentMode = .scaleAspectFill
         TeamLogo.layer.cornerRadius = 10.0 // 设置圆角半径
         TeamLogo.layer.masksToBounds = true // 剪切超出圆角范围的内容
         TeamLogo.layer.borderWidth = 0.3 // 边框的粗细
         TeamLogo.layer.borderColor = UIColor.lightGray.cgColor // 边框的颜色
     }
- 
     
+}
+
+
+
+
+
+
+
+//MARK: -Firebase
+extension TeamDetail{
     func downloadImageFromFirebaseStorage(){
         let imageRef = storageRef.child("TeamLogo/").child("\(nameFormMYTEAMS)")
         
@@ -48,8 +62,8 @@ class TeamDetail: UIViewController {
                         }
                     }
                 }
-            } else if let _ = error {
-                
+            } else if let error = error {
+                print(error)
             }
         }
         
@@ -74,5 +88,4 @@ class TeamDetail: UIViewController {
             }
         })
     }
-
 }

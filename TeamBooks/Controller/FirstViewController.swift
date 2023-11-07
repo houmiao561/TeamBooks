@@ -7,12 +7,11 @@
 
 import UIKit
 import FirebaseAuth
+
 class FirstViewController: UIViewController {
     
     @IBOutlet weak var teamBooks: UILabel!
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }

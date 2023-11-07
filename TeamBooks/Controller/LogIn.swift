@@ -11,7 +11,6 @@ import FirebaseAuth
 import FirebaseStorage
 import NVActivityIndicatorView
 
-
 class LogIn: UIViewController{
 
     @IBOutlet weak var email: UITextField!
@@ -24,12 +23,10 @@ class LogIn: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 创建加载动画视图，选择适合您应用的样式、颜色和大小
+        // 注册加载动画
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
-        // 将加载动画视图添加到父视图中并居中
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
-
         view.addSubview(activityIndicatorView)
     }
     
@@ -42,7 +39,7 @@ class LogIn: UIViewController{
         activityIndicatorView.startAnimating()
         
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { (authResult, error) in
-            if let _ = error {
+            if let _ = error {//失败弹窗
                 let alertController = UIAlertController(title: "Something Wrong!", message: "Plz check your email and password.", preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alertController.addAction(cancelAction)
@@ -51,7 +48,6 @@ class LogIn: UIViewController{
             } else {
                 self.activityIndicatorView.stopAnimating()
                 let alertController = UIAlertController(title: "Great!", message: "Log In Succeed.", preferredStyle: .alert)
-                // 显示 UIAlertController
                 self.present(alertController, animated: true, completion: nil)
                 
                 // 延时两秒后自动关闭 UIAlertController
