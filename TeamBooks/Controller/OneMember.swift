@@ -17,7 +17,7 @@ class OneMember: UITableViewController {
     var memberUID = ""//个人主页的那个人的UID""
     let user = Auth.auth().currentUser!
     var ref = Database.database().reference()
-    let storageRef = Storage.storage().reference()
+    var storageRef = Storage.storage().reference()
     
     //下面四个时section0的信息载体
     var name = ""
@@ -32,7 +32,6 @@ class OneMember: UITableViewController {
     var activityIndicatorView: NVActivityIndicatorView!
     
     override func viewDidLoad() {
-        print(user.uid)
         // 创建加载动画视图，选择适合您应用的样式、颜色和大小
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
         activityIndicatorView.center = view.center
@@ -53,7 +52,7 @@ class OneMember: UITableViewController {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         tableView.addGestureRecognizer(longPressGesture)
         
-        
+        tableView.reloadData()
         
         //执行函数
         downloadTextFromFirebase()
@@ -286,17 +285,18 @@ extension OneMember{
             cell.job.text = job
             cell.name.text = name
             
-            self.storageRef.child("UserIntroducePhoto/").child("\(teamName)").child("Member \(user.uid)").downloadURL { url, err in
-                
+            let imageRef = self.storageRef.child("UserIntroducePhoto").child("\(self.teamName)").child("Member \(self.user.uid)")
+            imageRef.downloadURL { (url, error) in
                 if let downloadURL = url {
-                    if let imageData = try? Data(contentsOf: downloadURL) {
-                        let image = UIImage(data: imageData)
-                        DispatchQueue.main.async {
-                            cell.selfimage.image = image
-                            print("111111111")
-                            self.tableView.reloadData()
+                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+                        if let imageData = data, let image = UIImage(data: imageData) {
+                            // 在主线程更新UI
+                            DispatchQueue.main.async {
+                                cell.selfimage.image = image
+                                self.tableView.reloadData()
+                            }
                         }
-                    }
+                    }.resume()
                 }
             }
             
@@ -321,14 +321,15 @@ extension OneMember{
             
             //显示头像
             let imageRef = self.storageRef.child("ProfilePhoto/").child("Member \(realK)")
-            imageRef.downloadURL { url, error in
+            imageRef.downloadURL { (url, error) in
                 if let downloadURL = url {
                     URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
                         if let imageData = data, let image = UIImage(data: imageData) {
                             // 在主线程更新UI
-                            cell.profile.image = image
-                            print("222222222")
-                            self.tableView.reloadData()
+                            DispatchQueue.main.async {
+                                cell.profile.image = image
+                                self.tableView.reloadData()
+                            }
                         }
                     }.resume()
                 }

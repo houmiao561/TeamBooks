@@ -12,7 +12,6 @@ class OneMemberCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var birthday: UILabel!
     @IBOutlet weak var job: UILabel!
-//    @IBOutlet weak var introduce: UILabel!
     @IBOutlet weak var introduce: UITextView!
     
     @IBOutlet weak var selfimage: UIImageView!
