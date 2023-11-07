@@ -78,7 +78,7 @@ class SelfIntroduce: UIViewController {
     }
     
     func uploadImageToFirebaseStorage(image: UIImage) {
-        let imageRef = storageRef.child("UserIntroducePhoto").child("Members \(user.uid)")
+        let imageRef = storageRef.child("UserIntroducePhoto").child("\(teamName123)").child("Members \(user.uid)")
         if let imageData = image.jpegData(compressionQuality: 0.0001) {
             // 开始上传图片
             imageRef.putData(imageData, metadata: nil) { (metadata, error) in

@@ -29,11 +29,10 @@ class OneMember: UITableViewController {
     var everyCellInFunc = [[String:String]]()//中介载体而已
     var finalNameArray:[String] = []
     var finalCommentsArray:[String] = []
-    var finalImageArray:[UIImage] = []
     var activityIndicatorView: NVActivityIndicatorView!
-    var oneselfIntroduceImage: URL?
     
     override func viewDidLoad() {
+        print(user.uid)
         // 创建加载动画视图，选择适合您应用的样式、颜色和大小
         activityIndicatorView = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100), type: .lineScale, color: .systemYellow, padding: nil)
         activityIndicatorView.center = view.center
@@ -60,7 +59,6 @@ class OneMember: UITableViewController {
         downloadTextFromFirebase()
         getNum()
         downLoadCommentsFromFirebas()
-        downloadSelfIntroPhoto()
         self.tableView.reloadData()
     }
     
@@ -215,38 +213,9 @@ extension OneMember{
             }
             
         }
-        
-        for ks in self.everyCellInFunc{ //ks [String : String]
-            
-            for k in ks.keys {
-                //得到真正的不加任何String的UID
-                let realK = String(k.prefix(k.count - 2))
-                
-                //得到profile
-                let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(realK)")
-                imageRef.downloadURL { (url, error) in
-                    if let downloadURL = url {
-                        
-                        if let imageData = try? Data(contentsOf: downloadURL) {
-                            let image = UIImage(data: imageData)
-                            self.finalImageArray.append(image!)
-                        }
-                    }
-                }
-            }
-        }
         self.tableView.reloadData()
         }
         
-    }
-    
-    func downloadSelfIntroPhoto(){
-        let imageRef = self.storageRef.child("UserIntroducePhoto").child("\(memberUID)")
-        imageRef.downloadURL { url, error in
-            if let downloadURL = url {
-                self.oneselfIntroduceImage = downloadURL
-            }
-        }
     }
     
 }
@@ -316,23 +285,20 @@ extension OneMember{
             cell.introduce.text = introduce
             cell.job.text = job
             cell.name.text = name
-            // 异步加载图像数据
-            URLSession.shared.dataTask(with: self.oneselfIntroduceImage!) { (data, response, error) in
-                if let data = data, let image = UIImage(data: data) {
-                    // 在主线程上更新 UI
-                    DispatchQueue.main.async {
-                        // 将图像显示在单元格中
-                        cell.selfimage.image = image
-                        cell.setNeedsLayout()//出发单元格重新布局
-                        self.activityIndicatorView.stopAnimating()
-                    }
-                } else {
-                    // 处理加载图像错误
-                    if let error = error {
-                        print("Error loading image: \\(error)")
+            
+            self.storageRef.child("UserIntroducePhoto/").child("\(teamName)").child("Member \(user.uid)").downloadURL { url, err in
+                
+                if let downloadURL = url {
+                    if let imageData = try? Data(contentsOf: downloadURL) {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            cell.selfimage.image = image
+                            print("111111111")
+                            self.tableView.reloadData()
+                        }
                     }
                 }
-            }.resume()
+            }
             
             return cell
         }else{
@@ -348,14 +314,25 @@ extension OneMember{
                     for (key, value) in thisMember{
                         if key == "oneselfName"{
                             cell.someoneName.text = value
-                            
                         }
                     }
                 }
             }
             
             //显示头像
-            cell.profile.image = finalImageArray[indexPath.row]
+            let imageRef = self.storageRef.child("ProfilePhoto/").child("Member \(realK)")
+            imageRef.downloadURL { url, error in
+                if let downloadURL = url {
+                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+                        if let imageData = data, let image = UIImage(data: imageData) {
+                            // 在主线程更新UI
+                            cell.profile.image = image
+                            print("222222222")
+                            self.tableView.reloadData()
+                        }
+                    }.resume()
+                }
+            }
             return cell
         }
     }
