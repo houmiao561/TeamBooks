@@ -111,18 +111,18 @@ extension OneMember{
             cell.job.text = job
             cell.name.text = name
             
-            let imageRef = self.storageRef.child("UserIntroducePhoto").child("\(self.teamName)").child("Member \(self.user.uid)")
+            let imageRef = self.storageRef.child("UserIntroducePhoto/").child("\(self.teamName)/").child("Members \(self.user.uid)")
             imageRef.downloadURL { (url, error) in
                 if let downloadURL = url {
-                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
-                        if let imageData = data, let image = UIImage(data: imageData) {
-                            // 在主线程更新UI
+                    DispatchQueue.global().async {
+                        if let imageData = try? Data(contentsOf: downloadURL) {
+                            let image = UIImage(data: imageData)
                             DispatchQueue.main.async {
                                 cell.selfimage.image = image
                                 self.tableView.reloadData()
                             }
                         }
-                    }.resume()
+                    }
                 }
             }
             
@@ -146,7 +146,7 @@ extension OneMember{
             }
             
             //显示头像
-            let imageRef = self.storageRef.child("ProfilePhoto/").child("Member \(realK)")
+            let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(realK)")
             imageRef.downloadURL { (url, error) in
                 if let downloadURL = url {
                     URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in

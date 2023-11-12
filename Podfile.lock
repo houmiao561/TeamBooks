@@ -832,6 +832,11 @@ PODS:
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
   - PromisesObjC (2.3.1)
+  - Realm (10.43.1):
+    - Realm/Headers (= 10.43.1)
+  - Realm/Headers (10.43.1)
+  - RealmSwift (10.43.1):
+    - Realm (= 10.43.1)
   - RecaptchaInterop (100.0.0)
   - SDWebImage (5.18.3):
     - SDWebImage/Core (= 5.18.3)
@@ -845,6 +850,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseUI/Storage
   - NVActivityIndicatorView
+  - RealmSwift
 
 SPEC REPOS:
   trunk:
@@ -873,6 +879,8 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - PromisesObjC
+    - Realm
+    - RealmSwift
     - RecaptchaInterop
     - SDWebImage
 
@@ -902,9 +910,11 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
+  Realm: d97b438de77459e443bd2c8ad5ca0f95107aee4b
+  RealmSwift: 6be3f27a7fd3f5cc8f99f4b187cc4e7150299e32
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
   SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
 
-PODFILE CHECKSUM: 4ce8c6c068d51e864d6f518dfa3da76d6afcf2dd
+PODFILE CHECKSUM: 18a46ea37bd1f2e3492fbec69a961f4a64ab2fe1
 
 COCOAPODS: 1.13.0

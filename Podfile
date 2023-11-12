@@ -11,7 +11,7 @@ pod 'Firebase/Analytics'
 pod 'FirebaseUI/Storage'
 pod 'Firebase/Database'
 pod 'NVActivityIndicatorView'
-
+pod 'RealmSwift'
 
 
 end
