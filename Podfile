@@ -12,6 +12,7 @@ pod 'FirebaseUI/Storage'
 pod 'Firebase/Database'
 pod 'NVActivityIndicatorView'
 pod 'RealmSwift'
+pod 'Kingfisher'
 
 
 end

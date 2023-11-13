@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import NVActivityIndicatorView
+import Kingfisher
 
 class MyTeams: UIViewController {
     
@@ -25,6 +26,8 @@ class MyTeams: UIViewController {
     var allNum = 0  //所有的team的数量
     var teamNumberArray = [String]()    //teamName数组
     var selectNum = 0   //点击时，选择的是第几个
+    
+    var imageView: UIImageView = UIImageView(image: UIImage(named: "Yummy"))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +63,24 @@ class MyTeams: UIViewController {
         fetchNumOfCollection()//解决异步问题
         teamNumberArray.sort()
         collectionView.reloadData()
+        let imageRef = storageRef.child("TeamLogo/").child("TOM")
+        imageRef.downloadURL { (url, error) in
+            if let downloadURL = url {
+                
+                // 使用 Kingfisher 加载和缓存图片
+                DispatchQueue.main.async {
+                    self.imageView.kf.setImage(with: downloadURL, placeholder: UIImage(named: "placeholder"), options: [.transition(.fade(0.2))], progressBlock: nil) { result in
+                        switch result {
+                        case .success(let value):
+                            print("Image loaded: \(value.image)")
+                            self.collectionView.reloadData()
+                        case .failure(let error):
+                            print("Error loading image: \(error.localizedDescription)")
+                        }
+                    }
+                }
+            }
+        }
         
         
         //注册长按手势
@@ -113,20 +134,21 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath as IndexPath) as! CollectionViewCell
         
-        let imageRef = storageRef.child("TeamLogo/").child("\(teamNumberArray[indexPath.item])")
-        imageRef.downloadURL { (url, error) in
-            if let downloadURL = url {
-                DispatchQueue.global().async {
-                    if let imageData = try? Data(contentsOf: downloadURL) {
-                        let image = UIImage(data: imageData)
-                        DispatchQueue.main.async {
-                            cell.TeamLogo.image = image
-                            self.collectionView.reloadData()
-                        }
-                    }
-                }
-            }
-        }
+//        let imageRef = storageRef.child("TeamLogo/").child("\(teamNumberArray[indexPath.item])")
+//        imageRef.downloadURL { (url, error) in
+//            if let downloadURL = url {
+//                DispatchQueue.global().async {
+//                    if let imageData = try? Data(contentsOf: downloadURL) {
+//                        let image = UIImage(data: imageData)
+//                        DispatchQueue.main.async {
+//                            cell.TeamLogo.image = image
+//                            self.collectionView.reloadData()
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        cell.TeamLogo.image = self.imageView.image
         self.activityIndicatorView.stopAnimating()
         return cell
     }

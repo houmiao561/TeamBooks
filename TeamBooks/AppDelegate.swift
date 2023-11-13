@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseAuth
 import Firebase
 import IQKeyboardManagerSwift
+import Kingfisher
 
 
 @UIApplicationMain
@@ -25,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.keyboardDistanceFromTextField = 20
         
+        configureKingfisher()
+        
         return true
     }
 
@@ -37,6 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         
+    }
+    
+    func configureKingfisher() {
+        let kingfisherManager = KingfisherManager.shared
+        
+        kingfisherManager.cache.memoryStorage.config.totalCostLimit = 100 * 1024 * 1024
+        // 设置内存缓存的总成本上限为 100 MB
+        
+        kingfisherManager.cache.diskStorage.config.sizeLimit = 500 * 1024 * 1024
+        // 设置磁盘缓存的大小上限为 500 MB
     }
 
 
