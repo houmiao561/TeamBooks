@@ -20,9 +20,11 @@ class AllMember: UITableViewController {
     
     var allMembers = 0  //members的数量
     var nameFormMYTEAMS = ""    //teamName
-    var membersUIDOfTeam = [String]()   //"Member UID"，注意String(Member )
+    var membersUIDOfTeam = [String]()   //"Member UID"，注意String(Members )
     var membersNameOfTeam = [String]()  //Name
     var selectMemberUID = ""    //选择的Member的UID
+    var membersProfile = [UIImage]()    //Member的头像集合
+    var memberName = [String]() //membersName合集
     
     
     override func viewDidLoad() {
@@ -50,6 +52,8 @@ class AllMember: UITableViewController {
         //执行函数
         fetchNumber()
         fetchMembers()
+        downloadImage()
+        changeUIDtoName()
     }
     
 }
@@ -71,31 +75,16 @@ extension AllMember{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllMembersCell", for: indexPath) as! AllMembersCell
 
-        ref = Database.database().reference().child("OneselfIntroduceInTeam").child("\(nameFormMYTEAMS)").child("\(membersUIDOfTeam[indexPath.row])")
-        ref.observeSingleEvent(of: .value) { DataSnapshot in
-            if let teamDetailData = DataSnapshot.value as? [String: Any] {
-                for (key, value) in teamDetailData{
-                    if key == "oneselfName"{
-                        cell.memberName.text = (value as! String)
-                        self.activityIndicatorView.stopAnimating()
-                    }
-                }
-            }
+        if memberName.count == 0{
+            cell.memberName.text = nameFormMYTEAMS
+        }else{
+            cell.memberName.text = memberName[indexPath.row]
         }
-
-        // 异步下载图片
-        let imageRef = storageRef.child("ProfilePhoto/").child("\(membersUIDOfTeam[indexPath.item])")
-        imageRef.downloadURL { (url, error) in
-            if let downloadURL = url {
-                URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
-                    if let imageData = data, let image = UIImage(data: imageData) {
-                        // 在主线程更新UI
-                        DispatchQueue.main.async {
-                            cell.profileImage.image = image
-                        }
-                    }
-                }.resume()
-            }
+        print(membersProfile.count)
+        if membersProfile.count == 0{
+            cell.profileImage.image = UIImage(named: "Yummy")
+        }else{
+            cell.profileImage.image = self.membersProfile[indexPath.row]
         }
 
         return cell
@@ -150,18 +139,134 @@ extension AllMember{
     
     //再获取名字和UID
     func fetchMembers(){
+//        self.ref = Database.database().reference().child("Teams").child(nameFormMYTEAMS).child("TeamMembers")
+//        ref.observeSingleEvent(of:.value) { (snapshot, error) in
+//            if let teamData = snapshot.value as? [String: Any] {
+//                
+//                for (key,value) in teamData{
+//                    self.membersUIDOfTeam.append(key)
+//                    self.membersNameOfTeam.append(value as! String)
+//                    
+//                    
+//                    let imageRef = self.storageRef.child("ProfilePhoto/").child(key)
+//                    imageRef.downloadURL { (url, error) in
+//                        if let downloadURL = url {
+//                            URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+//                                if let imageData = data, let image = UIImage(data: imageData) {
+//                                    DispatchQueue.main.async {
+//                                        self.membersProfile.append(image)
+//                                    }
+//                                }
+//                            }.resume()
+//                        }
+//                    }
+//                    
+//                    let REF = self.ref = Database.database().reference().child("OneselfIntroduceInTeam").child("\(self.nameFormMYTEAMS)").child("\(key)")
+//                    REF.observeSingleEvent(of: .value) { DataSnapshot,err  in
+//                        if let teamDetailData = DataSnapshot.value as? [String: Any] {
+//                            for (key, value) in teamDetailData{
+//                                if key == "oneselfName"{
+//                                    self.memberName.append(value as! String)
+//                                    self.activityIndicatorView.stopAnimating()
+//                                }
+//                            }
+//                        }
+//                    }
+//                    
+//                }
+//                
+//                self.tableView.reloadData()
+//            }
+//        }
         self.ref = Database.database().reference().child("Teams").child(nameFormMYTEAMS).child("TeamMembers")
-        ref.observeSingleEvent(of:.value) { (snapshot) in
+        self.ref.observeSingleEvent(of:.value) { (snapshot, error) in
             if let teamData = snapshot.value as? [String: Any] {
                 
-                for (key,value) in teamData{
+                let dispatchGroup = DispatchGroup()
+                
+                for (key, value) in teamData {
                     self.membersUIDOfTeam.append(key)
                     self.membersNameOfTeam.append(value as! String)
+                    
+                    let imageRef = self.storageRef.child("ProfilePhoto/").child(key)
+                    
+                    dispatchGroup.enter()
+                    imageRef.downloadURL { (url, error) in
+                        defer {
+                            dispatchGroup.leave()
+                        }
+                        if let downloadURL = url {
+                            URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+                                if let imageData = data, let image = UIImage(data: imageData) {
+                                    DispatchQueue.main.async {
+                                        self.membersProfile.append(image)
+                                        self.tableView.reloadData()
+                                    }
+                                }
+                            }.resume()
+                        }
+                    }
+                    
+                    let teamDetailRef = Database.database().reference().child("OneselfIntroduceInTeam").child("\(self.nameFormMYTEAMS)").child("\(key)")
+                    
+                    dispatchGroup.enter()
+                    teamDetailRef.observeSingleEvent(of: .value) { dataSnapshot, _ in
+                        defer {
+                            dispatchGroup.leave()
+                        }
+                        
+                        if let teamDetailData = dataSnapshot.value as? [String: Any] {
+                            for (key, value) in teamDetailData {
+                                if key == "oneselfName" {
+                                    self.memberName.append(value as! String)
+                                    self.activityIndicatorView.stopAnimating()
+                                }
+                            }
+                        }
+                    }
                 }
                 
-                self.tableView.reloadData()
+                dispatchGroup.notify(queue: .main) {
+                    // 所有异步任务完成后刷新表格
+                    self.tableView.reloadData()
+                }
             }
         }
+    }
+    
+    //改变UID为名字
+    func changeUIDtoName(){
+//        for i in 0...allMembers{
+//            ref = Database.database().reference().child("OneselfIntroduceInTeam").child("\(nameFormMYTEAMS)").child("\(membersUIDOfTeam[i])")
+//            ref.observeSingleEvent(of: .value) { DataSnapshot,err  in
+//                if let teamDetailData = DataSnapshot.value as? [String: Any] {
+//                    for (key, value) in teamDetailData{
+//                        if key == "oneselfName"{
+//                            self.memberName.append(value as! String)
+//                            self.activityIndicatorView.stopAnimating()
+//                        }
+//                    }
+//                }
+//            }
+//        }
+    }
+    
+    //下载头像
+    func downloadImage(){
+//        for i in 0...allMembers{
+//            let imageRef = storageRef.child("ProfilePhoto/").child("\(membersUIDOfTeam[i])")
+//            imageRef.downloadURL { (url, error) in
+//                if let downloadURL = url {
+//                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+//                        if let imageData = data, let image = UIImage(data: imageData) {
+//                            DispatchQueue.main.async {
+//                                self.membersProfile.append(image)
+//                            }
+//                        }
+//                    }.resume()
+//                }
+//            }
+//        }
     }
 }
 
