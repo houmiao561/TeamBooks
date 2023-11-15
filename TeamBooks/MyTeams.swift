@@ -10,7 +10,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import NVActivityIndicatorView
-import Kingfisher
 
 class MyTeams: UIViewController {
     
@@ -26,8 +25,7 @@ class MyTeams: UIViewController {
     var allNum = 0  //所有的team的数量
     var teamNumberArray = [String]()    //teamName数组
     var selectNum = 0   //点击时，选择的是第几个
-    
-    var imageView: UIImageView = UIImageView(image: UIImage(named: "Yummy"))
+    var teamLogoCollection = [UIImage]()    //所有logo
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,26 +59,9 @@ class MyTeams: UIViewController {
         
         //执行函数
         fetchNumOfCollection()//解决异步问题
-        teamNumberArray.sort()
+        downloadImage()
         collectionView.reloadData()
-        let imageRef = storageRef.child("TeamLogo/").child("TOM")
-        imageRef.downloadURL { (url, error) in
-            if let downloadURL = url {
-                
-                // 使用 Kingfisher 加载和缓存图片
-                DispatchQueue.main.async {
-                    self.imageView.kf.setImage(with: downloadURL, placeholder: UIImage(named: "placeholder"), options: [.transition(.fade(0.2))], progressBlock: nil) { result in
-                        switch result {
-                        case .success(let value):
-                            print("Image loaded: \(value.image)")
-                            self.collectionView.reloadData()
-                        case .failure(let error):
-                            print("Error loading image: \(error.localizedDescription)")
-                        }
-                    }
-                }
-            }
-        }
+        
         
         
         //注册长按手势
@@ -111,22 +92,6 @@ class MyTeams: UIViewController {
 //MARK: -Collection and Cell
 extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
     
-    func fetchNumOfCollection() {
-        self.ref = Database.database().reference().child("Users").child(user!.uid).child("Teams")
-        ref.observe(.value, with: { (snapshot) in
-            if let teamData = snapshot.value as? [String: Any] {
-                self.allNum = teamData.count
-                self.collectionView.reloadData()
-                
-                for teamDatas in teamData{
-                    self.teamNumberArray.append(teamDatas.value as! String)
-                    self.teamNumberArray.sort()
-                }
-            }
-            self.activityIndicatorView.stopAnimating()
-        })
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allNum
     }
@@ -134,22 +99,15 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath as IndexPath) as! CollectionViewCell
         
-//        let imageRef = storageRef.child("TeamLogo/").child("\(teamNumberArray[indexPath.item])")
-//        imageRef.downloadURL { (url, error) in
-//            if let downloadURL = url {
-//                DispatchQueue.global().async {
-//                    if let imageData = try? Data(contentsOf: downloadURL) {
-//                        let image = UIImage(data: imageData)
-//                        DispatchQueue.main.async {
-//                            cell.TeamLogo.image = image
-//                            self.collectionView.reloadData()
-//                        }
-//                    }
-//                }
-//            }
-//        }
-        cell.TeamLogo.image = self.imageView.image
-        self.activityIndicatorView.stopAnimating()
+        if self.teamLogoCollection.count == 0{
+            cell.TeamLogo.image = UIImage(named: "Yummy")
+            self.activityIndicatorView.stopAnimating()
+        }else{
+            cell.TeamLogo.image = self.teamLogoCollection[indexPath.item]
+            print(self.teamLogoCollection.count)
+            self.activityIndicatorView.stopAnimating()
+        }
+        
         return cell
     }
     
@@ -231,6 +189,48 @@ extension MyTeams{
                 alertController.addAction(detailAction)
                 self.present(alertController,animated: true,completion: nil)
                 
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+//MARK: -Firebase
+extension MyTeams{
+    func fetchNumOfCollection() {
+        self.ref = Database.database().reference().child("Users").child(user!.uid).child("Teams")
+        ref.observe(.value, with: { (snapshot) in
+            if let teamData = snapshot.value as? [String: Any] {
+                self.allNum = teamData.count
+                self.collectionView.reloadData()
+                
+                for teamDatas in teamData{
+                    self.teamNumberArray.append(teamDatas.value as! String)
+                }
+            }
+            self.activityIndicatorView.stopAnimating()
+        })
+    }
+    
+    func downloadImage(){
+        let imageRef = storageRef.child("TeamLogo/").child("TOM")
+        imageRef.downloadURL { (url, error) in
+            if let downloadURL = url {
+                DispatchQueue.global().async {
+                    if let imageData = try? Data(contentsOf: downloadURL) {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            self.teamLogoCollection.append(image!)
+                            self.collectionView.reloadData()
+                        }
+                    }
+                }
             }
         }
     }
