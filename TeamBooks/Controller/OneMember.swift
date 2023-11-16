@@ -40,6 +40,7 @@ class OneMember: UITableViewController {
         activityIndicatorView.center = view.center
         activityIndicatorView.padding = 20
         view.addSubview(activityIndicatorView)
+        activityIndicatorView.startAnimating()
         
         
         super.viewDidLoad()
@@ -146,6 +147,7 @@ extension OneMember{
                 cell.profile.image = UIImage(named: "Yummy")
             }else{
                 cell.profile.image = membersCommentsProfile[indexPath.row]
+                self.activityIndicatorView.stopAnimating()
             }
             return cell
         }
@@ -200,7 +202,6 @@ extension OneMember{
                     }
                 }
                 self.tableView.reloadData()
-                self.activityIndicatorView.stopAnimating()
             }
         }
     }
