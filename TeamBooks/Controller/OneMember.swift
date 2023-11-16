@@ -18,7 +18,7 @@ class OneMember: UITableViewController {
     var storageRef = Storage.storage().reference()
     var activityIndicatorView: NVActivityIndicatorView!
     
-    //下面四个时section0自我介绍部分的信息载体
+    //下面五个是section0自我介绍部分的信息载体
     var name = ""
     var birthday = ""
     var job = ""
@@ -31,6 +31,7 @@ class OneMember: UITableViewController {
     var everyCellInFunc = [[String:String]]()   //中介载体而已
     var finalNameArray:[String] = []    //最终的name数组
     var finalCommentsArray:[String] = []    //最终的comments数组
+    var membersCommentsProfile = [UIImage]()
     
     override func viewDidLoad() {
         
@@ -62,6 +63,7 @@ class OneMember: UITableViewController {
         downloadTextFromFirebase()
         getNum()
         downLoadCommentsFromFirebas()
+        DownLoadSelfImage()
         tableView.allowsSelection = false
         self.tableView.reloadData()
     }
@@ -87,6 +89,9 @@ class OneMember: UITableViewController {
 
 
 
+
+
+
 //MARK: -TableView and Cell
 extension OneMember{
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -102,22 +107,7 @@ extension OneMember{
         }
         
     }
-    func DownLoadSelfImage(){
-        let imageRef = self.storageRef.child("UserIntroducePhoto/").child("\(self.teamName)/").child("Members \(self.user.uid)")
-        imageRef.downloadURL { (url, error) in
-            if let downloadURL = url {
-                DispatchQueue.global().async {
-                    if let imageData = try? Data(contentsOf: downloadURL) {
-                        let image = UIImage(data: imageData)
-                        DispatchQueue.main.async {
-                            self.selfImage = image
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
-        }
-    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Comments解决思路是用字典储存UIImage，SelfIntroduce解决方案不变
         if indexPath.section == 0{
@@ -130,23 +120,7 @@ extension OneMember{
                 cell.selfimage.image = UIImage(named: "Yummy")
             }else{
                 cell.selfimage.image = self.selfImage
-                self.tableView.reloadData()
             }
-            
-//            let imageRef = self.storageRef.child("UserIntroducePhoto/").child("\(self.teamName)/").child("Members \(self.user.uid)")
-//            imageRef.downloadURL { (url, error) in
-//                if let downloadURL = url {
-//                    DispatchQueue.global().async {
-//                        if let imageData = try? Data(contentsOf: downloadURL) {
-//                            let image = UIImage(data: imageData)
-//                            DispatchQueue.main.async {
-//                                cell.selfimage.image = image
-//                                self.tableView.reloadData()
-//                            }
-//                        }
-//                    }
-//                }
-//            }
             
             return cell
         }else{
@@ -168,19 +142,10 @@ extension OneMember{
             }
             
             //显示头像
-            let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(realK)")
-            imageRef.downloadURL { (url, error) in
-                if let downloadURL = url {
-                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
-                        if let imageData = data, let image = UIImage(data: imageData) {
-                            // 在主线程更新UI
-                            DispatchQueue.main.async {
-                                cell.profile.image = image
-                                self.tableView.reloadData()
-                            }
-                        }
-                    }.resume()
-                }
+            if self.membersCommentsProfile.count == 0{
+                cell.profile.image = UIImage(named: "Yummy")
+            }else{
+                cell.profile.image = membersCommentsProfile[indexPath.row]
             }
             return cell
         }
@@ -196,73 +161,6 @@ extension OneMember{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//MARK: -Gesture
-extension OneMember{
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        if gestureRecognizer.state == .began {
-            let location = gestureRecognizer.location(in: tableView)
-            if let indexPath = tableView.indexPathForRow(at: location){
-                
-                // 行位置
-                let section = indexPath.section
-                let row = indexPath.row
-                // 要删除的值
-                let valueToDelete = "\(everyCellInFunc[row].values.first!)"
-                // 进入循环并且child("\(deleteNum)")
-                var deleteNum = 0
-
-                if section == 0 {
-                    return
-                } else {
-                    let realK = String(self.everyCellInFunc[row].keys.first!.prefix(self.everyCellInFunc[row].keys.first!.count - 2))
-                    if self.user.uid == realK{
-                        let alertController = UIAlertController(title: "If you want to delete your Comments?", message: "This operation cannot be undone.", preferredStyle: .alert)
-                        let yesAction = UIAlertAction(title: "Yes", style: .default){ (action) in
-                            self.ref.child("Comments").child("\(self.teamName)").child("\(self.memberUID)").child("\(self.user.uid)").observeSingleEvent(of: .value) { DataSnapshot,error in
-                                if let teamDetailData = DataSnapshot.value as? [String]{
-                                    for teamDetailDataChild in teamDetailData{
-                                        if teamDetailDataChild == valueToDelete{
-                                            self.ref.child("Comments").child("\(self.teamName)").child("\(self.memberUID)").child("\(self.user.uid)").child("\(deleteNum)").removeValue()
-                                            self.navigationController?.popViewController(animated: true)
-                                            return
-                                        }
-                                        deleteNum += 1
-                                    }
-                                }
-                            }
-                        }
-                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                        alertController.addAction(cancelAction)
-                        alertController.addAction(yesAction)
-                        self.present(alertController,animated: true,completion: nil)
-                    }else{
-                        let alertController = UIAlertController(title: "You can't delete others Comments", message: "It isn't your Comments", preferredStyle: .alert)
-                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                        alertController.addAction(cancelAction)
-                        self.present(alertController,animated: true,completion: nil)
-                    }
-                }
-            }
-        }
-    }
-}
 
 
 
@@ -329,12 +227,45 @@ extension OneMember{
             }
             for k in vs.keys{
                 self.finalNameArray.append(k)
+                
+                let realK = String(k.prefix(k.count - 2))
+                let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(realK)")
+                imageRef.downloadURL { (url, error) in
+                    if let downloadURL = url {
+                        URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+                            if let imageData = data, let image = UIImage(data: imageData) {
+                                // 在主线程更新UI
+                                DispatchQueue.main.async {
+                                    self.membersCommentsProfile.append(image)
+                                    self.tableView.reloadData()
+                                }
+                            }
+                        }.resume()
+                    }
+                }
             }
             
         }
         self.tableView.reloadData()
         }
         
+    }
+    
+    func DownLoadSelfImage(){
+        let imageRef = self.storageRef.child("UserIntroducePhoto/").child("\(self.teamName)/").child("Members \(self.user.uid)")
+        imageRef.downloadURL { (url, error) in
+            if let downloadURL = url {
+                DispatchQueue.global().async {
+                    if let imageData = try? Data(contentsOf: downloadURL) {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            self.selfImage = image
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+        }
     }
     
 }
@@ -379,4 +310,60 @@ extension OneMember{
 
 
 
+
+//MARK: -Gesture
+extension OneMember{
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        if gestureRecognizer.state == .began {
+            let location = gestureRecognizer.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: location){
+                
+                // 行位置
+                let section = indexPath.section
+                let row = indexPath.row
+                // 要删除的值
+                let valueToDelete = "\(everyCellInFunc[row].values.first!)"
+                // 进入循环并且child("\(deleteNum)")
+                var deleteNum = 0
+
+                if section == 0 {
+                    return
+                } else {
+                    let realK = String(self.everyCellInFunc[row].keys.first!.prefix(self.everyCellInFunc[row].keys.first!.count - 2))
+                    if self.user.uid == realK{
+                        let alertController = UIAlertController(title: "If you want to delete your Comments?", message: "This operation cannot be undone.", preferredStyle: .alert)
+                        let yesAction = UIAlertAction(title: "Yes", style: .default){ (action) in
+                            self.ref.child("Comments").child("\(self.teamName)").child("\(self.memberUID)").child("\(self.user.uid)").observeSingleEvent(of: .value) { DataSnapshot,error in
+                                if let teamDetailData = DataSnapshot.value as? [String]{
+                                    for teamDetailDataChild in teamDetailData{
+                                        if teamDetailDataChild == valueToDelete{
+                                            self.ref.child("Comments").child("\(self.teamName)").child("\(self.memberUID)").child("\(self.user.uid)").child("\(deleteNum)").removeValue()
+                                            self.navigationController?.popViewController(animated: true)
+                                            return
+                                        }
+                                        deleteNum += 1
+                                    }
+                                }
+                            }
+                        }
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                        alertController.addAction(cancelAction)
+                        alertController.addAction(yesAction)
+                        self.present(alertController,animated: true,completion: nil)
+                    }else{
+                        let alertController = UIAlertController(title: "You can't delete others Comments", message: "It isn't your Comments", preferredStyle: .alert)
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController,animated: true,completion: nil)
+                    }
+                }
+            }
+        }
+    }
+}
 
