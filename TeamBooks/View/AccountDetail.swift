@@ -46,7 +46,7 @@ class AccountDetail: UIViewController {
         
         
         //执行完downloadImageFromFirebaseStorage()之后动画结束
-        self.activityIndicatorView.startAnimating()
+        activityIndicatorView.startAnimating()
     }
     
     @IBAction func LogOut(_ sender: UIButton) {

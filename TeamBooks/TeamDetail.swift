@@ -50,25 +50,25 @@ class TeamDetail: UIViewController {
 
 //MARK: -Firebase
 extension TeamDetail{
-    func downloadImageFromFirebaseStorage(){
-        let imageRef = storageRef.child("TeamLogo/").child("\(nameFormMYTEAMS)")
-        
-        imageRef.downloadURL { (url, error) in
-            if let downloadURL = url {
-                DispatchQueue.global().async {
-                    if let imageData = try? Data(contentsOf: downloadURL) {
-                        let image = UIImage(data: imageData)
-                        DispatchQueue.main.async {
-                            self.TeamLogo.image = image
-                        }
-                    }
-                }
-            } else if let error = error {
-                print(error)
-            }
-        }
-        
-    }
+//    func downloadImageFromFirebaseStorage(){
+//        let imageRef = storageRef.child("TeamLogo/").child("\(nameFormMYTEAMS)")
+//        
+//        imageRef.downloadURL { (url, error) in
+//            if let downloadURL = url {
+//                DispatchQueue.global().async {
+//                    if let imageData = try? Data(contentsOf: downloadURL) {
+//                        let image = UIImage(data: imageData)
+//                        DispatchQueue.main.async {
+//                            self.TeamLogo.image = image
+//                        }
+//                    }
+//                }
+//            } else if let error = error {
+//                print(error)
+//            }
+//        }
+//        
+//    }
     
     func downlodarTextFromFirebase(){
         ref = Database.database().reference().child("Teams").child("\(nameFormMYTEAMS)")

@@ -78,10 +78,11 @@ extension AllMember{
         }else{
             cell.memberName.text = memberName[indexPath.row]
         }
-        print(membersProfile.count)
+        
         if membersProfile.count == 0{
             cell.profileImage.image = UIImage(named: "Yummy")
         }else{
+            self.activityIndicatorView.stopAnimating()
             cell.profileImage.image = self.membersProfile[indexPath.row]
         }
 
@@ -178,7 +179,7 @@ extension AllMember{
                             for (key, value) in teamDetailData {
                                 if key == "oneselfName" {
                                     self.memberName.append(value as! String)
-                                    self.activityIndicatorView.stopAnimating()
+                                    
                                 }
                             }
                         }
@@ -187,6 +188,7 @@ extension AllMember{
                 
                 dispatchGroup.notify(queue: .main) {
                     // 所有异步任务完成后刷新表格
+                    
                     self.tableView.reloadData()
                 }
             }

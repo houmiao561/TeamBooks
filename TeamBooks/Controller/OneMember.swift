@@ -23,6 +23,7 @@ class OneMember: UITableViewController {
     var birthday = ""
     var job = ""
     var introduce = ""
+    var selfImage: UIImage?
     
     var teamName = ""   //teamName
     var memberUID = ""  //个人主页的那个人的UID""
@@ -101,30 +102,51 @@ extension OneMember{
         }
         
     }
-    
+    func DownLoadSelfImage(){
+        let imageRef = self.storageRef.child("UserIntroducePhoto/").child("\(self.teamName)/").child("Members \(self.user.uid)")
+        imageRef.downloadURL { (url, error) in
+            if let downloadURL = url {
+                DispatchQueue.global().async {
+                    if let imageData = try? Data(contentsOf: downloadURL) {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            self.selfImage = image
+                            self.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+        }
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        //Comments解决思路是用字典储存UIImage，SelfIntroduce解决方案不变
         if indexPath.section == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "OneMemberCell", for: indexPath) as! OneMemberCell
             cell.birthday.text = birthday
             cell.introduce.text = introduce
             cell.job.text = job
             cell.name.text = name
-            
-            let imageRef = self.storageRef.child("UserIntroducePhoto/").child("\(self.teamName)/").child("Members \(self.user.uid)")
-            imageRef.downloadURL { (url, error) in
-                if let downloadURL = url {
-                    DispatchQueue.global().async {
-                        if let imageData = try? Data(contentsOf: downloadURL) {
-                            let image = UIImage(data: imageData)
-                            DispatchQueue.main.async {
-                                cell.selfimage.image = image
-                                self.tableView.reloadData()
-                            }
-                        }
-                    }
-                }
+            if self.selfImage == nil{
+                cell.selfimage.image = UIImage(named: "Yummy")
+            }else{
+                cell.selfimage.image = self.selfImage
+                self.tableView.reloadData()
             }
+            
+//            let imageRef = self.storageRef.child("UserIntroducePhoto/").child("\(self.teamName)/").child("Members \(self.user.uid)")
+//            imageRef.downloadURL { (url, error) in
+//                if let downloadURL = url {
+//                    DispatchQueue.global().async {
+//                        if let imageData = try? Data(contentsOf: downloadURL) {
+//                            let image = UIImage(data: imageData)
+//                            DispatchQueue.main.async {
+//                                cell.selfimage.image = image
+//                                self.tableView.reloadData()
+//                            }
+//                        }
+//                    }
+//                }
+//            }
             
             return cell
         }else{
