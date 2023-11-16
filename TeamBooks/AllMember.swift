@@ -52,8 +52,6 @@ class AllMember: UITableViewController {
         //执行函数
         fetchNumber()
         fetchMembers()
-        downloadImage()
-        changeUIDtoName()
     }
     
 }
@@ -139,45 +137,6 @@ extension AllMember{
     
     //再获取名字和UID
     func fetchMembers(){
-//        self.ref = Database.database().reference().child("Teams").child(nameFormMYTEAMS).child("TeamMembers")
-//        ref.observeSingleEvent(of:.value) { (snapshot, error) in
-//            if let teamData = snapshot.value as? [String: Any] {
-//                
-//                for (key,value) in teamData{
-//                    self.membersUIDOfTeam.append(key)
-//                    self.membersNameOfTeam.append(value as! String)
-//                    
-//                    
-//                    let imageRef = self.storageRef.child("ProfilePhoto/").child(key)
-//                    imageRef.downloadURL { (url, error) in
-//                        if let downloadURL = url {
-//                            URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
-//                                if let imageData = data, let image = UIImage(data: imageData) {
-//                                    DispatchQueue.main.async {
-//                                        self.membersProfile.append(image)
-//                                    }
-//                                }
-//                            }.resume()
-//                        }
-//                    }
-//                    
-//                    let REF = self.ref = Database.database().reference().child("OneselfIntroduceInTeam").child("\(self.nameFormMYTEAMS)").child("\(key)")
-//                    REF.observeSingleEvent(of: .value) { DataSnapshot,err  in
-//                        if let teamDetailData = DataSnapshot.value as? [String: Any] {
-//                            for (key, value) in teamDetailData{
-//                                if key == "oneselfName"{
-//                                    self.memberName.append(value as! String)
-//                                    self.activityIndicatorView.stopAnimating()
-//                                }
-//                            }
-//                        }
-//                    }
-//                    
-//                }
-//                
-//                self.tableView.reloadData()
-//            }
-//        }
         self.ref = Database.database().reference().child("Teams").child(nameFormMYTEAMS).child("TeamMembers")
         self.ref.observeSingleEvent(of:.value) { (snapshot, error) in
             if let teamData = snapshot.value as? [String: Any] {
@@ -234,40 +193,6 @@ extension AllMember{
         }
     }
     
-    //改变UID为名字
-    func changeUIDtoName(){
-//        for i in 0...allMembers{
-//            ref = Database.database().reference().child("OneselfIntroduceInTeam").child("\(nameFormMYTEAMS)").child("\(membersUIDOfTeam[i])")
-//            ref.observeSingleEvent(of: .value) { DataSnapshot,err  in
-//                if let teamDetailData = DataSnapshot.value as? [String: Any] {
-//                    for (key, value) in teamDetailData{
-//                        if key == "oneselfName"{
-//                            self.memberName.append(value as! String)
-//                            self.activityIndicatorView.stopAnimating()
-//                        }
-//                    }
-//                }
-//            }
-//        }
-    }
-    
-    //下载头像
-    func downloadImage(){
-//        for i in 0...allMembers{
-//            let imageRef = storageRef.child("ProfilePhoto/").child("\(membersUIDOfTeam[i])")
-//            imageRef.downloadURL { (url, error) in
-//                if let downloadURL = url {
-//                    URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
-//                        if let imageData = data, let image = UIImage(data: imageData) {
-//                            DispatchQueue.main.async {
-//                                self.membersProfile.append(image)
-//                            }
-//                        }
-//                    }.resume()
-//                }
-//            }
-//        }
-    }
 }
 
 

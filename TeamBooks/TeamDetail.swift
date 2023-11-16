@@ -19,6 +19,7 @@ class TeamDetail: UIViewController {
     
     var ref: DatabaseReference!
     let storageRef = Storage.storage().reference()
+    var teamLogoFromMyTeams: UIImage?
     
     var nameFormMYTEAMS = ""    //点击MyTeams中的任意一个之后，传过来的TeamName
     
@@ -28,9 +29,9 @@ class TeamDetail: UIViewController {
         
         //执行函数
         downlodarTextFromFirebase()
-        downloadImageFromFirebaseStorage()
+        //downloadImageFromFirebaseStorage()
         
-        
+        TeamLogo.image = teamLogoFromMyTeams
         //照片修饰框架
         TeamLogo.contentMode = .scaleAspectFill
         TeamLogo.layer.cornerRadius = 10.0 // 设置圆角半径

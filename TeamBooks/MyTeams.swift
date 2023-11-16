@@ -104,7 +104,6 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
             self.activityIndicatorView.stopAnimating()
         }else{
             cell.TeamLogo.image = self.teamLogoCollection[indexPath.item]
-            print(self.teamLogoCollection.count)
             self.activityIndicatorView.stopAnimating()
         }
         
@@ -121,7 +120,9 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
             if let destinationVC = segue.destination as? TabBar,
                let item1VC = destinationVC.viewControllers?[0]as? TeamDetail,
                let item2VC = destinationVC.viewControllers?[1] as? AllMember {
+                print(teamLogoCollection.count)
                 item1VC.nameFormMYTEAMS = teamNumberArray[selectNum]
+                item1VC.teamLogoFromMyTeams = teamLogoCollection[selectNum]
                 item2VC.nameFormMYTEAMS = teamNumberArray[selectNum]
             }
         }
