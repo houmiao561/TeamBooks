@@ -21,6 +21,7 @@ class SignUp: UIViewController {
     
     private let realtimeRef = Database.database().reference()
     private let firestoreRef = Firestore.firestore().collection("UserAccont")
+    let storageRef = Storage.storage().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,22 +44,40 @@ class SignUp: UIViewController {
                 self.present(alertController,animated: true,completion: nil)
                 
             } else {//登录成功保存到firebase
-                self.activityIndicatorView.stopAnimating()
                 if let user = authResult?.user {
                     self.realtimeRef.child("Users").child("\(user.uid)").setValue(
                         ["UserUID":user.uid,
                          "UserEmail":user.email])
+                    let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(user.uid)")
+                    if let imageData = UIImage(named: "Yummy")!.jpegData(compressionQuality: 0.0001) {
+                        // 开始上传图片
+                        imageRef.putData(imageData, metadata: nil) { (metadata, error) in
+                            if let error = error {
+                                print("Error uploading image: \(error.localizedDescription)")
+                            } else {
+                                self.activityIndicatorView.stopAnimating()
+                                let alertController = UIAlertController(title: "Great!", message: "Sign Up and Log In Succeed.", preferredStyle: .alert)
+                                // 显示 UIAlertController
+                                self.present(alertController, animated: true, completion: nil)
+                                // 延时两秒后自动关闭 UIAlertController
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    alertController.dismiss(animated: true, completion: nil)
+                                    self.navigationController!.popToRootViewController(animated: true)
+                                }
+                            }
+                        }
+                    }
                 }
-                
-                let alertController = UIAlertController(title: "Great!", message: "Sign Up and Log In Succeed.", preferredStyle: .alert)
-                // 显示 UIAlertController
-                self.present(alertController, animated: true, completion: nil)
-                
-                // 延时两秒后自动关闭 UIAlertController
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    alertController.dismiss(animated: true, completion: nil)
-                    self.navigationController!.popToRootViewController(animated: true)
-                }
+//                
+//                let alertController = UIAlertController(title: "Great!", message: "Sign Up and Log In Succeed.", preferredStyle: .alert)
+//                // 显示 UIAlertController
+//                self.present(alertController, animated: true, completion: nil)
+//                
+//                // 延时两秒后自动关闭 UIAlertController
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                    alertController.dismiss(animated: true, completion: nil)
+//                    self.navigationController!.popToRootViewController(animated: true)
+//                }
             }
         }
         

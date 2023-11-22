@@ -73,13 +73,13 @@ extension AllMember{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllMembersCell", for: indexPath) as! AllMembersCell
 
-        if memberName.count == 0{
+        if memberName.count != self.allMembers{
             cell.memberName.text = nameFormMYTEAMS
         }else{
             cell.memberName.text = memberName[indexPath.row]
         }
         
-        if membersProfile.count == 0{
+        if membersProfile.count != self.allMembers{
             cell.profileImage.image = UIImage(named: "Yummy")
         }else{
             self.activityIndicatorView.stopAnimating()
