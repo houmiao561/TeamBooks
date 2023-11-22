@@ -591,7 +591,7 @@
                     <connections>
                         <outlet property="teamName" destination="NJG-gU-uTL" id="ec0-fR-GfT"/>
                         <outlet property="teamPassword" destination="NnV-wm-GcY" id="8aG-tf-XDR"/>
-                        <segue destination="AVE-sQ-guh" kind="show" identifier="AddTeamToSelfIntroduce" id="UZq-hH-5mv"/>
+                        <segue destination="AVE-sQ-guh" kind="show" identifier="AddTeamToSelfIntroduce" id="2r2-EL-rRM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8j-bJ-ZFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -892,11 +892,10 @@
                                     <constraint firstItem="HrD-Bk-xR5" firstAttribute="leading" secondItem="WnV-dy-FFz" secondAttribute="leading" id="sTJ-A4-sB5"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write Something..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soH-mI-5Fa">
-                                <rect key="frame" x="30" y="112" width="150" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Write Something 👇" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soH-mI-5Fa">
+                                <rect key="frame" x="30" y="112" width="154.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="78s-DA-KGH"/>
-                                    <constraint firstAttribute="width" constant="150" id="QgH-nF-MzS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>

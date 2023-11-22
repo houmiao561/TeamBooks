@@ -164,6 +164,8 @@ extension AllMember{
                                     }
                                 }
                             }.resume()
+                        }else{
+                            self.activityIndicatorView.stopAnimating()
                         }
                     }
                     

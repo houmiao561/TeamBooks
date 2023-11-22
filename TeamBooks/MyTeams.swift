@@ -103,7 +103,6 @@ extension MyTeams:UICollectionViewDataSource, UICollectionViewDelegate{
             cell.TeamLogo.image = UIImage(named: "Yummy")
         }else{
             cell.TeamLogo.image = self.teamLogoCollection[indexPath.item]
-            self.activityIndicatorView.stopAnimating()
         }
         
         return cell
@@ -206,6 +205,7 @@ extension MyTeams{
     func fetchNumOfCollection() {
         self.ref = Database.database().reference().child("Users").child(user!.uid).child("Teams")
         ref.observe(.value, with: { (snapshot) in
+            self.activityIndicatorView.stopAnimating()
             if let teamData = snapshot.value as? [String: Any] {
                 self.allNum = teamData.count
                 self.collectionView.reloadData()

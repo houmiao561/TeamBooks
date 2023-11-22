@@ -169,6 +169,7 @@ extension AccountDetail{
                 }
             } else if let error = error {
                 print("Error getting download URL: \(error.localizedDescription)")
+                self.activityIndicatorView.stopAnimating()
             }
         }
         

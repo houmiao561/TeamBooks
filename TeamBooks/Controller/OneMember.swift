@@ -121,6 +121,7 @@ extension OneMember{
                 cell.selfimage.image = UIImage(named: "Yummy")
             }else{
                 cell.selfimage.image = self.selfImage
+                self.activityIndicatorView.stopAnimating()
             }
             
             return cell
@@ -147,7 +148,7 @@ extension OneMember{
                 cell.profile.image = UIImage(named: "Yummy")
             }else{
                 cell.profile.image = membersCommentsProfile[indexPath.row]
-                self.activityIndicatorView.stopAnimating()
+                
             }
             return cell
         }
