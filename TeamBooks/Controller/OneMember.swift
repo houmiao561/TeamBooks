@@ -78,6 +78,10 @@ class OneMember: UITableViewController {
             if let destinationVC = segue.destination as? AddComments{
                 destinationVC.teamName = self.teamName
                 destinationVC.memberUID = self.memberUID
+                destinationVC.onDataReceived = { data in
+                    print("Data from B: \(data)")
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -345,7 +349,13 @@ extension OneMember{
                                     for teamDetailDataChild in teamDetailData{
                                         if teamDetailDataChild == valueToDelete{
                                             self.ref.child("Comments").child("\(self.teamName)").child("\(self.memberUID)").child("\(self.user.uid)").child("\(deleteNum)").removeValue()
-                                            self.navigationController?.popViewController(animated: true)
+                                            
+                                            self.count -= 1
+                                            self.everyCellInFunc.remove(at: deleteNum)
+                                            self.finalNameArray.remove(at: deleteNum)
+                                            self.finalCommentsArray.remove(at: deleteNum)
+                                            //self.membersCommentsProfile.remove(at: deleteNum)
+                                            self.tableView.reloadData()
                                             return
                                         }
                                         deleteNum += 1

@@ -21,6 +21,8 @@ class AddComments: UIViewController {
     var teamName = ""   //name
     var memberUID = ""  //被点击
     
+    var onDataReceived: ((String) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +34,9 @@ class AddComments: UIViewController {
         view.addSubview(activityIndicatorView)
     }
     
-    
+    func taskCompleted() {
+        onDataReceived!("12312312313")
+    }
     
     @IBAction func button(_ sender: UIButton) {
         activityIndicatorView.startAnimating()
@@ -94,6 +98,8 @@ class AddComments: UIViewController {
                         }
                     }
                 }
+                
+                self.taskCompleted()
             })
         }else{
             let alertController = UIAlertController(title: "Please write something", message: "You can't write anything and public it.", preferredStyle: .alert)
