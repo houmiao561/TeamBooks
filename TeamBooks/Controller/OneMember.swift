@@ -213,17 +213,11 @@ extension OneMember{
                     self.tableView.reloadData()
                 }
             }else{
-                print("!!!!!!!!!!!")
-            }
-            if let teamDetailDataABC = snapshot.value as? [String:String] {
-                self.count = 1
-            }else{
-                print("???????????")
-            }
-            if let teamDetailDataDEF = snapshot.value as? [String:String] {
-                self.count = 1
-            }else{
-                print("???????????")
+                if snapshot.value != nil{
+                    print("123")
+                }else{
+                    print("456")
+                }
             }
         }
     }
@@ -293,7 +287,7 @@ extension OneMember{
     }
     
     func DownLoadSelfImage(){
-        let imageRef = self.storageRef.child("UserIntroducePhoto/").child("\(self.teamName)/").child("Members \(self.user.uid)")
+        let imageRef = self.storageRef.child("UserIntroducePhoto/").child("\(self.teamName)/").child("\(self.memberUID)")
         imageRef.downloadURL { (url, error) in
             if let downloadURL = url {
                 DispatchQueue.global().async {
