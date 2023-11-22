@@ -78,8 +78,30 @@ class OneMember: UITableViewController {
             if let destinationVC = segue.destination as? AddComments{
                 destinationVC.teamName = self.teamName
                 destinationVC.memberUID = self.memberUID
-                destinationVC.onDataReceived = { data in
-                    print("Data from B: \(data)")
+                
+                destinationVC.onDataReceived = { comments,uid in
+                    print("Data from B: \(comments)")
+                    print("Data from B: \(uid)")
+                    self.count = self.count + 1
+                    self.finalCommentsArray.append(comments)
+                    self.finalNameArray.append("\(uid)11")
+                    self.everyCellInFunc.append(["\(uid)11":comments])
+                    let imageRef = self.storageRef.child("ProfilePhoto/").child("Members \(uid)")
+                    imageRef.downloadURL { (url, error) in
+                        if let downloadURL = url {
+                            URLSession.shared.dataTask(with: downloadURL) { (data, response, error) in
+                                if let imageData = data, let image = UIImage(data: imageData) {
+                                    // 在主线程更新UI
+                                    DispatchQueue.main.async {
+                                        self.membersCommentsProfile.append(image)
+                                        self.tableView.reloadData()
+                                    }
+                                }
+                            }.resume()
+                        }else{
+                            print("no Profile")
+                        }
+                    }
                     self.tableView.reloadData()
                 }
             }
@@ -186,9 +208,22 @@ extension OneMember{
         ref.child("Comments").child("\(teamName)").child("\(memberUID)").observeSingleEvent(of: .value) { snapshot in
             if let teamDetailData = snapshot.value as? [String: [String]] {
                 for (_,va) in teamDetailData{
+                    print(va.count)
                     self.count += va.count
                     self.tableView.reloadData()
                 }
+            }else{
+                print("!!!!!!!!!!!")
+            }
+            if let teamDetailDataABC = snapshot.value as? [String:String] {
+                self.count = 1
+            }else{
+                print("???????????")
+            }
+            if let teamDetailDataDEF = snapshot.value as? [String:String] {
+                self.count = 1
+            }else{
+                print("???????????")
             }
         }
     }
@@ -357,8 +392,9 @@ extension OneMember{
                                             //self.membersCommentsProfile.remove(at: deleteNum)
                                             self.tableView.reloadData()
                                             return
+                                        }else{
+                                            deleteNum += 1
                                         }
-                                        deleteNum += 1
                                     }
                                 }
                             }

@@ -21,7 +21,7 @@ class AddComments: UIViewController {
     var teamName = ""   //name
     var memberUID = ""  //被点击
     
-    var onDataReceived: ((String) -> Void)?
+    var onDataReceived: ((String,String) -> Void)? //闭包类型
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class AddComments: UIViewController {
     }
     
     func taskCompleted() {
-        onDataReceived!("12312312313")
+        onDataReceived!("\(String(describing: self.addComments.text!))", user.uid)
     }
     
     @IBAction func button(_ sender: UIButton) {
@@ -61,6 +61,7 @@ class AddComments: UIViewController {
                                 self.present(alertController, animated: true, completion: nil)
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                     alertController.dismiss(animated: true)
+                                    self.navigationController?.popViewController(animated: true)
                                 }
                                 
                                 
@@ -92,6 +93,7 @@ class AddComments: UIViewController {
                             // 延时两秒后自动关闭 UIAlertController
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 alertController.dismiss(animated: true)
+                                self.navigationController?.popViewController(animated: true)
                             }
                             
                             

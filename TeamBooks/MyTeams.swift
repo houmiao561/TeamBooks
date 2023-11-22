@@ -205,7 +205,7 @@ extension MyTeams{
     func fetchNumOfCollection() {
         self.ref = Database.database().reference().child("Users").child(user!.uid).child("Teams")
         ref.observe(.value, with: { (snapshot) in
-            self.activityIndicatorView.stopAnimating()
+            
             if let teamData = snapshot.value as? [String: Any] {
                 self.allNum = teamData.count
                 self.collectionView.reloadData()
@@ -226,10 +226,14 @@ extension MyTeams{
                         let image = UIImage(data: imageData)
                         DispatchQueue.main.async {
                             self.teamLogoCollection.append(image!)
+                            self.activityIndicatorView.stopAnimating()
                             self.collectionView.reloadData()
                         }
                     }
                 }
+            }
+            else{
+                self.activityIndicatorView.stopAnimating()
             }
         }
     }
