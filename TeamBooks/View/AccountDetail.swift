@@ -69,7 +69,13 @@ class AccountDetail: UIViewController {
                             print("Error deleting user: \(error.localizedDescription)")
                         } else {
                             self.activityIndicatorView.stopAnimating()
-                            navigationController.popToRootViewController(animated: true)
+                            
+                            let alertController = UIAlertController(title: "Great!", message: "Delete Your Account Succeed.", preferredStyle: .alert)
+                            self.present(alertController, animated: true, completion: nil)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                alertController.dismiss(animated: true, completion: nil)
+                                self.navigationController!.popToRootViewController(animated: true)
+                            }
                         }
                     }
                 }

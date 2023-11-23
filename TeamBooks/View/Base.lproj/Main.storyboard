@@ -66,14 +66,39 @@
                                     <action selector="LetsGoButton:" destination="jHL-6T-23l" eventType="touchUpInside" id="J7f-7e-UF0"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rSu-3u-2cw">
+                                <rect key="frame" x="114" y="417.5" width="186.5" height="61.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can Join HM's Team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBW-1j-Lb8">
+                                        <rect key="frame" x="0.0" y="0.0" width="186.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Name: TOM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CwV-Dh-ZPT">
+                                        <rect key="frame" x="0.0" y="20.5" width="186.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team Password: 123456" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgA-Kp-OZE">
+                                        <rect key="frame" x="0.0" y="41" width="186.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GeD-GI-q1U"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GeD-GI-q1U" firstAttribute="trailing" secondItem="VgS-Fc-7Hs" secondAttribute="trailing" constant="30" id="Cve-p1-NZL"/>
                             <constraint firstItem="VgS-Fc-7Hs" firstAttribute="leading" secondItem="GeD-GI-q1U" secondAttribute="leading" constant="30" id="LcA-ic-2Tu"/>
+                            <constraint firstItem="rSu-3u-2cw" firstAttribute="centerX" secondItem="M45-f3-XHH" secondAttribute="centerX" id="OLV-yu-Rg3"/>
                             <constraint firstItem="VgS-Fc-7Hs" firstAttribute="top" secondItem="GeD-GI-q1U" secondAttribute="top" constant="50" id="pTp-eM-a2c"/>
                             <constraint firstItem="GeD-GI-q1U" firstAttribute="bottom" secondItem="Blt-rJ-fDY" secondAttribute="bottom" constant="40" id="qoD-zf-3Bs"/>
+                            <constraint firstItem="rSu-3u-2cw" firstAttribute="centerY" secondItem="M45-f3-XHH" secondAttribute="centerY" id="tQm-gS-4wn"/>
                             <constraint firstItem="Blt-rJ-fDY" firstAttribute="centerX" secondItem="M45-f3-XHH" secondAttribute="centerX" id="wFh-nE-5r3"/>
                         </constraints>
                     </view>
