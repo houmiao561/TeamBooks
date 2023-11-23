@@ -591,7 +591,7 @@
                     <connections>
                         <outlet property="teamName" destination="NJG-gU-uTL" id="ec0-fR-GfT"/>
                         <outlet property="teamPassword" destination="NnV-wm-GcY" id="8aG-tf-XDR"/>
-                        <segue destination="AVE-sQ-guh" kind="show" identifier="AddTeamToSelfIntroduce" id="2r2-EL-rRM"/>
+                        <segue destination="AVE-sQ-guh" kind="show" identifier="AddTeamToSelfIntroduce" id="h2x-JQ-zR7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8j-bJ-ZFk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

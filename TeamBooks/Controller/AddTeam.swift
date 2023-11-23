@@ -62,8 +62,14 @@ class AddTeam: UIViewController {
                                 }
                             }
                         default:
-                            break
+                            let alertController = UIAlertController(title: "Team Name Wrong!", message: "Please check your Team Name", preferredStyle: .alert)
+                            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                            alertController.addAction(cancelAction)
+                            self.present(alertController,animated: true,completion: nil)
                         }
+                        
+                        
+                        
                         break
                     }
                 }
